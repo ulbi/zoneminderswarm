@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  db:
+    image: mariadb:10.9
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+      - init_scripts:/docker-entrypoint-initdb.d
+    networks:
+      - zoneminder_network
+
+  zoneminder:
+    build: .
+    image: your_username/zoneminder:latest
+    environment:
+      ZM_DB_HOST: db
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      ZM_DB_NAME: ${MYSQL_DATABASE}
+      ZM_DB_USER: ${MYSQL_USER}
+      ZM_DB_PASS: ${MYSQL_PASSWORD}
+      ZM_SERVER_HOST: zoneminder
+    ports:
+      - "7080:80"
+      - "7000:9000"
+    volumes:
+      - zm_config:/etc/zm
+      - known_faces:/var/lib/zmeventnotification/hooks/known_faces
+      - unknown_faces:/var/lib/zmeventnotification/hooks/unknown_faces
+    depends_on:
+      - db
+    networks:
+      - zoneminder_network
+
+  db_init:
+    image: your_username/zoneminder:latest
+    environment:
+      ZM_DB_HOST: db
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      ZM_DB_NAME: ${MYSQL_DATABASE}
+      ZM_DB_USER: ${MYSQL_USER}
+      ZM_DB_PASS: ${MYSQL_PASSWORD}
+    volumes:
+      - init_scripts:/init-scripts
+    networks:
+      - zoneminder_network
+    entrypoint: ""
+    command: /init_entrypoint.sh
+
+volumes:
+  db_data:
+  zm_config:
+  known_faces:
+  unknown_faces:
+  init_scripts:
+
+networks:
+  zoneminder_network:
