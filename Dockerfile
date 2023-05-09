@@ -113,9 +113,6 @@ RUN a2enmod cgi \
     && a2enmod rewrite \
     && a2enconf zoneminder
 
-COPY init_entrypoint.sh /
-RUN chmod +x /init_entrypoint.sh
-
 # Set up the entrypoint script
 COPY entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/entrypoint.sh
