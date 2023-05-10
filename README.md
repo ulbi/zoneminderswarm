@@ -27,7 +27,7 @@ The `zoneminder` service builds a ZoneMinder image from a Dockerfile in the same
 - `ZM_DB_PASS`: The password for the database user.
 - `ZM_SERVER_HOST`: The hostname of the ZoneMinder service (`zoneminder` in this case).
 
-The `zoneminder` service exposes ports `7080` and `7000` for HTTP and HTTPS respectively, and uses the volumes `zm_config`, `known_faces`, and `unknown_faces` to store configuration and face recognition data. It also uses a `tmpfs` volume for shared memory with a size of approximately 400MB. Finally, it depends on the `db` service and is connected to the `zoneminder_network` network.
+The `zoneminder` service exposes the ports `80` and `9000` from Zonemindery, and uses the volumes `zm_config`, `known_faces`, and `unknown_faces` to store configuration and face recognition data. It also uses a `tmpfs` volume for shared memory with a size of approximately 400MB. Finally, it depends on the `db` service and is connected to the `zoneminder_network` network.
 
 ## Volumes
 

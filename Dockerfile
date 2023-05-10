@@ -56,6 +56,7 @@ FROM ubuntu:22.04
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
+ENV ZONEMINDERVERSION=1.36
 
 # Update the package list and install required packages
 RUN apt-get update && apt-get install -y \
@@ -76,7 +77,7 @@ RUN apt-get install -y \
 #RUN pip3 install face_recognition
 COPY --from=opencv_builder /usr/local /usr/local
 # Install ZoneMinder and other required packages
-RUN add-apt-repository -y ppa:iconnor/zoneminder-1.36
+RUN add-apt-repository -y ppa:iconnor/zoneminder-${ZONEMINDERVERSION}
 RUN apt-get update 
 RUN apt-get install -y \
     zoneminder 

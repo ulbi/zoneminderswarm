@@ -24,8 +24,8 @@ services:
       ZM_DB_PASS: ${MYSQL_PASSWORD}
       ZM_SERVER_HOST: zoneminder
     ports:
-      - "7080:80"
-      - "7000:9000"
+      - "80:80"
+      - "9000:9000"
     volumes:
       - zm_config:/etc/zm
       - known_faces:/var/lib/zmeventnotification/hooks/known_faces
