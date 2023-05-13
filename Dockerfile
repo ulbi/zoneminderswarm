@@ -73,7 +73,8 @@ RUN apt-get install -y \
     python3-setuptools \
     python3-wheel \
     python3-mysql.connector \
-    netcat
+    netcat \
+    curl
 #RUN pip3 install face_recognition
 COPY --from=opencv_builder /usr/local /usr/local
 # Install ZoneMinder and other required packages
@@ -122,6 +123,8 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 RUN mkdir -p /org/etc/zm
 RUN cp -R /etc/zm/* /org/etc/zm/
 
+HEALTHCHECK --interval=1m --timeout=10s --retries=3 \
+    CMD curl -f http://localhost/zm/ || exit 1
 
 # Expose ports
 EXPOSE 80 9000

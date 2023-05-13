@@ -11,6 +11,30 @@ until netcat -z ${ZM_DB_HOST} 3306; do
 done
 
 
+# set the timezone correctly
+if [ -n "$TZ" ]; then
+    echo $TZ > /etc/timezone
+    rm -rf /etc/localtime
+    ln -s /usr/share/zoneinfo/$TZ /etc/localtime
+    dpkg-reconfigure --frontend noninteractive tzdata
+
+    find /etc -name "php.ini" | while read -r filepath
+    do
+        # Check if date.timezone is set (commented or uncommented)
+        grep -q "^[;]*\s*date.timezone " "${filepath}"
+        
+        if [ $? -eq 0 ]; then
+            # If date.timezone is found (either commented or uncommented), change its value
+            # and uncomment it if necessary
+            sed -i "s|^[;]*\s*date.timezone .*|date.timezone = ${TZ}|g" "${filepath}"
+        else
+            # If date.timezone is not found at all, add it
+            echo "date.timezone = ${TZ}" >> "${filepath}"
+        fi
+    done
+fi
+
+
 # Use MySQL to count tables in the database
 table_count=$(mysql -h "$ZM_DB_HOST" -u "$ZM_DB_USER" -p"$ZM_DB_PASS" -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = '$ZM_DB_NAME';" -s)
 
