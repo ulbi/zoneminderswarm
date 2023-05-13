@@ -8,14 +8,13 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      TZ: {$TZ}
     volumes:
       - db_data:/var/lib/mysql
     networks:
       - zoneminder_network
 
   zoneminder:
-    build: .
-    image: your_username/zoneminder:latest
     environment:
       ZM_DB_HOST: db
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -23,36 +22,18 @@ services:
       ZM_DB_USER: ${MYSQL_USER}
       ZM_DB_PASS: ${MYSQL_PASSWORD}
       ZM_SERVER_HOST: zoneminder
-    ports:
-      - "80:80"
-      - "9000:9000"
+      TZ: {$TZ}
     volumes:
       - zm_config:/etc/zm
+      - zm_cache:/var/cache/zoneminder
       - known_faces:/var/lib/zmeventnotification/hooks/known_faces
       - unknown_faces:/var/lib/zmeventnotification/hooks/unknown_faces
       - type: tmpfs 
         target: /dev/shm 
         tmpfs: 
           size: 400000000 #~ 400 MB
-    depends_on:
-      - db
     networks:
       - zoneminder_network
-
-  #db_init:
-    #image: your_username/zoneminder:latest
-    #environment:
-      #ZM_DB_HOST: db
-      #MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      #ZM_DB_NAME: ${MYSQL_DATABASE}
-      #ZM_DB_USER: ${MYSQL_USER}
-      #ZM_DB_PASS: ${MYSQL_PASSWORD}
-    #volumes:
-      #- init_scripts:/init-scripts
-    #networks:
-      #- zoneminder_network
-    #entrypoint: ""
-    #command: /init_entrypoint.sh
 
 volumes:
   db_data:

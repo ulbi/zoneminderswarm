@@ -1,0 +1,8 @@
+services:
+  zoneminder:
+    build:
+      context: /home/rene/dev_container/ZoneminderTest/zoneminderswarm
+      dockerfile: Dockerfile  
+    ports: 
+      - "80:80"
+      - "9000:9000"

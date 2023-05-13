@@ -52,6 +52,7 @@ MYSQL_ROOT_PASSWORD=<root_password>
 MYSQL_DATABASE=<database_name>
 MYSQL_USER=<database_user>
 MYSQL_PASSWORD=<database_password>
+TZ=Europe/Berlin
 ```
 
 Replace `<root_password>`, `<database_name>`, `<database_user>`, and `<database_password>` with your desired values.
