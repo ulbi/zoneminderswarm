@@ -1,17 +1,19 @@
 #!/bin/bash
 
+################################################################################################
+#
+# check for first time config - if so set it up
+#
+################################################################################################
 if [ -z "$(ls -A /etc/zm)" ]; then
    cp -R /org/etc/zm/* /etc/zm/
 fi
 
-# Wait for the db container to be ready
-until netcat -z ${ZM_DB_HOST} 3306; do
-  echo "Waiting for MariaDB server to start..."
-  sleep 1
-done
-
-
+################################################################################################
+#
 # set the timezone correctly
+#
+################################################################################################
 if [ -n "$TZ" ]; then
     echo $TZ > /etc/timezone
     rm -rf /etc/localtime
@@ -34,6 +36,16 @@ if [ -n "$TZ" ]; then
     done
 fi
 
+
+################################################################################################
+#
+# Check and if required setup the DB
+#
+################################################################################################
+until netcat -z ${ZM_DB_HOST} 3306; do
+  echo "Waiting for MariaDB server to start..."
+  sleep 1
+done
 
 # Use MySQL to count tables in the database
 table_count=$(mysql -h "$ZM_DB_HOST" -u "$ZM_DB_USER" -p"$ZM_DB_PASS" -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = '$ZM_DB_NAME';" -s)
@@ -61,9 +73,29 @@ sed -i "s/ZM_DB_NAME=.*/ZM_DB_NAME=$ZM_DB_NAME/" /etc/zm/zm.conf
 service apache2 start
 service zoneminder start
 
-# Start the event notification server
-#cd /opt/zmeventnotification
-#./zmeventnotification.pl --config /etc/zm/zmeventnotification.ini
+
+################################################################################################
+#
+# Check and configure the event system
+#
+################################################################################################
+if [ -e "/etc/zm/zmeventnotification.ini" ]; then
+  # is mosquitto installed?
+  if [ -n "$ZM_MOSQUITTO_HOST" ]; then
+    netcat -z -w 30 $ZM_MOSQUITTO_HOST 1883
+    if [ $? -eq 0 ]; then
+      sed -i "/\[mqtt\]/,/^\[/ s/^[#]*enable\s*=.*/enable = yes/" /etc/zm/zmeventnotification.ini
+      sed -i "/\[mqtt\]/,/^\[/ s/^[#]*server\s*=.*/server = $MQTT_HOST/" /etc/zm/zmeventnotification.ini
+      sed -i "/\[mqtt\]/,/^\[/ s/^[#]*username\s*=.*/username = $MQTT_USER/" /etc/zm/zmeventnotification.ini
+      sed -i "/\[mqtt\]/,/^\[/ s/^[#]*password\s*=.*/password = $MQTT_PASSWORD/" /etc/zm/zmeventnotification.ini
+      sed -i "/\[mqtt\]/,/^\[/ s/^[#]*retain\s*=.*/retain = yes/" /etc/zm/zmeventnotification.ini
+    fi
+  fi
+  # Start the event notification server
+  #cd /opt/zmeventnotification
+  #./zmeventnotification.pl --config /etc/zm/zmeventnotification.ini
+fi
+
 
 # Keep the container running
 tail -f /dev/null

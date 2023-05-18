@@ -88,26 +88,23 @@ RUN apt-get install -y \
     vim
 
 # Install the event notification server and the AI face recognition dependencies
-#RUN apt-get install -y \
-    #libcrypt-eksblowfish-perl \
-    #libmodule-build-perl \
-    #libyaml-perl \
-    #make \
-    #libprotocol-websocket-perl \
-    #libjson-perl \
-    #liblwp-protocol-https-perl
-#RUN git clone https://github.com/pliablepixels/zmeventnotification.git /opt/zmeventnotification \
-    #&& cd /opt/zmeventnotification \
-    #&& git fetch --tags \
-    #&& git checkout $(git describe --tags $(git rev-list --tags --max-count=1)) \
-    #&& perl -MCPAN -e "install Net::WebSocker::Server" \
-    #&& perl -MCPAN -e "install Net::MQTT::Simple" \
-    #&& mkdir - /opt/zmeventnotification/hooks \
-    #&& cp -R /opt/zmeventnotification/hooks /var/lib/zmeventnotification/hooks \
-    #&& cp /opt/zmeventnotification/zmeventnotification.ini /etc/zm/ \
-    #&& chown -R www-data:www-data /var/lib/zmeventnotification/hooks \
-    #&& chmod 740 /var/lib/zmeventnotification/hooks/face.py \
-    #&& pip3 install -r /opt/zmeventnotification/requirements.txt
+RUN apt-get install -y \
+    libmodule-build-perl \
+    libyaml-perl \
+    make \
+    libprotocol-websocket-perl \
+    libjson-perl \
+    liblwp-protocol-https-perl 
+RUN perl -MCPAN -e "install Net::WebSocket::Server" \
+    perl -MCPAN -e "install Net::MQTT::Simple" \
+    perl -MCPAN -e "install Config::Inifiles"
+RUN mkdir -p /opt/zmeventnotification
+RUN git clone https://github.com/zoneminder/zmeventnotification.git /opt/zmeventnotification \
+    && cd /opt/zmeventnotification \
+    && git fetch --tags \
+    && git checkout $(git describe --tags $(git rev-list --tags --max-count=1)) \
+    && ./install.sh --install-es --install-hook --install-config --no-interactive --hook-config-upgrade --no-pysudo
+RUN sed -i 's/^enable = yes/enable = no/g' /etc/zm/zmeventnotification.ini
 
 
 # Enable and configure Apache

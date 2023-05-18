@@ -8,7 +8,7 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      TZ: {$TZ}
+      TZ: ${TZ}
     volumes:
       - db_data:/var/lib/mysql
     networks:
@@ -22,7 +22,10 @@ services:
       ZM_DB_USER: ${MYSQL_USER}
       ZM_DB_PASS: ${MYSQL_PASSWORD}
       ZM_SERVER_HOST: zoneminder
-      TZ: {$TZ}
+      MQTT_USER: ${MQTT_USER}
+      MQTT_PASSWORD: ${MQTT_PASSWORD}
+      MQTT_HOST: ${MQTT_HOST}
+      TZ: ${TZ}
     volumes:
       - zm_config:/etc/zm
       - zm_cache:/var/cache/zoneminder
@@ -34,12 +37,27 @@ services:
           size: 400000000 #~ 400 MB
     networks:
       - zoneminder_network
+    
+  eclipse-mosquitto:
+    hostname: eclipse-mosquitto
+    environment:
+      MQTT_USER: ${MQTT_USER}
+      MQTT_PASSWORD: ${MQTT_PASSWORD}
+      MQTT_HOST: ${MQTT_HOST}
+    networks:
+      - zoneminder_network
+    volumes:
+      - mosquitto_data:/mosquitto/data
 
 volumes:
   db_data:
   zm_config:
   known_faces:
   unknown_faces:
+  zm_cache:
+  mosquitto_data:
 
 networks:
   zoneminder_network:
+    driver: overlay
+    attachable: true

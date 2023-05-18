@@ -1,8 +1,15 @@
 services:
   zoneminder:
     build:
-      context: /home/rene/dev_container/ZoneminderTest/zoneminderswarm
+      context: .
       dockerfile: Dockerfile  
     ports: 
-      - "80:80"
-      - "9000:9000"
+      - "7080:80"
+      - "7000:9000"
+  eclipse-mosquitto:
+    build:
+      context: .
+      dockerfile: Dockerfile.mosquitto
+    ports:
+      - 1883:1883
+      - 9001:9001  
