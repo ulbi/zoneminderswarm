@@ -82,14 +82,11 @@ service zoneminder start
 if [ -e "/etc/zm/zmeventnotification.ini" ]; then
   # is mosquitto installed?
   if [ -n "$ZM_MOSQUITTO_HOST" ]; then
-    netcat -z -w 30 $ZM_MOSQUITTO_HOST 1883
-    if [ $? -eq 0 ]; then
-      sed -i "/\[mqtt\]/,/^\[/ s/^[#]*enable\s*=.*/enable = yes/" /etc/zm/zmeventnotification.ini
-      sed -i "/\[mqtt\]/,/^\[/ s/^[#]*server\s*=.*/server = $MQTT_HOST/" /etc/zm/zmeventnotification.ini
-      sed -i "/\[mqtt\]/,/^\[/ s/^[#]*username\s*=.*/username = $MQTT_USER/" /etc/zm/zmeventnotification.ini
-      sed -i "/\[mqtt\]/,/^\[/ s/^[#]*password\s*=.*/password = $MQTT_PASSWORD/" /etc/zm/zmeventnotification.ini
-      sed -i "/\[mqtt\]/,/^\[/ s/^[#]*retain\s*=.*/retain = yes/" /etc/zm/zmeventnotification.ini
-    fi
+    sed -i "/\[mqtt\]/,/^\[/ s/^[#]*enable\s*=.*/enable = yes/" /etc/zm/zmeventnotification.ini
+    sed -i "/\[mqtt\]/,/^\[/ s/^[#]*server\s*=.*/server = $MQTT_HOST/" /etc/zm/zmeventnotification.ini
+    sed -i "/\[mqtt\]/,/^\[/ s/^[#]*username\s*=.*/username = $MQTT_USER/" /etc/zm/zmeventnotification.ini
+    sed -i "/\[mqtt\]/,/^\[/ s/^[#]*password\s*=.*/password = $MQTT_PASSWORD/" /etc/zm/zmeventnotification.ini
+    sed -i "/\[mqtt\]/,/^\[/ s/^[#]*retain\s*=.*/retain = yes/" /etc/zm/zmeventnotification.ini
   fi
   # Start the event notification server
   #cd /opt/zmeventnotification
