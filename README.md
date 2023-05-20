@@ -53,9 +53,12 @@ MYSQL_DATABASE=<database_name>
 MYSQL_USER=<database_user>
 MYSQL_PASSWORD=<database_password>
 TZ=Europe/Berlin
+MQTT_USER=<mqtt_user>
+MQTT_PASSWORD=<mqtt_pass>
+MQTT_HOST=<eclipse-mosquitto>
 ```
 
-Replace `<root_password>`, `<database_name>`, `<database_user>`, and `<database_password>` with your desired values.
+Replace the values with your desired values.
 
 Then, in the same directory, run the following command:
 ```
