@@ -8,7 +8,7 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      TZ: {$TZ}
+      TZ: ${TZ}
     volumes:
       - db_data:/var/lib/mysql
     networks:
@@ -22,7 +22,7 @@ services:
       ZM_DB_USER: ${MYSQL_USER}
       ZM_DB_PASS: ${MYSQL_PASSWORD}
       ZM_SERVER_HOST: zoneminder
-      TZ: {$TZ}
+      TZ: ${TZ}
     volumes:
       - zm_config:/etc/zm
       - zm_cache:/var/cache/zoneminder
