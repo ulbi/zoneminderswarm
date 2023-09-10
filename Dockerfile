@@ -75,8 +75,27 @@ RUN apt-get install -y \
     python3-mysql.connector \
     netcat \
     curl
-#RUN pip3 install face_recognition
+
+# install the machine learning part
+WORKDIR /usr/src/app/mlapi
+# Install any needed packages specified in requirements.txt
+RUN apt-get update && apt-get install -y \
+    gcc \
+    cmake \
+    libev-dev \
+    libevdev2 \
+    build-essential \
+    git \
+    wget
+
 COPY --from=opencv_builder /usr/local /usr/local
+# Clone the repository
+RUN git clone https://github.com/ZoneMinder/mlapi.git .
+
+# Install any needed packages specified in requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
+RUN ./get_models.sh
+
 # Install ZoneMinder and other required packages
 RUN add-apt-repository -y ppa:iconnor/zoneminder-${ZONEMINDERVERSION}
 RUN apt-get update 

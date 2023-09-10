@@ -58,7 +58,7 @@ else
   echo "There are no tables in the $ZM_DB_NAME database"
   # Perform actions when there are no tables
   # Create the user and database in MariaDB
-  #mysql -u root -p${MYSQL_ROOT_PASSWORD} -h ${ZM_DB_HOST} -e "CREATE DATABASE IF NOT EXISTS ${ZM_DB_NAME}; CREATE USER IF NOT EXISTS '${ZM_DB_USER}'@'%' IDENTIFIED BY '${ZM_DB_PASS}'; GRANT ALL PRIVILEGES ON ${ZM_DB_NAME}.* TO '${ZM_DB_USER}'@'%'; FLUSH PRIVILEGES;"
+  mysql -u root -p${MYSQL_ROOT_PASSWORD} -h ${ZM_DB_HOST} -e "CREATE DATABASE IF NOT EXISTS ${ZM_DB_NAME}; CREATE USER IF NOT EXISTS '${ZM_DB_USER}'@'%' IDENTIFIED BY '${ZM_DB_PASS}'; GRANT ALL PRIVILEGES ON ${ZM_DB_NAME}.* TO '${ZM_DB_USER}'@'%'; FLUSH PRIVILEGES;"
   # Import the zm_create.sql file into the database
   mysql -u ${ZM_DB_USER} -p${ZM_DB_PASS} -h ${ZM_DB_HOST} ${ZM_DB_NAME} < /usr/share/zoneminder/db/zm_create.sql
 fi
@@ -76,6 +76,13 @@ service zoneminder start
 
 ################################################################################################
 #
+# Start the Machine Learning Service
+#
+################################################################################################
+python3 /usr/src/app/mlapi/mlapi.py -c mlapiconfig.ini
+
+################################################################################################
+#
 # Check and configure the event system
 #
 ################################################################################################
@@ -89,8 +96,8 @@ if [ -e "/etc/zm/zmeventnotification.ini" ]; then
     sed -i "/\[mqtt\]/,/^\[/ s/^#*\s*retain\s*=.*/retain = yes/" /etc/zm/zmeventnotification.ini
   fi
   # Start the event notification server
-  #cd /opt/zmeventnotification
-  #./zmeventnotification.pl --config /etc/zm/zmeventnotification.ini
+  cd /opt/zmeventnotification
+  ./zmeventnotification.pl --config /etc/zm/zmeventnotification.ini
 fi
 
 

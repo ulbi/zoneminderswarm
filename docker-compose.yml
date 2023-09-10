@@ -48,7 +48,7 @@ services:
       - zoneminder_network
     volumes:
       - mosquitto_data:/mosquitto/data
-
+  
 volumes:
   db_data:
   zm_config:
