@@ -116,7 +116,10 @@ RUN apt-get install -y \
     liblwp-protocol-https-perl 
 RUN perl -MCPAN -e "install Net::WebSocket::Server" \
     perl -MCPAN -e "install Net::MQTT::Simple" \
-    perl -MCPAN -e "install Config::Inifiles"
+    perl -MCPAN -e "install Config::Inifiles" \
+    perl -MCPAN -e "install Crypt::MySQL" \
+    perl -MCPAN -e "install Config::IniFiles" \
+    perl -MCPAN -e "install Crypt::Eksblowfish::Bcrypt"    
 RUN mkdir -p /opt/zmeventnotification
 RUN git clone https://github.com/zoneminder/zmeventnotification.git /opt/zmeventnotification \
     && cd /opt/zmeventnotification \
@@ -124,6 +127,7 @@ RUN git clone https://github.com/zoneminder/zmeventnotification.git /opt/zmevent
     && git checkout $(git describe --tags $(git rev-list --tags --max-count=1)) \
     && ./install.sh --install-es --install-hook --install-config --no-interactive --hook-config-upgrade --no-pysudo
 RUN sed -i 's/^enable = yes/enable = no/g' /etc/zm/zmeventnotification.ini
+
 
 
 # Enable and configure Apache
