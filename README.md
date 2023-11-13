@@ -37,6 +37,7 @@ The Docker Compose file creates the following volumes:
 - `zm_config`: The volume used by the `zoneminder` service to store the ZoneMinder configuration.
 - `known_faces`: The volume used by the `zoneminder` service to store known face recognition data.
 - `unknown_faces`: The volume used by the `zoneminder` service to store unknown face recognition data.
+- `mosquitto_data`: The volume used by the `eclipse-mosquitto` service to store the data for mosquitto.
 
 ## Networks
 
@@ -55,7 +56,8 @@ MYSQL_PASSWORD=<database_password>
 TZ=Europe/Berlin
 MQTT_USER=<mqtt_user>
 MQTT_PASSWORD=<mqtt_pass>
-MQTT_HOST=<eclipse-mosquitto>
+ZM_USER=<ZM User - often admin>
+ZM_PASSWORD=<password for the ZM user - used to connect the eventservice>
 ```
 
 Replace the values with your desired values.

@@ -22,15 +22,17 @@ services:
       ZM_DB_USER: ${MYSQL_USER}
       ZM_DB_PASS: ${MYSQL_PASSWORD}
       ZM_SERVER_HOST: zoneminder
+      ZM_USER: ${ZM_USER}
+      ZM_PASSWORD: ${ZM_PASSWORD}
       MQTT_USER: ${MQTT_USER}
       MQTT_PASSWORD: ${MQTT_PASSWORD}
-      MQTT_HOST: ${MQTT_HOST}
+      MQTT_HOST: eclipse-mosquitto
       TZ: ${TZ}
     volumes:
       - zm_config:/etc/zm
       - zm_cache:/var/cache/zoneminder
-      - known_faces:/var/lib/zmeventnotification/hooks/known_faces
-      - unknown_faces:/var/lib/zmeventnotification/hooks/unknown_faces
+      - known_faces:/var/lib/zmeventnotification/known_faces
+      - unknown_faces:/var/lib/zmeventnotification/unknown_faces
       - type: tmpfs 
         target: /dev/shm 
         tmpfs: 
@@ -43,7 +45,6 @@ services:
     environment:
       MQTT_USER: ${MQTT_USER}
       MQTT_PASSWORD: ${MQTT_PASSWORD}
-      MQTT_HOST: ${MQTT_HOST}
     networks:
       - zoneminder_network
     volumes:

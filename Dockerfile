@@ -85,6 +85,9 @@ RUN apt-get update && apt-get install -y \
     libev-dev \
     libevdev2 \
     build-essential \
+    libopenblas-dev \
+    liblapack-dev \
+    libblas-dev  \
     git \
     wget
 
@@ -94,6 +97,7 @@ RUN git clone https://github.com/ZoneMinder/mlapi.git .
 
 # Install any needed packages specified in requirements.txt
 RUN pip3 install --no-cache-dir -r requirements.txt
+#RUN pip3 install --no-cache-dir opencv-python-headless
 RUN ./get_models.sh
 
 # Install ZoneMinder and other required packages
@@ -115,18 +119,17 @@ RUN apt-get install -y \
     libjson-perl \
     liblwp-protocol-https-perl 
 RUN perl -MCPAN -e "install Net::WebSocket::Server" \
-    perl -MCPAN -e "install Net::MQTT::Simple" \
-    perl -MCPAN -e "install Config::Inifiles" \
-    perl -MCPAN -e "install Crypt::MySQL" \
-    perl -MCPAN -e "install Config::IniFiles" \
-    perl -MCPAN -e "install Crypt::Eksblowfish::Bcrypt"    
+    && perl -MCPAN -e "install Net::MQTT::Simple" \
+    && perl -MCPAN -e "install Config::Inifiles" \
+    && perl -MCPAN -e "install Crypt::MySQL" \
+    && perl -MCPAN -e "install Config::IniFiles" \
+    && perl -MCPAN -e "install Crypt::Eksblowfish::Bcrypt"    
 RUN mkdir -p /opt/zmeventnotification
-RUN git clone https://github.com/zoneminder/zmeventnotification.git /opt/zmeventnotification \
+RUN git clone https://github.com/ZoneMinder/zmeventnotification.git /opt/zmeventnotification \
     && cd /opt/zmeventnotification \
     && git fetch --tags \
     && git checkout $(git describe --tags $(git rev-list --tags --max-count=1)) \
     && ./install.sh --install-es --install-hook --install-config --no-interactive --hook-config-upgrade --no-pysudo
-RUN sed -i 's/^enable = yes/enable = no/g' /etc/zm/zmeventnotification.ini
 
 
 

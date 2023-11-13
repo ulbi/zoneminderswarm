@@ -63,15 +63,20 @@ else
   mysql -u ${ZM_DB_USER} -p${ZM_DB_PASS} -h ${ZM_DB_HOST} ${ZM_DB_NAME} < /usr/share/zoneminder/db/zm_create.sql
 fi
 
+# Update the ZoneMinder configuration
+mysql -u ${ZM_DB_USER} -p${ZM_DB_PASS} -h ${ZM_DB_HOST} ${ZM_DB_NAME} -e \
+"UPDATE Config SET Value = '1' WHERE Name = 'ZM_OPT_USE_EVENTNOTIFICATION';"
+
+# Execute the main ZoneMinder command
+exec "$@"
+
+
 # Replace the values in zm.conf
 sed -i "s/ZM_DB_HOST=.*/ZM_DB_HOST=$ZM_DB_HOST/" /etc/zm/zm.conf
 sed -i "s/ZM_DB_USER=.*/ZM_DB_USER=$ZM_DB_USER/" /etc/zm/zm.conf
 sed -i "s/ZM_DB_PASS=.*/ZM_DB_PASS=$ZM_DB_PASS/" /etc/zm/zm.conf
 sed -i "s/ZM_DB_NAME=.*/ZM_DB_NAME=$ZM_DB_NAME/" /etc/zm/zm.conf
 
-# Start ZoneMinder
-service apache2 start
-service zoneminder start
 
 
 ################################################################################################
@@ -79,7 +84,7 @@ service zoneminder start
 # Start the Machine Learning Service
 #
 ################################################################################################
-python3 /usr/src/app/mlapi/mlapi.py -c mlapiconfig.ini
+#python3 /usr/src/app/mlapi/mlapi.py -c mlapiconfig.ini
 
 ################################################################################################
 #
@@ -94,11 +99,29 @@ if [ -e "/etc/zm/zmeventnotification.ini" ]; then
     sed -i "/\[mqtt\]/,/^\[/ s/^#*\s*username\s*=.*/username = $MQTT_USER/" /etc/zm/zmeventnotification.ini
     sed -i "/\[mqtt\]/,/^\[/ s/^#*\s*password\s*=.*/password = $MQTT_PASSWORD/" /etc/zm/zmeventnotification.ini
     sed -i "/\[mqtt\]/,/^\[/ s/^#*\s*retain\s*=.*/retain = yes/" /etc/zm/zmeventnotification.ini
+    sed -i "/\[ssl\]/,/^\[/ s/^#*\s*enable\s*=.*/enable = no/" /etc/zm/zmeventnotification.ini
   fi
+  # adjust the secrets.ini
+  sed -i 's|https://portal/|http://zoneminder/|g' /etc/zm/secrets.ini
+  sed -i "s/^ZM_USER=.*/ZM_USER=${ZM_USER}/" /etc/zm/secrets.ini
+  sed -i "s/^ZM_PASSWORD=.*/ZM_PASSWORD=${ZM_PASSWORD}/" /etc/zm/secrets.ini
+  SECRET_KEY=$(openssl rand -base64 32)
+  if grep -q 'MLAPI_SECRET_KEY' /etc/zm/secrets.ini; then
+    sed -i "s/^MLAPI_SECRET_KEY=.*/MLAPI_SECRET_KEY=${SECRET_KEY}/" /etc/zm/secrets.ini
+  else
+    echo "MLAPI_SECRET_KEY=${SECRET_KEY}" >> /etc/zm/secrets.ini
+  fi
+
+
+
   # Start the event notification server
-  cd /opt/zmeventnotification
-  ./zmeventnotification.pl --config /etc/zm/zmeventnotification.ini
+  #cd /opt/zmeventnotification
+  #./zmeventnotification.pl --debug --config /etc/zm/zmeventnotification.ini
 fi
+
+# Start ZoneMinder
+service apache2 start
+service zoneminder start
 
 
 # Keep the container running
