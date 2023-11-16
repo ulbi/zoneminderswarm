@@ -125,11 +125,10 @@ RUN perl -MCPAN -e "install Net::WebSocket::Server" \
     && perl -MCPAN -e "install Config::IniFiles" \
     && perl -MCPAN -e "install Crypt::Eksblowfish::Bcrypt"    
 RUN mkdir -p /opt/zmeventnotification
-RUN git clone https://github.com/ZoneMinder/zmeventnotification.git /opt/zmeventnotification \
+RUN git clone https://github.com/zoneminder/zmeventnotification.git /opt/zmeventnotification \
     && cd /opt/zmeventnotification \
-    && git fetch --tags \
-    && git checkout $(git describe --tags $(git rev-list --tags --max-count=1)) \
     && ./install.sh --install-es --install-hook --install-config --no-interactive --hook-config-upgrade --no-pysudo
+RUN ls -la /etc/zm
 
 
 
