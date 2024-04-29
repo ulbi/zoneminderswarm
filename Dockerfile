@@ -1,5 +1,5 @@
 # Use the official Ubuntu 20.04 LTS as the base image for building OpenCV
-FROM ubuntu:22.04 as opencv_builder
+FROM ubuntu:24.04 as opencv_builder
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
@@ -52,7 +52,7 @@ RUN cd /opt && \
     make install && \
     ldconfig
 
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
