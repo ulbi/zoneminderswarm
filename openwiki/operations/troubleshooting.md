@@ -1,11 +1,11 @@
 ---
 type: "Reference"
 title: "Troubleshooting"
+description: "Symptom-to-root-cause troubleshooting map for the containerized ZoneMinder stack: database connection failures, config persistence issues, MQTT/event notification failures, ML/hook failures, and timezone/port issues, each tied to the exact entrypoint.sh phase, exec boundary, or compose definition that causes it."
 openwiki_generated: true
-verified:
-  - by: openwiki/0.7.3
-    at: 2026-11-03T01:11:51.876Z
 sources:
+  - id: openwiki-source-7b43f8d2fe7b509c09f79842
+    resource: repo://docker-compose.override.yml
   - id: openwiki-source-b79fbbd921df689b4bbdc82f
     resource: repo://docker-compose.yml
   - id: openwiki-source-bb1ebe868e35e9e500714501
@@ -14,13 +14,41 @@ sources:
     resource: repo://entrypoint_mosquitto.sh
   - id: openwiki-source-e9906b078522ed0a08c64ff1
     resource: repo://entrypoint.sh
-generated: { by: "openwiki/0.7.3", at: "2026-11-03T01:11:51.876Z" }
+generated: { by: "openwiki/0.7.3", at: "2026-11-03T05:30:36.749Z" }
+verified:
+  - by: openwiki/0.7.3
+    at: 2026-11-03T05:30:36.749Z
 ---
 
 
 # Troubleshooting
 
-This guide maps observable symptoms to root causes in the containerized ZoneMinder stack. Each section references the relevant `entrypoint.sh` phase or Docker Compose volume definition so you can trace the failure to the exact initialization step.
+This guide maps observable symptoms to root causes in the containerized ZoneMinder stack. Each section references the relevant `entrypoint.sh` phase, the `exec "$@"` boundary, or the Docker Compose volume definition so you can trace the failure to the exact initialization step.
+
+```mermaid
+flowchart TD
+    A["Container start: entrypoint.sh"] --> B{"Is /etc/zm empty?"}
+    B -->|"Yes, first run"| C["Seed from /org/etc/zm"]
+    B -->|"No, zm_config volume populated"| D["Keep existing config"]
+    C --> D
+    D --> E{"TZ env var set?"}
+    E -->|"Yes"| F["Write /etc/timezone, symlink localtime, set PHP date.timezone"]
+    E -->|"No"| G["Skip timezone setup"]
+    F --> G
+    G --> H["Wait for MariaDB on port 3306 via netcat"]
+    H --> I{"table_count greater than 0?"}
+    I -->|"No"| J["CREATE DATABASE, CREATE USER, GRANT, import zm_create.sql"]
+    I -->|"Yes"| K["Skip schema bootstrap"]
+    J --> L["UPDATE Config: ZM_OPT_USE_EVENTNOTIFICATION = 1"]
+    K --> L
+    L --> M{"exec dollar-at: any args?"}
+    M -->|"No CMD, normal path"| N["Continue: zm.conf rewrite, MQTT config, secrets.ini, start Apache and ZoneMinder"]
+    M -->|"Command override supplied"| O["Shell replaced — everything after exec is skipped"]
+```
+
+**Caption:** Entrypoint initialization phases and the `exec "$@"` boundary. A command override makes every phase after the database step unreachable — a common cause of "config not applied" symptoms.
+
+> **The `exec "$@"` boundary matters for debugging.** `entrypoint.sh` runs `exec "$@"` at line 71, immediately after the event-notification feature flag. The Dockerfile declares `ENTRYPOINT ["entrypoint.sh"]` with **no `CMD`**, so in the normal path `exec` with an empty `$@` is a no-op and execution continues through the config rewrites and service startup. But if the container is started with a command override (`docker-compose run`, `docker run <image> <cmd>`, an explicit `command:`), `$@` is non-empty and `exec` **replaces the shell process**: the `zm.conf` rewrite, MQTT/secrets.ini configuration, `service apache2 start`, `service zoneminder start`, and the `tail -f /dev/null` keep-alive are all skipped. If you exec into a container this way, re-run initialization steps manually or accept that services will not be running.
 
 ## Quick Diagnostic Commands
 
@@ -58,19 +86,19 @@ docker-compose exec eclipse-mosquitto mosquitto_sub -u "$MQTT_USER" -P "$MQTT_PA
 
 | Cause | Evidence | Fix |
 |-------|----------|-----|
-| **MariaDB not healthy** | `docker-compose ps` shows `db` service `Exit 1` or `Restarting` | Check `docker-compose logs db`. Common: missing `.env` variables (`MYSQL_ROOT_PASSWORD`, `MYSQL_DATABASE`, etc.) or insufficient memory. |
-| **Network partition** | `zoneminder` cannot resolve `db` hostname | Both services must share `zoneminder_network`. Verify `docker-compose.yml` networks section and that `docker-compose up` was run (not `docker run` standalone). |
-| **Wrong credentials** | Entrypoint reaches DB but `mysql -u "$ZM_DB_USER" -p"$ZM_DB_PASS"` fails | Ensure `.env` `MYSQL_USER`/`MYSQL_PASSWORD` match `ZM_DB_USER`/`ZM_DB_PASS` passed to `zoneminder` service. The compose file maps them 1:1. |
+| **MariaDB not healthy** | `docker-compose ps` shows `db` service `Exit 1` or `Restarting` | Check `docker-compose logs db`. Common: missing `.env` variables (`MYSQL_ROOT_PASSWORD`, `MYSQL_DATABASE`, `MYSQL_USER`, `MYSQL_PASSWORD`) or insufficient memory. |
+| **Network partition** | `zoneminder` cannot resolve `db` hostname | Both services must share `zoneminder_network`. Verify `docker-compose.yml` networks section and that `docker-compose up` was run (not `docker run` standalone). The compose file uses the `overlay` network driver with `attachable: true`, which is designed for Docker Swarm; on a plain Docker host this may fail or behave unexpectedly — check your orchestration context. |
+| **Wrong credentials** | Entrypoint reaches DB but `mysql -u "$ZM_DB_USER" -p"$ZM_DB_PASS"` fails | Ensure `.env` `MYSQL_USER`/`MYSQL_PASSWORD` match the values passed as `ZM_DB_USER`/`ZM_DB_PASS` to the `zoneminder` service. The compose file maps them 1:1 from the same env vars. |
 | **DB volume corrupted** | `db` starts but schema missing; `table_count` = 0 on every restart | Run `docker-compose down -v` to wipe `db_data` volume, then `docker-compose up -d` to reinitialize from `zm_create.sql`. |
 
 ### Entrypoint Phase Mapping
-The DB wait-and-init logic lives in **Phase 3** of `entrypoint.sh`:
-- Lines 35–47: `netcat -z ${ZM_DB_HOST} 3306` loop
-- Lines 49–65: `table_count` check, `CREATE DATABASE/USER/GRANT`, `zm_create.sql` import
-- Lines 67–70: `ZM_OPT_USE_EVENTNOTIFICATION=1` update
-- Lines 72–75: `zm.conf` credential rewrite
+The DB wait-and-init logic lives in `entrypoint.sh`:
+- Lines 45–49: `netcat -z ${ZM_DB_HOST} 3306` loop (1-second sleep between attempts)
+- Lines 51–64: `table_count` check; if zero, `CREATE DATABASE/USER/GRANT` and `zm_create.sql` import from `/usr/share/zoneminder/db/`
+- Lines 66–68: `UPDATE Config SET Value = '1' WHERE Name = 'ZM_OPT_USE_EVENTNOTIFICATION'`
+- Lines 74–78: `zm.conf` credential rewrite — **after** the `exec "$@"` boundary, so skipped on command override
 
-If the container exits before `service zoneminder start`, the failure is in this phase.
+If the container exits before `service zoneminder start`, the failure is in this phase or earlier.
 
 ---
 
@@ -85,10 +113,10 @@ If the container exits before `service zoneminder start`, the failure is in this
 
 | Cause | Evidence | Fix |
 |-------|----------|-----|
-| **Volumes not declared/attached** | `docker-compose ps` shows containers up but `docker volume ls` missing `zm_config`, `known_faces`, `unknown_faces` | Ensure `docker-compose.yml` `volumes:` section lists all five named volumes and `zoneminder` service `volumes:` mounts them. Run `docker-compose up -d` (not `docker run`). |
+| **Volumes not declared/attached** | `docker-compose ps` shows containers up but `docker volume ls` missing `zm_config`, `zm_cache`, `known_faces`, `unknown_faces` | Ensure `docker-compose.yml` `volumes:` section lists all six named volumes (`db_data`, `zm_config`, `zm_cache`, `known_faces`, `unknown_faces`, `mosquitto_data`) and the `zoneminder` service `volumes:` mounts them. Run `docker-compose up -d` (not `docker run`). |
 | **First-run seeding overwrites** | `entrypoint.sh` Phase 1 copies `/org/etc/zm/*` → `/etc/zm` every boot | This only runs when `/etc/zm` is **empty** (`ls -A` returns nothing). If your volume mount is correct, the directory won't be empty on restart. Verify mount target: `/etc/zm` (not `/etc/zm/` with trailing slash issues). |
 | **Bind mount vs named volume** | Using `-v ./config:/etc/zm` in a custom override but host directory is empty | Named volumes (`zm_config:`) are managed by Docker and persist across `down`/`up`. Bind mounts require pre-populated host dirs. Prefer named volumes for config. |
-| **Permission mismatch on volume** | `ls -la /etc/zm` inside container shows `root:root` but ZoneMinder runs as `www-data` | The Dockerfile/entrypoint does not chown volumes. If you pre-seed a volume on host, ensure UID/GID matches container user (typically `www-data` = 33:33). Or let entrypoint seed on first run (empty volume). |
+| **Permission mismatch on volume** | `ls -la /etc/zm` inside container shows `root:root` but ZoneMinder runs as `www-data` | The Dockerfile/entrypoint does not chown volumes. If you pre-seed a volume on host, ensure UID/GID matches the container user, or let the entrypoint seed on first run (empty volume). |
 
 ### Volume Definitions (docker-compose.yml)
 ```yaml
@@ -121,15 +149,15 @@ volumes:
 
 | Cause | Evidence | Fix |
 |-------|----------|-----|
-| **mlapi not launched** | `entrypoint.sh` has mlapi start line **commented out** (line 78: `#python3 /usr/src/app/mlapi/mlapi.py -c mlapiconfig.ini`) | Uncomment or add a process manager (supervisord, systemd-in-container) to run mlapi as a background service. The current entrypoint only starts Apache + ZoneMinder. |
-| **OpenCV missing / wrong build** | `ImportError: libopencv_dnn.so.4.6` or `cv2.dnn` not available | Dockerfile builds OpenCV 4.6.0 from source in builder stage and copies to `/usr/local`. Verify `COPY --from=opencv_builder /usr/local /usr/local` succeeded. Check `python3 -c "import cv2; print(cv2.__version__)"` inside container. |
-| **Model weights missing** | mlapi starts but detection returns empty results | Models (YOLO weights, face embeddings) are expected in `/usr/src/app/mlapi/` or configured via `mlapiconfig.ini`. Ensure they're baked into the image or mounted via a volume. |
-| **MLAPI_SECRET_KEY mismatch** | Hook logs `401 Unauthorized` | Entrypoint regenerates `MLAPI_SECRET_KEY` on **every startup** (Phase 5, `openssl rand -base64 32`). The hook reads it from `/etc/zm/secrets.ini` at runtime. If mlapi runs in a **separate container**, it must share the same `zm_config` volume or you must pin a fixed secret via `.env` and modify entrypoint. |
+| **mlapi not launched** | `entrypoint.sh` has the mlapi start line **commented out** (line 87: `#python3 /usr/src/app/mlapi/mlapi.py -c mlapiconfig.ini`) | Uncomment or add a process manager (supervisord, systemd-in-container) to run mlapi as a background service. The current entrypoint only starts Apache + ZoneMinder. |
+| **OpenCV missing / wrong build** | `ImportError: libopencv_dnn.so.4.6` or `cv2.dnn` not available | Dockerfile builds OpenCV 4.6.0 from source in the `opencv_builder` stage and copies `/usr/local` into the final image. Verify `COPY --from=opencv_builder /usr/local /usr/local` succeeded. Check `python3 -c "import cv2; print(cv2.__version__)"` inside container. |
+| **Model weights missing** | mlapi starts but detection returns empty results | The Dockerfile runs `./get_models.sh` during the image build, downloading model weights into the mlapi working directory. These weights are **baked into the image** — they do not persist across image rebuilds via volumes. If you wiped the image, rebuild from the Dockerfile to restore them. |
+| **MLAPI_SECRET_KEY mismatch** | Hook logs `401 Unauthorized` | Entrypoint regenerates `MLAPI_SECRET_KEY` on **every startup** (lines 108–112, `openssl rand -base64 32`). The hook reads it from `/etc/zm/secrets.ini` at runtime. If mlapi runs in a **separate container**, it must share the same `zm_config` volume or you must pin a fixed secret via `.env` and modify entrypoint. |
 | **Port 9000 not listening** | `netstat -tlnp` inside container shows no `:9000` | mlapi defaults to port 9000. Check `mlapiconfig.ini` `port` setting. The `docker-compose.override.yml` exposes host `7000 → 9000` for external access. |
 
 ### Entrypoint Phase Mapping
-- **Phase 5 (lines 80–115)**: `secrets.ini` rewrite including `MLAPI_SECRET_KEY` generation
-- **MLAPI start**: Currently **absent** from entrypoint (commented placeholder at line 78)
+- **Lines 104–112**: `secrets.ini` rewrite including `MLAPI_SECRET_KEY` generation
+- **MLAPI start**: Currently **absent** from entrypoint (commented placeholder at line 87)
 
 > **Note**: The Dockerfile clones `mlapi` from GitHub and installs Python deps, but the runtime entrypoint does not launch it. This is a known gap — mlapi must be started via a process supervisor or a dedicated sidecar container.
 
@@ -146,16 +174,16 @@ volumes:
 
 | Cause | Evidence | Fix |
 |-------|----------|-----|
-| **Password file not generated** | `eclipse-mosquitto` container exits immediately or logs show `password_file` missing | `entrypoint_mosquitto.sh` generates `/mosquitto/config/password_file` via `mosquitto_passwd -b`. Requires `MQTT_USER` and `MQTT_PASSWORD` env vars. Verify they're set in `.env` and passed to `eclipse-mosquitto` service. |
+| **Password file not generated** | `eclipse-mosquitto` container exits immediately or logs show `password_file` missing | `entrypoint_mosquitto.sh` generates `/mosquitto/config/mosquitto.conf` and `/mosquitto/config/password_file` via `mosquitto_passwd -b`. Requires `MQTT_USER` and `MQTT_PASSWORD` env vars. Verify they're set in `.env` and passed to the `eclipse-mosquitto` service. |
 | **Credentials mismatch** | `zoneminder` service uses different `MQTT_USER`/`MQTT_PASSWORD` than `eclipse-mosquitto` | Both services read from the **same** `.env` variables. Ensure single `.env` file; no per-service overrides. |
-| **MQTT disabled in zmeventnotification.ini** | Hook/server logs show `MQTT not enabled` | Entrypoint Phase 4 (lines 80–94) enables MQTT section **only if** `MQTT_HOST` is set and `/etc/zm/zmeventnotification.ini` exists. In compose, `MQTT_HOST=eclipse-mosquitto` is injected. If `zmeventnotification.ini` missing (volume not seeded), MQTT stays disabled. |
-| **SSL/TLS mismatch** | Entrypoint forces `enable = no` under `[ssl]` section (line 93) | If you need TLS, either: (a) modify entrypoint to not disable SSL, or (b) run a TLS-terminating proxy in front of Mosquitto. |
-| **Mosquitto listener config** | `entrypoint_mosquitto.sh` only creates `listener 1883` with password file | For WebSocket (port 9001), add a second listener block in the generated `mosquitto.conf` (currently not present). |
+| **MQTT disabled in zmeventnotification.ini** | Hook/server logs show `MQTT not enabled` | The entrypoint enables the MQTT section **only if** `MQTT_HOST` is set **and** `/etc/zm/zmeventnotification.ini` exists. In compose, `MQTT_HOST=eclipse-mosquitto` is injected. If `zmeventnotification.ini` missing (volume not seeded), MQTT stays disabled. |
+| **SSL/TLS mismatch** | Entrypoint forces `enable = no` under `[ssl]` section (line 102) | If you need TLS, either: (a) modify entrypoint to not disable SSL, or (b) run a TLS-terminating proxy in front of Mosquitto. |
+| **Mosquitto listener config** | `entrypoint_mosquitto.sh` only creates `listener 1883` with a password file | For WebSocket (port 9001), add a second listener block in the generated `mosquitto.conf` — **none is currently configured**. The `docker-compose.override.yml` does expose host port `9001 → 9001`, so nothing listens on it by default. |
 
 ### Entrypoint Phase Mapping
-- **Mosquitto entrypoint** (`entrypoint_mosquitto.sh`): Generates `mosquitto.conf` + `password_file` at startup
-- **Zoneminder entrypoint Phase 4** (lines 80–94): Rewrites `zmeventnotification.ini` `[mqtt]` section with `server`, `username`, `password`, `retain`
-- **Phase 5** (lines 96–105): Rewrites `secrets.ini` portal URL, `ZM_USER`, `ZM_PASSWORD`, `MLAPI_SECRET_KEY`
+- **Mosquitto entrypoint** (`entrypoint_mosquitto.sh`): Generates `mosquitto.conf` + `password_file` at startup; `log_dest stdout`, `persistence true` with `persistence_location /mosquitto/data/` (matching the `mosquitto_data` volume)
+- **Zoneminder entrypoint lines 94–102**: Rewrites `zmeventnotification.ini` `[mqtt]` section with `enable = yes`, `server`, `username`, `password`, `retain = yes`; also sets `[ssl]` `enable = no`
+- **Lines 104–112**: Rewrites `secrets.ini` portal URL (`https://portal/` → `http://zoneminder/`), `ZM_USER`, `ZM_PASSWORD`, `MLAPI_SECRET_KEY`
 
 ---
 
@@ -206,13 +234,13 @@ volumes:
 - MQTT event timestamps don't match local time
 
 ### Fix
-Ensure `TZ` is set in `.env` to a valid IANA zone (e.g., `Europe/Berlin`, `America/New_York`). Entrypoint Phase 2 (lines 13–33):
+Ensure `TZ` is set in `.env` to a valid IANA zone (e.g., `Europe/Berlin`, `America/New_York`). Entrypoint Phase 2 (lines 15–39):
 1. Writes `$TZ` to `/etc/timezone`
 2. Symlinks `/etc/localtime` → `/usr/share/zoneinfo/$TZ`
-3. Runs `dpkg-reconfigure tzdata`
-4. Updates **all** `php.ini` files (`date.timezone = $TZ`)
+3. Runs `dpkg-reconfigure --frontend noninteractive tzdata`
+4. Finds every `php.ini` under `/etc` and ensures `date.timezone = $TZ` is set — rewriting an existing (possibly commented) entry, or appending one if missing
 
-If the container was started without `TZ`, restart with it set. The timezone is applied at every boot.
+If the container was started without `TZ`, restart with it set. The timezone is applied at every boot. Note that `TZ` is passed to the `db` and `zoneminder` services only — the `eclipse-mosquitto` service does not receive it.
 
 ---
 
@@ -229,7 +257,15 @@ If the container was started without `TZ`, restart with it set. The timezone is 
 | **Database schema version mismatch** | `mysql -e "SELECT Value FROM Config WHERE Name='ZM_DYN_DB_VERSION';"` | If upgrading ZM version, run `zmupdate.pl` manually or ensure entrypoint's `zm_create.sql` matches image version. |
 | **Insufficient shared memory** | `df -h /dev/shm` shows 100% used | Increase `tmpfs` size in compose (see Volume Permission Issues). |
 | **Apache config error** | `docker-compose exec zoneminder apache2ctl configtest` | Check `/etc/apache2/conf-enabled/zoneminder.conf` — seeded from `/org/etc/zm` on first run. |
-| **Missing `zm.conf` DB creds** | `cat /etc/zm/zm.conf | grep ZM_DB_` shows empty values | Entrypoint Phase 3 rewrites these (lines 72–75). If DB wasn't reachable at that point, they stay as placeholders. Restart after DB is up. |
+| **Missing `zm.conf` DB creds** | `cat /etc/zm/zm.conf | grep ZM_DB_` shows empty or placeholder values | Entrypoint rewrites these (lines 74–78). If a command override was used, the `exec "$@"` boundary skips the rewrite and `zm.conf` keeps its seeded values. Restart in the normal path (no command override) after DB is up. |
+
+### Dockerfile Healthcheck
+The Dockerfile defines:
+```dockerfile
+HEALTHCHECK --interval=1m --timeout=10s --retries=3 \
+    CMD curl -f http://localhost/zm/ || exit 1
+```
+If the ZoneMinder web UI at `/zm/` doesn't respond within 10 seconds for 3 consecutive minutes, the container is marked `unhealthy`. This catches Apache/ZM startup failures — check `docker-compose ps` health status as a first triage step.
 
 ---
 
@@ -241,7 +277,7 @@ If the container was started without `TZ`, restart with it set. The timezone is 
 
 ### Checks
 
-1. **ZoneMinder `OPT_USE_EVENTNOTIFICATION`** — Entrypoint sets this to `1` in DB (Phase 3, line 69). Verify:
+1. **ZoneMinder `OPT_USE_EVENTNOTIFICATION`** — Entrypoint sets this to `1` in DB (line 68, runs on every startup). Verify:
    ```sql
    SELECT Value FROM Config WHERE Name='ZM_OPT_USE_EVENTNOTIFICATION';
    -- Should return 1
@@ -249,22 +285,24 @@ If the container was started without `TZ`, restart with it set. The timezone is 
 
 2. **Hook script path in ZoneMinder** — In ZM web UI: Options → Event → `EVENT_HOOK` = `/opt/zmeventnotification/zmeventnotification.pl --hook`
 
-3. **Secrets.ini credentials** — Hook reads `ZM_USER`/`ZM_PASSWORD` from `/etc/zm/secrets.ini` (Phase 5). Must match a valid ZM web user with API access.
+3. **Secrets.ini credentials** — Hook reads `ZM_USER`/`ZM_PASSWORD` from `/etc/zm/secrets.ini` (lines 105–107). Must match a valid ZM web user with API access.
 
 4. **MLAPI reachable** — Hook POSTs to `http://localhost:9000/detect`. If mlapi not running (see §3), hook may timeout and skip MQTT publish.
+
+5. **zmeventnotification server process** — Note the entrypoint's `zmeventnotification.pl` startup line is **also commented out** (lines 118–119). As with mlapi, the event server must be started by a supervisor or sidecar if not running.
 
 ---
 
 ## Debugging Checklist (Run in Order)
 
-1. `docker-compose ps` — All three services `Up`?
+1. `docker-compose ps` — All three services `Up`? Check health status (`healthy`/`unhealthy`).
 2. `docker-compose logs db` — MariaDB healthy, no crash loops?
 3. `docker-compose logs zoneminder | head -50` — Entrypoint phases completed? Look for:
    - `Seeding config from /org/etc/zm` (first run only)
-   - `Waiting for MariaDB server to start...` → `done`
+   - `Waiting for MariaDB server to start...` → loop ends when `netcat` succeeds
    - `There are N tables in the zm database`
    - `Updating ZoneMinder configuration`
-   - `MQTT enabled` (if `MQTT_HOST` set)
+   - MQTT section enabled (if `MQTT_HOST` set)
    - `Starting Apache` / `Starting ZoneMinder`
 4. `docker-compose logs eclipse-mosquitto` — `mosquitto_passwd` ran, broker listening on 1883?
 5. `docker-compose exec zoneminder mysql -h db -u "$ZM_DB_USER" -p"$ZM_DB_PASS" "$ZM_DB_NAME" -e "SELECT 1;"` — DB reachable with credentials?
@@ -273,9 +311,25 @@ If the container was started without `TZ`, restart with it set. The timezone is 
 
 ---
 
+## Port Map (docker-compose.override.yml)
+
+The base `docker-compose.yml` defines no host port mappings. The override file adds:
+
+| Host Port | Container Port | Service | Purpose |
+|-----------|---------------|---------|---------|
+| `7080` | `80` | `zoneminder` | ZoneMinder web UI via Apache |
+| `7000` | `9000` | `zoneminder` | mlapi API (external access) |
+| `1883` | `1883` | `eclipse-mosquitto` | MQTT broker |
+| `9001` | `9001` | `eclipse-mosquitto` | Intended for MQTT WebSocket — **no listener is configured** in the generated `mosquitto.conf` |
+
+If external MQTT WebSocket clients cannot connect, this is why: the port is published but no Mosquitto listener exists on 9001. Add a second listener block to `entrypoint_mosquitto.sh` (e.g., `listener 9001` + `protocol websockets`) and rebuild the mosquitto image.
+
+---
+
 ## Related Pages
 
-- [Entrypoint Flow](../operations/entrypoint-flow.md) — Phase-by-phase trace of `entrypoint.sh`
+- [Entrypoint Flow](../operations/entrypoint-flow.md) — Phase-by-phase trace of `entrypoint.sh` including the `exec "$@"` boundary
 - [Deployment Guide](../operations/deployment.md) — `.env` schema, compose commands, port mappings
 - [Event Notifications & MQTT](../integrations/event-notifications.md) — MQTT broker config, secrets.ini, topic flow
 - [ML/AI Pipeline](../architecture/ml-pipeline.md) — mlapi, OpenCV, face recognition volumes, model paths
+- [Container Design](../architecture/container-design.md) — Multi-stage Dockerfile build and service startup

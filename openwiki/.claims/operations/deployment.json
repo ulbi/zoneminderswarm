@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:fd42cebb5aadbe10d08aecced44b211d7e76b1fdc1da907a2e4d8aa9a27d9b59",
+  "pageVersion": "sha256:27484a4035d955083013fafed468defbf353c52df585d800479d9b00fc2c2c86",
   "claims": [
     {
       "id": "claim_41c8a814a1e445ce823bd0ccc53d6df4",
@@ -89,10 +89,74 @@
           "version": "repo-lines-v1:sha256:82518687331cb8e3cae0a97afadc396a4eed6cbce4200d13f969b8e4bbae6f93:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlYTQwN2M3M2ZlOGE2YWYxYTg5MDM3ZjllNDdkN2ZlNzExMTE2MmUwZDFkYzQ2YTgzMzZjZWVkZjM2Mzk5ODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmNGZmYzYyMmY5NTQ1Y2JjMmE4ZTYxOTI3Y2VhNGUwYWY0MDE4MjhiMTI2OWVjODk2MDdiOWI3NTYyNTg1YTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
         }
       ]
+    },
+    {
+      "id": "claim_dc7998af4366400e923e7d5e6e25f78e",
+      "statement": "The zoneminder service receives the MariaDB credentials under ZoneMinder's own variable names, mapped from the MYSQL_* variables: ZM_DB_NAME=${MYSQL_DATABASE}, ZM_DB_USER=${MYSQL_USER}, ZM_DB_PASS=${MYSQL_PASSWORD}, with MYSQL_ROOT_PASSWORD passed through unchanged.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L19-L34",
+          "version": "repo-lines-v1:sha256:157d1dcf99c4e15c8c07e5979e37f415e5ac3576d5998e8f53e5be8457432d9a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMwMWY5NGRhNjYxZTljMTg5MDZkZjcwN2ZhYjYyODI1OTczODJiNTc3ZWY5YjZlZjcwMmFlM2RmYjMxYWI5YmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE5NjQ5Zjg3NDMxMGExOTE1NDM3OTRjMWMwYzUwNjk1MDQzZDllYjAxNWFlNTA5NDZmMTBjYjMwMDVlNjFlODIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3ODg5MTQyNjM3M2Q5MjEzMjQzNTNlMmJiZTU1MTgwODliMzUyM2EwZTJkY2ZkOGIzMjJjZjE4OTEwZWJlMDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFjM2ZmNzNjNjVkODgwNjg4NjdhZjJlMjMzMTlhMjc1NzIzYTkwMWFhZTg3MWRkMTIwZDZiMTVkNjM4NDJiZjIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a234f0ca61ea4c63a63c03e08ccb4130",
+      "statement": "The runtime service hostnames ZM_DB_HOST and MQTT_HOST are hard-coded in docker-compose.yml to the Compose service names 'db' and 'eclipse-mosquitto' respectively (with ZM_SERVER_HOST=zoneminder); they are not sourced from the .env file.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L21-L28",
+          "version": "repo-lines-v1:sha256:a089cf043789df300a576bd0eb13d461653f32680c24591bf377d45dfc5ed7fa:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzIzYWMwOGZhYmIwYWJlNDkwZTYzYzIxZTAyNWFhMzYzMmRlMzA1ZDk3YTQwYTQ0ZjE2ZDcxZWI0NGYzNTk5ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzM3YzRiNDg3NWExMjUxMzJkZmFkOWQzNDk3NjE2YmY2Zjc1ZWU3ZWJjMTY0Y2QzNTk0ZjI1MDEzNWJkNDQwMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTU2MjMxNjM1MGU5ZDdiNDM3ZWYyNjNiOTRiZTA5M2ZlZDU2ZTM2NDEyZDQxMzYxMDljMzY3ZWU2YmZkNDY0ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTliZGJiMWUzZGFkYmU0MWE0MzljZjg1NWIzNmY5NTA0OTkyMjZjMzhiY2VkY2ZiMzRiMTZkN2NiMzRlYjBkZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ae4ea861d1ed41ae93b60eb74f946553",
+      "statement": ".env is listed in .gitignore, so deployment credentials are never committed to the repository.",
+      "evidence": [
+        {
+          "resource": "repo://.github/dependabot.yml#L1-L11",
+          "version": "repo-lines-v1:sha256:5354e19485c19ee189850f7efcc29a4abf2a3a0d2b7e57b4f072823292d97ebd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjN2M3M2YxY2Y3NTg5ZDQ2YWU2NmI0OTE0MTFhNDE5ZmJjZjJiMjRlMjJjOTI0YmFkYjllZjc2YTgyYTI0MjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVkMWI2OWViNDM2Nzg4NDg1YmViZDYyMTBmMmE2ZWU2YmNiYTk3OGVlZmExMTBjZGJjYTZmZmE4NjZkZWFkMDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_829a203c66d94f6095f0300336d5cca5",
+      "statement": "Dependabot is configured only for the 'docker' package ecosystem at directory '/', on a weekly schedule; Python (pip3), Perl (CPAN), and cloned-repository dependencies inside the image builds are not covered by automated dependency updates.",
+      "evidence": [
+        {
+          "resource": "repo://.github/dependabot.yml#L1-L11",
+          "version": "repo-lines-v1:sha256:5354e19485c19ee189850f7efcc29a4abf2a3a0d2b7e57b4f072823292d97ebd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjN2M3M2YxY2Y3NTg5ZDQ2YWU2NmI0OTE0MTFhNDE5ZmJjZjJiMjRlMjJjOTI0YmFkYjllZjc2YTgyYTI0MjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVkMWI2OWViNDM2Nzg4NDg1YmViZDYyMTBmMmE2ZWU2YmNiYTk3OGVlZmExMTBjZGJjYTZmZmE4NjZkZWFkMDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e47b4b0a61684f799844b50c1c7d73fb",
+      "statement": "The Mosquitto entrypoint generates a mosquitto.conf containing only 'listener 1883' (plus persistence); it never defines a WebSocket listener, so host port 9001 published by docker-compose.override.yml has no listener inside the container by default.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint_mosquitto.sh#L7-L13",
+          "version": "repo-lines-v1:sha256:136ec12d8fd3987571f79e0eedeb33385f9af770c29f93068befd786aceb2d4d:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTE3NzNiNjdlNzc5YmQ4MzNiNDU0YzQ3OGI1ZWQzODQwOWRiNmUyZDYwOWZkZGI1Yjc1N2Y0MGIxNThiZTE2MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmEyMWM1YjNiZmYwMjk5YzAxNjE0NzA0NjhmMzU1ZTViNGFmY2YxN2E1ZjU5M2FiNjgzOTRlZjdhZjMxOWNkYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWRkMDcwNWQ1NDdiOGQxMDc0NGMxOGFmYWUwYTU4MjAxNDk3NGRmNmQ1ZTQyMmYyYjYwZDFlMmJkMGNhMWM5NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWUzN2I2ODgyM2U4OWYwMjJkMTEwYzZhNWVjM2EzY2EzNDgxOTlkOGUzODA0OWE1ZTUxZTUxNDg2OWEyNmU2OSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9938e8fcdf574a75ad1f419f18ff5273",
+      "statement": "entrypoint.sh contains 'exec \"$@\"' between the database initialization and the config rewrites/service starts; because the image defines only an ENTRYPOINT with no CMD, the exec is a no-op during normal operation, but if the container is started with a command override, exec replaces the shell and none of the config rewrites, secrets generation, or apache2/zoneminder service starts execute.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L153-L155",
+          "version": "repo-lines-v1:sha256:8d54129c33dd37bceb21054dbc0e0d017ec5864f31f67f30c6803d3465024e61:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzU3ZTNhNWYxMGMwMDJmMzIyMDc4YjYyNzBmODRjMzU5NDUxNWU4OWNlOTQ3OGY3Y2YwNzQwNDdjZTMwODY1ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWUzODcxMWYyNzY4Njk0OWI0MjFjYWY5NzdjMTkzYWE0NjJjZWYzZDAyNzZjNmE4MTYxMmE0MDVhODllZDhkOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://entrypoint.sh#L47-L63",
+          "version": "repo-lines-v1:sha256:ca1fe63b2b05e5124dedbdfc91f37da95ace45db0883440117ae746a51ab80b2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjY2FlMzhkZTBlMGM1MDI5Y2FkMjc5MTU2MTMzZDYxYTYzZDg5YjRlMzkzMWY3NWMwOGQwYjNmZDVjMzA4MWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBlNGRkYTk0ZTYzYmE2N2E3ZWU0YTRiNzQ5YTE0MTBiYzZhNTZkMDE5OTk1N2JhODQxNmRmNTE1Yjk1ZmExMDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgzZmU4NTczMmQzZTQ0YzUzYTljYzgxNGQzMmY4NDQ4YmRkZjU1MmQ1ZmIwM2M3MjI3ZmI4NGNjZDRkNTg2YmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdlMDcyYWZhM2E4M2M1OGUwOWNiNTcwY2YzMTgwOTM5NGNhZDRkNDhkNDQ3ODEwMjhmMmZjNGEzODE5YjkyZWYifQ"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.7.3",
-    "at": "2026-11-03T01:11:51.876Z"
+    "at": "2026-11-03T05:30:36.749Z"
   }
 }

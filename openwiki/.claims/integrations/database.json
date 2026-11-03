@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:9cea7f21d9a4a4ae1213b34168fcec6624b7c3ac615ef2c1df4594295660bf8f",
+  "pageVersion": "sha256:a0cd3b44cd1beef3de7e3d05ae040c088464b8325975fbbc48ea7d78e767ca9f",
   "claims": [
     {
       "id": "claim_074871abe64e42668b06e678a22cdc9b",
@@ -52,11 +52,11 @@
     },
     {
       "id": "claim_797e1a01cd4e45e78d81e7375914c299",
-      "statement": "Runtime database configuration (/etc/zm/zm.conf) is rewritten at startup from environment variables (ZM_DB_HOST, ZM_DB_USER, ZM_DB_PASS, ZM_DB_NAME) using sed.",
+      "statement": "The sed commands that rewrite ZM_DB_HOST, ZM_DB_USER, ZM_DB_PASS, and ZM_DB_NAME into /etc/zm/zm.conf are placed after `exec \"$@\"` in entrypoint.sh and therefore never execute; zm.conf keeps the values seeded from /org/etc/zm on first run.",
       "evidence": [
         {
-          "resource": "repo://entrypoint.sh#L70-L73",
-          "version": "repo-lines-v1:sha256:6f475177b55b3a0aade6c210ec47a6d9f90eeebe1b3c4fcb28e760588f60a444:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTc3ZGM3MWQzYjI2NmI1YjZlZDQxYzNmODgwNzJjZWZkYzdlZjJiN2NkZWFkM2UwYzU2ODc4NjM4N2Y2ZDI0NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWRjNTZkZTNiM2I0MGFkZGRiZGE5MWRkZDJiM2JhNDI5NTY5MGM0MWE1YWQzZGNjZGExYTBjMDZkNmUzZGFkMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDY5MDc4MjIyMjUxMDIzMzdiZTM4ODBhYmRiMGQzMzA2NTk3ZGNhMjExMTFmYzlkOTA4MDQ5ZDczZTgyMTAxZSJ9"
+          "resource": "repo://entrypoint.sh#L69-L78",
+          "version": "repo-lines-v1:sha256:3d90be72166b1bff059f0ce5fa01c947704010df2141bd790b4c061af46be711:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM1NDA5MmE5NTViYmQ2ZDdiZDI0ZmM5ZDYwOTM1MmRkMzgxYTJhNGE2ZjljNmQ5ODk3MDU3Yzc1YzI2MjgxZGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAxNWM2YzVkY2Y0YWQ4NjhiYzI4MTEzNjg3OWMzNjg3Y2M2ZTdjMjcxZDcxYmZjNDNjYzQxZDg4MmE0YmNiZGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZhM2NmNTE5MjM1NGY3MTYxNWFjNTEwMzRiM2U5N2MyMGVkYTk5NjQzZmNhZjViYmU2ZDQxYWQ1OWJkMTIxNjcifQ"
         }
       ]
     },
@@ -69,10 +69,42 @@
           "version": "repo-lines-v1:sha256:f973433f52378ad17f4678aed144560ba859061cf7cc8522642a0db6e229acf8:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZmMzRmNWY0ZTFmMGJlZTc5MzAwNzc0MDM3ZjUzZmZhZGUxZGQ4ZTg4YjUyYzAxMTlhMmUzN2E2N2ZiYWJlYmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjExMmYyMzYxZjVmMGZlMzllMTZlZGIzMDA4MjkxMDM5ODQyZjJiNTkxNTJmNDJiNTA5MzRhMzE1NzAyYTJkMDYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMxODRlNjU3YmM4NWM3YTNmMzI5YzZkNmI4ODlkYTNlOTE0ZDRhNTE0MDVjZmMwMTg1ZDg4YWM1YWM0Y2VmMDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk5YzQzODc3MDdjMmIyZjM4NWI4OTUzYTE1NzY2YWRmZDU3YjVjNTY3ODBjZjk2YTZiMmI1NjZlM2UzZWMyZmEifQ"
         }
       ]
+    },
+    {
+      "id": "claim_68e103fc9f154fefb38dbb4f4211dcb3",
+      "statement": "The app-identity credentials are coupled across services: docker-compose.yml sets ZM_DB_PASS to the same ${MYSQL_PASSWORD} secret used by the db service's MYSQL_PASSWORD, and ZM_DB_USER to ${MYSQL_USER}, while ZM_DB_HOST is hard-coded to the literal service name `db` rather than sourced from .env.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L22-L22",
+          "version": "repo-lines-v1:sha256:77fe4742624e4406a213cf5c3072db1a612e451034c065b914ded374e5bd7072:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzdmZTQ3NDI2MjRlNDQwNmEyMTNjZjVjMzA3MmRiMWE2MTJlNDUxMDM0YzA2NWI5MTRkZWQzNzRlNWJkNzA3MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzdmZTQ3NDI2MjRlNDQwNmEyMTNjZjVjMzA3MmRiMWE2MTJlNDUxMDM0YzA2NWI5MTRkZWQzNzRlNWJkNzA3MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTE4OTM3YmY4YzUyZGVhYTA3MTA4NmNhMTlhZDEzYzllZGE4ZDA3ZDk2NjY3NDc3OWY1ZjVjYTNmNGE0YzA3NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmQyNWRmNWVkMGM4ODJlNGE3ZjFmMGIwNjFhM2JhZWU1MTZhMDE2YjUyZDRkNTVhMDAyZTFhNGE3MGQxNWQ0NCJ9"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L25-L25",
+          "version": "repo-lines-v1:sha256:769dfdb981a6e9dcd0e9580f2946adecc5787bffedab670b0f47a2968f61a6ed:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzY5ZGZkYjk4MWE2ZTlkY2QwZTk1ODBmMjk0NmFkZWNjNTc4N2JmZmVkYWI2NzBiMGY0N2EyOTY4ZjYxYTZlZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzY5ZGZkYjk4MWE2ZTlkY2QwZTk1ODBmMjk0NmFkZWNjNTc4N2JmZmVkYWI2NzBiMGY0N2EyOTY4ZjYxYTZlZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjZmNGI3N2NhYjIwZjdiY2U2NzZhZGNhMDhkYWFmN2JkNDM5OTNmZTA4ZjYxZGRiMmEwYjFiODNiNDNlZjFlZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjU0NTlhODk1ODZkYzdiYTM2ZDM5ZjI0NTBmOWQ3N2I2YWNlYTRiNTQxOGU0OGQ5NjMyNTJlNzVmNWNmYzA3YiJ9"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L8-L8",
+          "version": "repo-lines-v1:sha256:8bb31fecf3ece582c46c3e410303743037080baa04d24807a7071bdafed838b1:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGJiMzFmZWNmM2VjZTU4MmM0NmMzZTQxMDMwMzc0MzAzNzA4MGJhYTA0ZDI0ODA3YTcwNzFiZGFmZWQ4MzhiMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGJiMzFmZWNmM2VjZTU4MmM0NmMzZTQxMDMwMzc0MzAzNzA4MGJhYTA0ZDI0ODA3YTcwNzFiZGFmZWQ4MzhiMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODZlMGFmYzVlNWYxN2FhZDZjMjhmZGIxM2M3MTlkODZkOTVmYmVmYzM4ODRkNzQzODhkOTVjZGY3ZDY3MzA0ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDgzZjFmY2YyY2EyOTBlNGQxNGQ1MmIwODY2ODg4M2NjZmI2YWQyMzYwZjMwNGQwZTFkYWUxZjI0YTdmMjBhMCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d32198cb0ef24f60a48625e880c9c941",
+      "statement": "MYSQL_ROOT_PASSWORD is injected into the ZoneMinder container's environment solely so entrypoint.sh can run the root-level CREATE DATABASE / CREATE USER / GRANT bootstrap against the db service; it is not needed for, or used in, any other database step.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L21-L21",
+          "version": "repo-lines-v1:sha256:c23ac08fabb0abe490e63c21e025aa3632de305d97a40a44f16d71eb44f3599d:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzIzYWMwOGZhYmIwYWJlNDkwZTYzYzIxZTAyNWFhMzYzMmRlMzA1ZDk3YTQwYTQ0ZjE2ZDcxZWI0NGYzNTk5ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzIzYWMwOGZhYmIwYWJlNDkwZTYzYzIxZTAyNWFhMzYzMmRlMzA1ZDk3YTQwYTQ0ZjE2ZDcxZWI0NGYzNTk5ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTU2MjMxNjM1MGU5ZDdiNDM3ZWYyNjNiOTRiZTA5M2ZlZDU2ZTM2NDEyZDQxMzYxMDljMzY3ZWU2YmZkNDY0ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjZmNGI3N2NhYjIwZjdiY2U2NzZhZGNhMDhkYWFmN2JkNDM5OTNmZTA4ZjYxZGRiMmEwYjFiODNiNDNlZjFlZiJ9"
+        },
+        {
+          "resource": "repo://entrypoint.sh#L61-L61",
+          "version": "repo-lines-v1:sha256:bd7aea8a5669e7d8e0f3167fd9693e1cdb34accb1a2f1816a8336227bda992f1:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmQ3YWVhOGE1NjY5ZTdkOGUwZjMxNjdmZDk2OTNlMWNkYjM0YWNjYjFhMmYxODE2YTgzMzYyMjdiZGE5OTJmMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmQ3YWVhOGE1NjY5ZTdkOGUwZjMxNjdmZDk2OTNlMWNkYjM0YWNjYjFhMmYxODE2YTgzMzYyMjdiZGE5OTJmMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2IzZDBhNzcwZjFiMWJiZjNkYjcxNDMzNTViYmM3NmVkOWU4MWI3YTI0NTAwZTg5ZjE2YWRlYWQxMjA1ZDU3OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTA3MTQ2OTQ5ZjJlODM1YjIzZTNjMzE4NDgzYWU1Y2E5YjZmYzlkNTYzNDdjOTkzOTc2MWQzZjVkN2Q0ZmQ2ZiJ9"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.7.3",
-    "at": "2026-11-03T01:11:51.876Z"
+    "at": "2026-11-03T05:30:36.749Z"
   }
 }

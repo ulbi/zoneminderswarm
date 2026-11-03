@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:199184f885b838c465802023b7a2101b4fc2fa5e41d9478b33d1fdfc09f57f71",
+  "pageVersion": "sha256:32e470514b95b59159372b66addd46c46a071ef8d3ba1489b97403da7ffc7aa0",
   "claims": [
     {
       "id": "claim_0d1761d1cfde408dbed7d871a5ec36f0",
@@ -54,47 +54,101 @@
     },
     {
       "id": "claim_44dae851e0964d09ad43f9d4b0bb654c",
-      "statement": "The zm.conf file is rewritten at runtime with four sed replacements for ZM_DB_HOST, ZM_DB_USER, ZM_DB_PASS, and ZM_DB_NAME using environment variable values.",
+      "statement": "The entrypoint rewrites the four DB connection keys (ZM_DB_HOST, ZM_DB_USER, ZM_DB_PASS, ZM_DB_NAME) in /etc/zm/zm.conf with runtime environment values via whole-line sed replacements; these lines sit after the exec \"$@\" handoff, so they execute in the normal no-CMD path but are skipped under a command override.",
       "evidence": [
         {
-          "resource": "repo://entrypoint.sh#L77-L80",
-          "version": "repo-lines-v1:sha256:3f7cd052b368a1cfc21fad3a5525adbbdad52fcb3b98020fa99745c782d0ccd5:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTFlYzc4ODQ4MjkxZTVkZWU2N2EwOWNmNmM1M2U1ZGU1MTdiNDEyMWQyNDY0MDFhODIxNWFkNTU3MDNhYTcwYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDY5MDc4MjIyMjUxMDIzMzdiZTM4ODBhYmRiMGQzMzA2NTk3ZGNhMjExMTFmYzlkOTA4MDQ5ZDczZTgyMTAxZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDRmYmRhMDIyYTc5MmVkZTI4OWU2ODBjMzkwOTVmZGRiNzIyMGZiN2NlZjY5MDE4N2E4ZWNiN2EyYWRkNWFkYyJ9"
+          "resource": "repo://docker-compose.yml#L15-L24",
+          "version": "repo-lines-v1:sha256:a4ef3c196d539cc104b5e167b84bdbaea690490e1486ce5e53f7b1f931a38ea7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM3MjRjOTNkYmRhNWViMGRkNTA3OTM3MTQ4OWQ3NjUyOTQxOGI0NzkyZDhmZTBmZTRkMGQ3ZWZiYWQ3ZWE2NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIwZmRhMDQ1ZTg4NTJkODFkZDcyYTAyYjdlNTE4MTlmM2Q0MzFmM2M5YjA1M2FiNmZmODg3MmE2MjU5ZjNiNDciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZmMGY5ZThkZTRmM2VjMjMwNzc0NGVmNTBjYTRmMTcyZGIwNzgyZDgyOWY4ZDJiMWY1NDBiMjkzMzExNjYxYjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc2ZThkNWE4OTlkZTIzYTAxMmY4YmQ4ZWViNjBjNTQwOTNhNWZmZGI2YTA4MTgxMTljNGFkYTU5ZmQxY2U3NjUifQ"
+        },
+        {
+          "resource": "repo://entrypoint.sh#L73-L78",
+          "version": "repo-lines-v1:sha256:2ecd914e65d6c35da998b0817bfbb5499256458c64b68010a9c0b30fe4401890:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzU0MDkyYTk1NWJiZDZkN2JkMjRmYzlkNjA5MzUyZGQzODFhMmE0YTZmOWM2ZDk4OTcwNTdjNzVjMjYyODFkYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2RkMDVlYzZmMjdhMmM5NTMzZGM0NGNiZDcyOGJmYjM4NTAyYmEzNjFmMjBkYmY3MzJjNDUyZmNjNjYxMTgyMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmEzY2Y1MTkyMzU0ZjcxNjE1YWM1MTAzNGIzZTk3YzIwZWRhOTk2NDNmY2FmNWJiZTZkNDFhZDU5YmQxMjE2NyJ9"
         }
       ]
     },
     {
       "id": "claim_8b36abf7b3b94e598c5521358c084a2d",
-      "statement": "When MQTT_HOST is set, the [mqtt] section of zmeventnotification.ini is enabled and configured with server, username, password, retain=yes, and SSL is disabled in the [ssl] section, using sed range addressing between section headers.",
+      "statement": "When MQTT_HOST is set, the entrypoint enables and populates the [mqtt] section of /etc/zm/zmeventnotification.ini (enable, server, username, password, retain=yes) and disables SSL in the [ssl] section using sed range addressing /\\[mqtt\\]/,/^\\[/ (and /\\[ssl\\]/,/^\\[/) between section headers; compose always supplies MQTT_HOST=eclipse-mosquitto, MQTT_USER, and MQTT_PASSWORD.",
       "evidence": [
         {
-          "resource": "repo://entrypoint.sh#L91-L106",
-          "version": "repo-lines-v1:sha256:b2d9c0b796bd87216edfefc45421079b7d5b14d3183491ed7740307027cccc59:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI4YTAwYmJiMzVhYmYzODE5MjEwOWIyYjJiMDEyMDFhMWFmODYyM2ZhYzE5Njg0YmViZjZjM2JmMDA2ZTQ3NGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAyOThjYTAwMzQ3NjRhNjY2MjQ4YTYzNzIxMmYwMWEzYTEwZTkxMGIzNTA3M2I5MzE1Y2EzZTAxZDRkNDgwNGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ0ZmJkYTAyMmE3OTJlZGUyODllNjgwYzM5MDk1ZmRkYjcyMjBmYjdjZWY2OTAxODdhOGVjYjdhMmFkZDVhZGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMwYWRjYWNiY2YwZTY3ZDVlMzkwN2YxODkyMjY0OWI1MjE3MTFlY2VjMTE4NjEzMGIyOGM3ZDg4NTQ1NzRjMDMifQ"
+          "resource": "repo://docker-compose.yml#L23-L27",
+          "version": "repo-lines-v1:sha256:6be46a65fc7dfb2dc0cdb4691864ddb2fcbd63dbfc53e09815b766060c822879:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWJiODM5NjQyMmE1MWY4OTliNDI1N2Y4ZmViMzE2MmNkMmYxZjBlNTliYjc5MDllMTg3ZDM1NzhlZTg2ZWMxYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTNkODk0ODZkZjczYzc0NjljMzU5YWIwY2U3MGE4YzFmZTIxZjBlNDNmYmM4OTBlNDAzNmMwMmQ1ZmU4YWVmOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODZiMzQxMmViMDFkODQ0MDUzOTgwNWQxNTI5Y2U5ZTM4ZGViODNlODUzNGQzMDExMDc0NzBkNjVkZjYwOTRkMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzdlMjUwMzNjZjhlNjhmNWFmZjM2OWM0MTU5MGVkM2M0MTZjMmEzNzQxOGY0NzA2OGNjYmQ4Yzc3YWE0OGFhOSJ9"
+        },
+        {
+          "resource": "repo://entrypoint.sh#L93-L102",
+          "version": "repo-lines-v1:sha256:0ddc8ab19ac100bb67a4159e039cdd00ae8f92913b0f056b6bbb8255bc15e5ee:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3NWQzNmU1YWU0NjM3ODk5YmZhNTY3NWViNjI5NGNlZDJmYTg2Mjg5ZGY3Y2VhYjg4MmQ4MTM3ODUxZTI2NGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIwZmQ0MDQ2ZTU5ZTBiYWI3MDJmMjNkZTBmOWM1NmJiYmRmZWVmZjQ1MDlmYzA3ZWRlNWYxYjkzNmE4ZDRjZmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhiOTliNmI2NWE3YzBmMzdjM2JlZjM4ZWY0YjE2ZTc3M2IwNzk3ZmJkZDhmNmRhYThkZGZjYTAyYTM2YTFlNDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcxN2Q3MDlhNDU0NDFmNmM0YWFjNGMyZmY3OTJiMWEzNjgzNDYyMTlhOWRjMTI3MTgzNWJhZmJiM2RmY2FmODAifQ"
         }
       ]
     },
     {
       "id": "claim_8316bc6c46c74f599049c10a518f190e",
-      "statement": "The secrets.ini file is updated to replace the portal URL with http://zoneminder/, set ZM_USER and ZM_PASSWORD from env, and generate a 32-byte base64 MLAPI_SECRET_KEY via openssl rand.",
+      "statement": "The entrypoint updates /etc/zm/secrets.ini by replacing https://portal/ with http://zoneminder/, setting ZM_USER and ZM_PASSWORD from env, and generating a fresh 32-byte base64 MLAPI_SECRET_KEY via openssl rand -base64 32 on every startup — updating an existing line or appending one — so the ML API key rotates at each container start.",
       "evidence": [
         {
-          "resource": "repo://entrypoint.sh#L108-L117",
-          "version": "repo-lines-v1:sha256:5a182740a58c0ed0538eeea82c88cdfa60a80098e99266169b690f590c2c4bb0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmZTQ1YWI5ZDU4YmJiYTQ0NTEzZDI5NGU3YTY2ZjdiMmZmZDAzYWFlODJiMTQ0OWQ1ZTEzNzc2NGEzZDhkMTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZlOGJjMzQ4MzVlYmNhODgzNTI4YmFjNDZjYTUyNDAyZmZkNjg5YTdhMzMxODVkMGU3MjVkMjg3ZmM5YWMzOTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUzNTU4NTdjNWVkNDAxZTQ4ZGI1N2JhZjBiNzA4NzQxNjJjODllOGE4ZDdmMDJkMDczNTk3YWVhZjVmOGY3YjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZmZmZjMGI1NjdjY2I0M2E4ZTMxMDYxNmE1OWRmNjBhNzA2N2RmNjI1MTFmMzFiZjdkNGExNDAxMmUyZjZjYTcifQ"
+          "resource": "repo://entrypoint.sh#L104-L113",
+          "version": "repo-lines-v1:sha256:dfdeadd8e5afaee7f374531a1a9bbfac5300848fa7d7c210afa72af564130512:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjllOWE5NDI1NWJmYzdlNzhjZjM2YjU1ZDk2ZmQzMTA0YjIxOTgyM2E0ZWM1NTJjMjMyMDI1N2FlZDQ4YmZhZmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1ZmM5MGZmOGE0NDE0YzU0NDFkMGY2NzdjNWNiZmRhMzhiNDc0ZTUxYmZkNTU5YTU1NTlkZTBmODc3MDU1MjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNmMzM1MjNjOTFmMmIwNTFjYjJmODAyNmMxMmVkNzljNDk2ZGQzYzYwM2JiMmViYzA2YjIyMTdkNTE4YTdiYWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZhM2NmNTE5MjM1NGY3MTYxNWFjNTEwMzRiM2U5N2MyMGVkYTk5NjQzZmNhZjViYmU2ZDQxYWQ1OWJkMTIxNjcifQ"
         }
       ]
     },
     {
       "id": "claim_76d8cb82613942ddaeefba7e349ee341",
-      "statement": "Services are started in sequence: apache2 then zoneminder, followed by tail -f /dev/null to keep PID 1 alive for the container.",
+      "statement": "In the normal startup path the `exec \"$@\"` handoff after the DB phase is a no-op that falls through: the image declares ENTRYPOINT [\"entrypoint.sh\"] with no CMD, so $@ is empty and bash's bare exec continues the script into the zm.conf rewrites, MQTT/secrets.ini configuration, service starts, and the tail -f /dev/null keep-alive. Only when the container is started with a command override (docker run / docker-compose run / command:) does exec replace the shell, skipping all later blocks.",
       "evidence": [
         {
-          "resource": "repo://entrypoint.sh#L121-L125",
-          "version": "repo-lines-v1:sha256:06bcdf25854417481c204a2b368e494914a7ce25aa347a81eb4b95682d136eed:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmZmZmMwYjU2N2NjYjQzYThlMzEwNjE2YTU5ZGY2MGE3MDY3ZGY2MjUxMWYzMWJmN2Q0YTE0MDEyZTJmNmNhNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2VmZTdjOTYxN2MzMjEzNjUyODZlYzUxMjdkN2YzODdkNmFiNjIzM2M0MzEwYjk5YjZiZTliZjY1ZTUyNGFhNSJ9"
+          "resource": "repo://Dockerfile#L153-L155",
+          "version": "repo-lines-v1:sha256:8d54129c33dd37bceb21054dbc0e0d017ec5864f31f67f30c6803d3465024e61:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzU3ZTNhNWYxMGMwMDJmMzIyMDc4YjYyNzBmODRjMzU5NDUxNWU4OWNlOTQ3OGY3Y2YwNzQwNDdjZTMwODY1ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWUzODcxMWYyNzY4Njk0OWI0MjFjYWY5NzdjMTkzYWE0NjJjZWYzZDAyNzZjNmE4MTYxMmE0MDVhODllZDhkOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://entrypoint.sh#L66-L71",
+          "version": "repo-lines-v1:sha256:aa3f6b18f0ad225ef5435b5e3e13dc315489052c353a738223ab02015530caa6:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWYwYjhmYjRlYzdjZjJkZDYwMzI4YjBhNjdjYjE1NjRlM2E3OGY0MzhkNzU0MDkxYzQ2OGFlNTJjMzBlYTZkOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmUxMjRiMzAxMTNkZDJhYmJlNjg0ZDkyMmMwOTdhYTQ5OGNlNWE4YTVmMjI1NWE5NDFmZjJjMWUwNWQ0ZTE5NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjZhNGRjYzg0ODk3MTE3YTc5NzBjNmI3YjJiN2FhY2NhMmY4ZjY1MGQ4NzcyMzhkOTVjOWVkOWNmZjU2ODM3YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTdlZTczM2Q2N2M5ZGM3ZjUwMDY3NDNjZWVmNjIxMWM0OGYxNWIxMGIyNmNjNmIwYmYyMTUyNzQ2NDc0MDllYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_900cae83be2f4cc0bd7be975d626ae97",
+      "statement": "The ML API (python3 /usr/src/app/mlapi/mlapi.py) and the event notification server (./zmeventnotification.pl) startup lines in entrypoint.sh are commented out rather than unreachable — they are inert code that never runs inside this container, and those components must be run as separate containers/processes.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L119-L121",
+          "version": "repo-lines-v1:sha256:b96271fd8c885ca01ec3ff4243aecd9bbd0afa9fdfd2f881253af7f19f27eab4:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzg4N2JlM2ExZDljMzVkMzUwNzIwNjU1ZDkwNTRjNTUwZmQ1MTMwZWQxOGVmMWViMGJkNGIwMjdkNzIxYmE0MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDEyODIzZTZmMTQwNjU0YjcyNmM3MmNiZDljNjA4YjU4Mzc1ZjEyMmJhNGZiZDM5M2ZiMjlmNGY1NmFjYThkNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTQwNmM1NzUxZDU0NjUxMGE1MjlmNDJlYTEyYWRjZDY0MzM1OWY2OGEwYzUwZTE0NDU2OWJkMzM5MmFjZWU5NSJ9"
+        },
+        {
+          "resource": "repo://entrypoint.sh#L87-L87",
+          "version": "repo-lines-v1:sha256:5a5c585777ee9ba75e7b268ff6e904018f7bdb3cb57488b7a91bbc5ec1319723:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWE1YzU4NTc3N2VlOWJhNzVlN2IyNjhmZjZlOTA0MDE4ZjdiZGIzY2I1NzQ4OGI3YTkxYmJjNWVjMTMxOTcyMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWE1YzU4NTc3N2VlOWJhNzVlN2IyNjhmZjZlOTA0MDE4ZjdiZGIzY2I1NzQ4OGI3YTkxYmJjNWVjMTMxOTcyMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmVlNGQ2MTZkNTgzMGU4Yjc2ZDE5NDJkODFlMGVkNzE3YTVkZGJmMjlmYTY5ODQ5MThlM2Y5ZDI0YTExMDI0OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDRmYmRhMDIyYTc5MmVkZTI4OWU2ODBjMzkwOTVmZGRiNzIyMGZiN2NlZjY5MDE4N2E4ZWNiN2EyYWRkNWFkYyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_238fa0e33d0f40b7a02dd8aff0386a09",
+      "statement": "The final startup sequence runs `service apache2 start` then `service zoneminder start` and blocks on `tail -f /dev/null` to keep PID 1 alive; the Docker HEALTHCHECK `curl -f http://localhost/zm/` probes the Apache-fronted UI. Under a command override this sequence is skipped via the exec \"$@\" shell replacement.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L147-L149",
+          "version": "repo-lines-v1:sha256:ecbcf9a521af1acdf4e98f81742002e4699d2974e2898f377d4c548e25e303e6:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjM5MDI3Yjg0ZmRlODU2OWY2NWU3ZGNiZjMwNGM5MDE2MzVkMzUyY2E5ZDc2NGY3OTRlZmEwZGM5OTM2ZTg1NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTdlY2M5ZDQxYzZhMTllM2ZlM2IzYTRiYmZjOTZlNmVkYmExNjU1ZDZhODExYzY1NjUwOWIxMzU4NjdhNzBiZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWUzODcxMWYyNzY4Njk0OWI0MjFjYWY5NzdjMTkzYWE0NjJjZWYzZDAyNzZjNmE4MTYxMmE0MDVhODllZDhkOCJ9"
+        },
+        {
+          "resource": "repo://entrypoint.sh#L125-L128",
+          "version": "repo-lines-v1:sha256:e83a5e022cb7e2d4c9ee8f28c843d5aa0f23f8286c709e35fa00995c611a3e56:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGI2NWYwZGNiNDc1MTAxMTA4NDdiNDdhNGUzZTM2MmRjZjUyYTNkYjhmMTA4YWExYTYwY2I3ZDA1Y2E0NmZlMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTQwNmM1NzUxZDU0NjUxMGE1MjlmNDJlYTEyYWRjZDY0MzM1OWY2OGEwYzUwZTE0NDU2OWJkMzM5MmFjZWU5NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_360ddf401037405992f76d97c90a41e7",
+      "statement": "The table-count bootstrap is idempotent: on every startup the entrypoint counts tables in $ZM_DB_NAME via information_schema; if any exist it skips initialization, and only when the count is zero does it create the database/user/grants as root (using MYSQL_ROOT_PASSWORD) and import /usr/share/zoneminder/db/zm_create.sql.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L15-L24",
+          "version": "repo-lines-v1:sha256:a4ef3c196d539cc104b5e167b84bdbaea690490e1486ce5e53f7b1f931a38ea7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM3MjRjOTNkYmRhNWViMGRkNTA3OTM3MTQ4OWQ3NjUyOTQxOGI0NzkyZDhmZTBmZTRkMGQ3ZWZiYWQ3ZWE2NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIwZmRhMDQ1ZTg4NTJkODFkZDcyYTAyYjdlNTE4MTlmM2Q0MzFmM2M5YjA1M2FiNmZmODg3MmE2MjU5ZjNiNDciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZmMGY5ZThkZTRmM2VjMjMwNzc0NGVmNTBjYTRmMTcyZGIwNzgyZDgyOWY4ZDJiMWY1NDBiMjkzMzExNjYxYjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc2ZThkNWE4OTlkZTIzYTAxMmY4YmQ4ZWViNjBjNTQwOTNhNWZmZGI2YTA4MTgxMTljNGFkYTU5ZmQxY2U3NjUifQ"
+        },
+        {
+          "resource": "repo://entrypoint.sh#L51-L64",
+          "version": "repo-lines-v1:sha256:e522c69558ab322a5d10404a537404bad12765272270af03a19c346e445ae22d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJkZDZlMGVmM2U4Nzc5YjljZjI0MjZkYzJjM2IzZmY3ZGRlYjFlOTFjN2Q2OWU4ODA5ODA3NGVmY2U5ZThiNzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NjlkMjM3Y2Q0MjBiOWQzOGI5ODFhMGE0ZjY3NzAxOTBhNGE4M2RjYTFmZTU2YzRmNWJhMWUyY2JjMGVmNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBmN2YxMDM4NmMxZTNlMzA3MGIwODljYjNjOGU3NTY4MmJjNGE5NjNkZGE3NWM0OWJiNjExOWY5ZGUwN2QyM2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI0MThmN2U3MDlkMjU1NGIxNjAwMDhlYmFmZjhlODE4Yjk0ZGY0Yzg4NmQyZThkNjFmZTUwNzU2MDI4MzI0OTIifQ"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.7.3",
-    "at": "2026-11-03T01:11:51.876Z"
+    "at": "2026-11-03T05:30:36.749Z"
   }
 }

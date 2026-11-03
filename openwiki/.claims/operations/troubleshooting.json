@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:afaf11bcb2e75229d14aa155f7193fd6e65a4aa03974c37232fe46922334c218",
+  "pageVersion": "sha256:d8d6e890d17d32bd05ede708c6bb826a8c565f156e8bdc36f8d25d35563a28f1",
   "claims": [
     {
       "id": "claim_51a7ea75ad224616ae0a959dcd3ea748",
@@ -54,11 +54,15 @@
     },
     {
       "id": "claim_292988e8af564db3af39c310e0c629e7",
-      "statement": "The mlapi start command in entrypoint.sh is currently commented out (line 78), so mlapi does not run unless started via a process supervisor or sidecar container.",
+      "statement": "The mlapi start command in entrypoint.sh is currently commented out (line 87: `#python3 /usr/src/app/mlapi/mlapi.py -c mlapiconfig.ini`), so mlapi does not run unless started via a process supervisor or sidecar container; the zmeventnotification server launch line is likewise commented out (lines 118-119).",
       "evidence": [
         {
-          "resource": "repo://entrypoint.sh#L78-L78",
-          "version": "repo-lines-v1:sha256:c54092a955bbd6d7bd24fc9d609352dd381a2a4a6f9c6d9897057c75c26281dc:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzU0MDkyYTk1NWJiZDZkN2JkMjRmYzlkNjA5MzUyZGQzODFhMmE0YTZmOWM2ZDk4OTcwNTdjNzVjMjYyODFkYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzU0MDkyYTk1NWJiZDZkN2JkMjRmYzlkNjA5MzUyZGQzODFhMmE0YTZmOWM2ZDk4OTcwNTdjNzVjMjYyODFkYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmU3NzE3ZTI1NDVjZTE1MTZmMjNkODIyNDIwNDY2MDFjY2UxMjkwOTBiMTdkM2RlOWI5OThlYjRkODNkMTMzNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmEzY2Y1MTkyMzU0ZjcxNjE1YWM1MTAzNGIzZTk3YzIwZWRhOTk2NDNmY2FmNWJiZTZkNDFhZDU5YmQxMjE2NyJ9"
+          "resource": "repo://entrypoint.sh#L118-L119",
+          "version": "repo-lines-v1:sha256:effe23771e2f27a08ee50fff031b7de7124e503869a653b8fb549ddacc42f7fc:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDQxNTA0MWMwOTJiNmQ2MmFlZDRmMDE4Njc1ODdiYjk3N2VhMjZkZTA0ODA4MzFlN2NjMjRlYWQ4M2YzNTdlOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzg4N2JlM2ExZDljMzVkMzUwNzIwNjU1ZDkwNTRjNTUwZmQ1MTMwZWQxOGVmMWViMGJkNGIwMjdkNzIxYmE0MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDAxOTg4MjQ2NTk0M2Y3YjYxZTBhOTI2MWQ0N2M0MDNlMzMwNjE1NDZmMDhhMDMyYzg2ZTBiNTdlMGVhMGM0NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTNlZDVlOTBhYjY2YmRhODQ2ODM4ZjUwMGRjODBiNzBhMzczOWZiOWM5NjUxZGYyNDRjODU3YTk5OWE0MTdiZSJ9"
+        },
+        {
+          "resource": "repo://entrypoint.sh#L87-L87",
+          "version": "repo-lines-v1:sha256:5a5c585777ee9ba75e7b268ff6e904018f7bdb3cb57488b7a91bbc5ec1319723:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWE1YzU4NTc3N2VlOWJhNzVlN2IyNjhmZjZlOTA0MDE4ZjdiZGIzY2I1NzQ4OGI3YTkxYmJjNWVjMTMxOTcyMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWE1YzU4NTc3N2VlOWJhNzVlN2IyNjhmZjZlOTA0MDE4ZjdiZGIzY2I1NzQ4OGI3YTkxYmJjNWVjMTMxOTcyMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmVlNGQ2MTZkNTgzMGU4Yjc2ZDE5NDJkODFlMGVkNzE3YTVkZGJmMjlmYTY5ODQ5MThlM2Y5ZDI0YTExMDI0OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDRmYmRhMDIyYTc5MmVkZTI4OWU2ODBjMzkwOTVmZGRiNzIyMGZiN2NlZjY5MDE4N2E4ZWNiN2EyYWRkNWFkYyJ9"
         }
       ]
     },
@@ -74,11 +78,11 @@
     },
     {
       "id": "claim_184800f20b994e1b8d0dffc95f700c02",
-      "statement": "Docker Compose defines five named volumes (db_data, zm_config, zm_cache, known_faces, unknown_faces, mosquitto_data) and a tmpfs mount at /dev/shm with 400MB size for ZoneMinder shared memory.",
+      "statement": "Docker Compose defines six named volumes (db_data, zm_config, zm_cache, known_faces, unknown_faces, mosquitto_data) plus a 400MB tmpfs mount at /dev/shm for ZoneMinder shared memory.",
       "evidence": [
         {
-          "resource": "repo://docker-compose.yml#L25-L45",
-          "version": "repo-lines-v1:sha256:d8dbd63861b0218cad06cd168492152f3a453b347abba043fa49295bdc5c1ee4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2OWRmZGI5ODFhNmU5ZGNkMGU5NTgwZjI5NDZhZGVjYzU3ODdiZmZlZGFiNjcwYjBmNDdhMjk2OGY2MWE2ZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyNzQ2MzM0ZmRiZDY1MTMyMzlmMTMyNmRiOGI2MTI3NTdiNWIzMmMwODA4YjUwODFhOTkzN2Y2NTMzYjhkYjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY2ZjRiNzdjYWIyMGY3YmNlNjc2YWRjYTA4ZGFhZjdiZDQzOTkzZmUwOGY2MWRkYjJhMGIxYjgzYjQzZWYxZWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ3YjZlYjc4YjYzNjliNmE4MTFhNjdlOWJmMjVlNGMzNjMxNTY1MzI2M2M3YzdkYWE2MDU4ZDlhNjdiNWE4ODkifQ"
+          "resource": "repo://docker-compose.yml#L50-L59",
+          "version": "repo-lines-v1:sha256:9d88d3a68b7ff3c1f114ef83c37e8ae596e97b0b34812f9f84438c72a612ad5f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxM2Y0ZDk2NjFlOWQyYzNlMWEyODllNTgzMjI5OWJlYTE0Y2RiNjRiZjg4NjYxZGY3MTdiMTJmYTAyZDAxMWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjYzc1MDg3NGNhNGM1ODllNWQwZGRkOGZiNGExNWU3YTczZWMxZjdkODZjOTk4MWVhMTFkYjFhMWY2ZWViYjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcxNDJiMjc4ZjFkN2Q4YThjYTBhYWExN2EwMjIzNzk2NmZlMjI2YzIxOThiNTc1MTBkYzc5NzRjZGZjNzRkNzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgyYWZjYTBiYzg4NGMwNTZjZTllODFlMmJhYTk0MzNjY2VkNGNlN2ZjZDExMTFjZGY5ZDE1ZGVmMzU5MjhlZDcifQ"
         }
       ]
     },
@@ -105,10 +109,68 @@
           "version": "repo-lines-v1:sha256:46054ee8242b7830ff14a40dec2b0e2163b5ad88e57e8859c84974e0d8467eed:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEzMDI1ODYyOGUzMWVjMzU2YzU5YzFjMzhmYzBlY2RhNzJmZmFlODZmMWY4N2EwN2E2OTZmNWU4NDEzYmE1YTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxMmJjZDdmNmE5YTYwMjgxZDc3MmMzNTNlNzJjNDMzMTlkYTUzOGUxZDkwMzBmNWI0ZGYwNjkxODExNmIwZjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRiOWM4ZTQzOGY4OGU1YmYwYzk2OTIwM2M1OWY5YWYyYWUxNmQ1N2NiOWIyZjBlNTJhODMzNjhkNmU4Zjg0MjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk4NDNkNWY4NTlkZmNiZjEzMWQxNzA4NThkMDE0ZWYzYWI3ODc5MzgwNjRjZWI3ZThlZDY1ZDZhNmExNjAzMzIifQ"
         }
       ]
+    },
+    {
+      "id": "claim_32877aa815d34ca3af23ed3a8a0e76d9",
+      "statement": "The zoneminder service's port mappings (7080→80 web UI, 7000→9000 mlapi, and eclipse-mosquitto's 1883→1883 and 9001→9001) come only from docker-compose.override.yml; the base compose file publishes no host ports. Port 9001 is exposed but no WebSocket listener is configured in the mosquitto.conf generated by entrypoint_mosquitto.sh, so nothing listens on it.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.override.yml#L1-L15",
+          "version": "repo-lines-v1:sha256:7eecd1963b91cdb3d41ba9a43d6aea2203149b4a42492e2ec01b00456cdbc96b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhNzNmY2NkYzk5ZWE4MzU5NjdjN2RlZTdlZmJlZDFmM2NhODcyNjBkOTI5MzE4NTBmZGQ2NmRhOGNiMTJmMWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE4YzVkNWEzOGIyZDEzNzA3YjM3ZmQyOGFiNjAxOTNkZTQyMDA1ZDFmZWE4NTMyNTg2NDQ1ZjYxNTFjOWFhMzMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://entrypoint_mosquitto.sh#L4-L11",
+          "version": "repo-lines-v1:sha256:283dcef234acf4200fbf6db9f40f603a4044ec638096fb21883e7709a17b1ea3:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmIwMTljOTY5M2FiZDZiN2M5MDY3ZmZhODA2YWUzMWM3YTllODczM2YxNzdiM2Y4MjIwZjRmNWJlOGUyYjljNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmYyN2QzOWEzMWQ2Mzg2ZTI2YTk0YzQ4ZThkNDA2ZTFjN2JmZGY5NTVkZTY3ODgxODdlZTI5YTJkMTU0MWEzYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTk2Yzk4MjJhMjExNGFmMzlkN2YwYTM3NjM4OTUxZDg3YzcwOTY1ZDhjODdhMDY5OGM2ZmU2ZWYxMDczNzRlNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_10d4d6cba1a646e3a85d4cf656eee621",
+      "statement": "entrypoint.sh runs `exec \"$@\"` at line 71 right after the event-notification feature flag; the Dockerfile declares ENTRYPOINT with no CMD, so in the normal path exec is a no-op and the script continues through config rewrites and service startup, but any command override (docker-compose run, explicit command:) causes exec to replace the shell, skipping the zm.conf rewrite, MQTT/secrets.ini configuration, Apache/ZoneMinder startup, and the tail -f /dev/null keep-alive.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L151-L155",
+          "version": "repo-lines-v1:sha256:1e97751ed2308061a2817d29546271337ba377d1ced8d64237723c5ee325dead:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTcyZjA2NTZmODQzZjNkYzk0NzA4OTk3MjhlNzZhYTQyNDAwZmUyYTU5ZmZhOTJlMjA0MzUyZDM1YWZhNTExYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzU3ZTNhNWYxMGMwMDJmMzIyMDc4YjYyNzBmODRjMzU5NDUxNWU4OWNlOTQ3OGY3Y2YwNzQwNDdjZTMwODY1ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2E3NDYwYWMzMmM4MTNhZDJkMjlhNmM5NmFhNzcwMTJlNzhjODM2ZjAyYWQ1NDc3N2ZmYWMwYTRiM2EzNDJlZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://entrypoint.sh#L71-L71",
+          "version": "repo-lines-v1:sha256:2e124b30113dd2abbe684d922c097aa498ce5a8a5f2255a941ff2c1e05d4e196:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmUxMjRiMzAxMTNkZDJhYmJlNjg0ZDkyMmMwOTdhYTQ5OGNlNWE4YTVmMjI1NWE5NDFmZjJjMWUwNWQ0ZTE5NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmUxMjRiMzAxMTNkZDJhYmJlNjg0ZDkyMmMwOTdhYTQ5OGNlNWE4YTVmMjI1NWE5NDFmZjJjMWUwNWQ0ZTE5NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDNjMDY4ZjhmOTMxNTYzYjljNDYyMDAzYzU4ZWI1ZDE1YWM2MTJmMjBjNDYxMzVjZjQzMzgwZjY1YmIzYjc1NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTdlZTczM2Q2N2M5ZGM3ZjUwMDY3NDNjZWVmNjIxMWM0OGYxNWIxMGIyNmNjNmIwYmYyMTUyNzQ2NDc0MDllYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d5fdb2638d20406eabfaa3cf876ce25b",
+      "statement": "The Dockerfile defines a HEALTHCHECK (--interval=1m --timeout=10s --retries=3) that curls http://localhost/zm/, marking the container unhealthy if the ZoneMinder web UI is unreachable, and exposes ports 80 and 9000.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L141-L152",
+          "version": "repo-lines-v1:sha256:05ef0a72702a1f0baf52cd1d2375f668fb8b9f1bc247a5dadbd6e9b0cc62a3ff:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZjM1YzEzNjcxYTlhMTNhYWQ5NzM5ZWEwZmM0OWI4ZDYzNmVjYzE2OTE4N2M0YTc3ZGE2M2Y4ZmZjYWE4OGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU3NWQ1YmE2Mjc1MmNkNjhmYjFkMjJkNzRiYmQzZGJiZGFlNzVlNDI5NTEzZGViODhlODMzMjA2ODMzOTJkNGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc2Zjc2YjZkYTU3Zjc1ZjczYTg0ZGRmOTM1MzlkOWNiOTZhMzRiZDM3NTg3Y2ViYTNkYzI5ZjNjYjk3ODA0ZWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhkNTQxMjljMzNkZDM3YmNlYjIxMDU0ZGJjMGUwZDAxN2VjNTg2NGYzMWY2N2YzMGM2ODAzZDM0NjUwMjRlNjEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_dcc3fefcdf3c4ea28760716f28c4bd8e",
+      "statement": "Model weights for mlapi are downloaded during the Docker build by running ./get_models.sh after cloning the mlapi repository; the weights are baked into the image and are not volume-persisted, so wiping the image requires a rebuild to restore them.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L64-L74",
+          "version": "repo-lines-v1:sha256:91fe23c9ec498ef4bb8dbf17af962dc36c86339b2ba51856d3b07db6519e776c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIzMTBkNWZhN2VlYTE3ODZlZTczNjFhMGUxZGI0NWViODFkMTcyYWZjY2FlYTRiMzdiNmE2MTYzNzJiZTMyOGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyMWQ2NTMzNmJlNDExMzVhYjQ5YTA2ZTMwYjljZjFhYWQ1ZmQxMDRjMjg3YmMwMGNlMDNlNTNjMTFlNzRmMTgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNjZTFkNGFjZGZlMWMwZGY5ZGVhZGI5YTQ0OTVlYTk0ZjE1OWJiNzVmODY1YTA1OGVmNGJjYTU5ZTAwYTdiNTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg2ODBhZGFiOGY5N2MyMThhMjcxNzQ4NWMwYzkzMjZkMjkyNDQ3YzQzNGM2NjUxYWM1NDU4ZjkwY2Y4OTNlODgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_deb65b645bd2487b968fbe43a0247d60",
+      "statement": "The compose network zoneminder_network uses the overlay driver with attachable: true, which targets Docker Swarm environments; running the stack on a plain (non-Swarm) Docker host may fail or require an orchestration-capable engine.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L61-L63",
+          "version": "repo-lines-v1:sha256:6ddf5feeaba8df71550119f8999372d978be184eca2ac7db57ef3cde5b167315:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGUxODhlMDVhNzBjYzkwZDdjZTg4ZjMwYzdlYWI0N2NmMzgyMWE1MDljZmQ0NDU0NmU3ZmYyN2Y5YWIwYTg1YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmI5MjA0Mjc5NTM1NmU0MTcwMzYxMDE4NWMwOTUzODE0ODg4MzllMzcxZjA3NjNjMjVkZDRiNGRlOGRhNTJlOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTU1NDA4MmY4NGYzYWJjZmEzNTgyMWQxMTdhZmQ4NWY5NjBhMjczNTRjMmZlN2UxMmUyMGE4MjAxNzVkMThiMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzUwNjg0ZTZmNGI4NjVhYzY1OGRmZGYyNDdhZTE0NTQ0YjBmZGMwMmViNGVhYzVhZGM3OGYwYTE1MzFlYWY2NiJ9"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.7.3",
-    "at": "2026-11-03T01:11:51.876Z"
+    "at": "2026-11-03T05:30:36.749Z"
   }
 }

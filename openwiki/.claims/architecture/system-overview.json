@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:b5e038cd83c8492e49c268a68e776b801437a2fbe40148d03a811fd6fdec00f7",
+  "pageVersion": "sha256:dfcb4659307bf258a93ac52430655c74d6b12c706a533e108c7c48afa17671cc",
   "claims": [
     {
       "id": "claim_c2e2f5e36a1042e884de8ffe1a59cbb2",
@@ -72,7 +72,7 @@
     },
     {
       "id": "claim_2ea00569b50040e58f34869c2b68f121",
-      "statement": "Eclipse Mosquitto service builds from Dockerfile.mosquitto wrapping eclipse-mosquitto:latest, generates its config at runtime via entrypoint_mosquitto.sh using MQTT_USER/MQTT_PASSWORD from environment, and exposes ports 1883 (MQTT) and 9001 (WebSocket) to the host.",
+      "statement": "Eclipse Mosquitto service builds from Dockerfile.mosquitto wrapping eclipse-mosquitto:latest and generates /mosquitto/config/mosquitto.conf at runtime via entrypoint_mosquitto.sh using MQTT_USER/MQTT_PASSWORD from environment. The override file maps host ports 1883 and 9001, but the generated config declares only a listener on 1883 — no WebSocket listener on 9001 is configured, so host connections to 9001 fail until one is added.",
       "evidence": [
         {
           "resource": "repo://Dockerfile.mosquitto",
@@ -87,8 +87,8 @@
           "version": "repo-lines-v1:sha256:cbc941a546f651fd4518b27c49995dc0b56a8e557384962596628f6a98efa710:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5MDU3OTQ2MTNkOTE3ODIzNzJiZWU0Y2UwY2NiOTc3NDMyMTk1ZjI2NGYxNTJiZTcxZGIyNWUwZjA0YTY0OGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxM2Y0ZDk2NjFlOWQyYzNlMWEyODllNTgzMjI5OWJlYTE0Y2RiNjRiZjg4NjYxZGY3MTdiMTJmYTAyZDAxMWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVjYmFmMDQwNTQ1ZDgxNjliOGZhNThjOGUxOGIzMjJhMGM1YTkxNWQyN2E4YzMwZGQxZTk2NjYxYzBkZTczYzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJiNjhiNjdhZThiOTg0MDFiNmQ4ZWY5MTgwNWQ3MDlkMDllNjFjZjFjODdhNjEwN2FmMWM0NTdiNjkzN2NjMzkifQ"
         },
         {
-          "resource": "repo://entrypoint_mosquitto.sh",
-          "version": "repo-file-v1:sha256:82518687331cb8e3cae0a97afadc396a4eed6cbce4200d13f969b8e4bbae6f93"
+          "resource": "repo://entrypoint_mosquitto.sh#L5-L13",
+          "version": "repo-lines-v1:sha256:485cdcabbff68918cabd3e897d70cad8d44e29d49302a4ee15159ce2dd47122c:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjI3YjVmYTczZDk1NWI0MWVlNGIwNWM4NTM3MDU1NGExNTlmMjkzY2JhZGY3MGVmYzk5Mzg3ZjYyYmRkNDA0ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmEyMWM1YjNiZmYwMjk5YzAxNjE0NzA0NjhmMzU1ZTViNGFmY2YxN2E1ZjU5M2FiNjgzOTRlZjdhZjMxOWNkYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmEwOGJiMDM5OTVlZDRhMGExMzUyYzQ5ODUyYjc0NmFlYTA3Mjg1ZTJiZTg4Mzc3OWViYTUzNDc0NzExYzA1ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWUzN2I2ODgyM2U4OWYwMjJkMTEwYzZhNWVjM2EzY2EzNDgxOTlkOGUzODA0OWE1ZTUxZTUxNDg2OWEyNmU2OSJ9"
         }
       ]
     },
@@ -129,10 +129,100 @@
           "version": "repo-lines-v1:sha256:0bca0cb6f0054e294eff2f066b8eb57a824621cad5dd0ca66e0353e270c4ca02:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0MGU4ZjdmNmQ5OGY3YzFmZDQwZmI2ZDM4M2M4ZTBkOWI5NDA0NTQ3MjgzMzZjNTIyOWQ2NGNhMjM5ZjJhYmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ0MTUwNDFjMDkyYjZkNjJhZWQ0ZjAxODY3NTg3YmI5NzdlYTI2ZGUwNDgwODMxZTdjYzI0ZWFkODNmMzU3ZTgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImExODVjNjRkMmExNDFjYmZjMWRiZmY2NjIwNjdmNjg1ZjRmZWZjNDI5MzYzN2E1N2Q1OGRkMTBiMjM0MmIwYTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI5NjI3MWZkOGM4ODVjYTAxZWMzZmY0MjQzYWVjZDliYmQwYWZhOWZkZmQyZjg4MTI1M2FmN2YxOWYyN2VhYjQifQ"
         }
       ]
+    },
+    {
+      "id": "claim_3deb899a63c04c70a86fa777b635f055",
+      "statement": "docker-compose.yml defines no depends_on for any service, so all three containers start in parallel; startup ordering is enforced only inside entrypoint.sh, which blocks on netcat -z ${ZM_DB_HOST} 3306 until MariaDB accepts TCP connections before initializing the database and launching services.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml",
+          "version": "repo-file-v1:sha256:c784a3df210ae4d63125ab022d859ea2ae57bf05f3dc385b0c4d642cfb9acf33"
+        },
+        {
+          "resource": "repo://entrypoint.sh#L41-L45",
+          "version": "repo-lines-v1:sha256:278c41b33aeb8c84b39873b8496b950e00e6b17f3276d2da341ebd763dd25167:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzJjNDg1OGUyMmNjMmM5NjdiNDIxNTBmYTU1MDU2MmEyYzgzOWMyY2ViY2FhYjkxY2FiZGY2ZjRkYTAyMDAyMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmE0ZmYzM2I1MjI3NzMxOWI0NWQ3N2MzODhhZjk1OWMxNjU4ODAyMzAwZjY2N2Q4ZjA3MTdkZWM0MzdkZWJlZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWRmZjhmOTQ0NmJhMTg3NjkzOTM5NWJiNDgxNmIwYzJlNTBiMGJhOTI3ZmZjZmI0ZDUxMjk4OTY0NjkxODc5YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDA3YWEyMjQzNjUxZGRiNDNmNTc5MDZmYzUxNGM0MWQ2MTVlMzgwNTVlN2I0N2JiYmU2MWQzNzdhOWU4YWRlZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_2bb1daa2ab2942378d4fa1e49f132db5",
+      "statement": "Only the ZoneMinder image defines a container healthcheck — HEALTHCHECK --interval=1m --timeout=10s --retries=3 with CMD curl -f http://localhost/zm/ — while neither the compose files nor Dockerfile.mosquitto add healthchecks for the db or eclipse-mosquitto services.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L136-L139",
+          "version": "repo-lines-v1:sha256:bbbdff8b30a14e77cbc5951dbd296728b6b5c789bd4849d08970afbc630c4e77:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWViZDFiMmMyNWExNWIwMTc0YzczNTcxZGM1OTZmZGE2YzFkYzU4NDBjYTIxMmM4NzFiYzU2MmY4OTI1MTI0MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjE2ODY2YjU3MDA3NDYzYzliZWEzNmIwOWRjYjFmYTIwZmNmMjMyZTEyN2JkMGUyYmYxYTFmZDc1Mzc1MDFmMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzdkOTc4NGQ2ZmVjZTk3ZjAxMzExY2ZiMDMyNGIwYzUzOTY0MGRmODNlNzhhMzFlMjY3NTVjYzBjNTJiMThmYSJ9"
+        },
+        {
+          "resource": "repo://Dockerfile.mosquitto",
+          "version": "repo-file-v1:sha256:9fb771db0a1a9cd4e393a1bcb25e66046528b7476f64453dd7aac67765a16ef6"
+        },
+        {
+          "resource": "repo://docker-compose.yml",
+          "version": "repo-file-v1:sha256:c784a3df210ae4d63125ab022d859ea2ae57bf05f3dc385b0c4d642cfb9acf33"
+        }
+      ]
+    },
+    {
+      "id": "claim_49b4f6f162c6434881f2cad03af2b609",
+      "statement": "The Dockerfile backs up the pristine /etc/zm configuration to /org/etc/zm at build time, and entrypoint.sh copies those files into the zm_config volume on first start when the volume is empty; subsequent starts reuse the volume contents including manual edits.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L131-L135",
+          "version": "repo-lines-v1:sha256:43d8233b2ce816483f66c77f057461537882c826bab145398e061c0478119093:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGU3N2MxZWMyOWMyZTc3MzYzZjQ1NmE0OTcxNGMyNDI1ZDczY2I5MjgwNTQwMDUwZjdkZTk0MTYxOWU4ZGQwZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDYyODk1ZDg5MzM1YWFmODZlN2RmYzQ4NTk3NGMyOTZjZTA1YWUzMjE2MjFiZDA4ZmUxYzAwZTZkNjNmNzQ1YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzVlMDhiMDI1NDM3Mjk2OGMzNjc2N2UxMjkzZDdmMWFiYjg1MzY2ODQ2NzVhMDFmMTNlYWVkNWU1MDEzYTk4MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTRiOWNkNTU4ZjI0NTM5YmRhOTBiYjI1ZGEyYmNjYWNkYjllM2FiNDkyYWIwOTA0YTczZGRkNmRlNTQ0NDAzMiJ9"
+        },
+        {
+          "resource": "repo://entrypoint.sh#L10-L12",
+          "version": "repo-lines-v1:sha256:650a6896a005cbef41cf63b5276ee515e67ec6398e0ef54d86405c94437a7e0f:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzc2OWQyMzdjZDQyMGI5ZDM4Yjk4MWEwYTRmNjc3MDE5MGE0YTgzZGNhMWZlNTZjNGY1YmExZTJjYmMwZWY3NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDc1ZDM2ZTVhZTQ2Mzc4OTliZmE1Njc1ZWI2Mjk0Y2VkMmZhODYyODlkZjdjZWFiODgyZDgxMzc4NTFlMjY0YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmRlNTU1YjJkNWFjZWFiYTdkM2UyNTdjZGJhMTViYWE1YTRkYjRmNTBhNTAyOTA1YmNlNDZlODNkNDQ2YTNlOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzk2ZDFiYmNiYzIwN2ZmNDkxM2I2YjBhYmYyZGU0NDRiMTUyZjg5MjQ3YzU4ZDZjNzdlNWQ0Y2QwYWMxMDE0MCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_db687c109fff4af5b481955d22a538d3",
+      "statement": "docker-compose.yml hard-codes service discovery names into the ZoneMinder environment (ZM_DB_HOST: db, MQTT_HOST: eclipse-mosquitto, ZM_SERVER_HOST: zoneminder), so renaming any service requires updating these variables, and passes MQTT_USER/MQTT_PASSWORD to eclipse-mosquitto for broker authentication.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L16-L50",
+          "version": "repo-lines-v1:sha256:1b6406795b5fd57607c952a4d51184043e572419334518168261176016e32c22:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxM2Y0ZDk2NjFlOWQyYzNlMWEyODllNTgzMjI5OWJlYTE0Y2RiNjRiZjg4NjYxZGY3MTdiMTJmYTAyZDAxMWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRiMmM2NjM0YmE5ZmEyMGVjZjI4MWNlMGU3YzkzMjdiZGFmMmFlMDZkNWFkOGRmNjQxMzRhMGEyZDY1NmRlNDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJiNjhiNjdhZThiOTg0MDFiNmQ4ZWY5MTgwNWQ3MDlkMDllNjFjZjFjODdhNjEwN2FmMWM0NTdiNjkzN2NjMzkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4e2abd73144f43978be0514e90d2b488",
+      "statement": "At the end of entrypoint.sh, Apache and ZoneMinder are started via `service apache2 start` and `service zoneminder start`, and the container is kept alive with `tail -f /dev/null`; the direct zmeventnotification.pl launch is commented out.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L110-L128",
+          "version": "repo-lines-v1:sha256:99df039249380ca3c5005665e18f302caaae356b67af82067f91ff7d66cfa870:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJjNzVhOTllMTY1N2U4MTA5MGI5ZGRiMWRmNTI2MWQyZTNlOTU5ZGQwYjFkN2YzMTM0YzFjMzRlODM1N2FjZjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRiNjVmMGRjYjQ3NTEwMTEwODQ3YjQ3YTRlM2UzNjJkY2Y1MmEzZGI4ZjEwOGFhMWE2MGNiN2QwNWNhNDZmZTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMwYWRjYWNiY2YwZTY3ZDVlMzkwN2YxODkyMjY0OWI1MjE3MTFlY2VjMTE4NjEzMGIyOGM3ZDg4NTQ1NzRjMDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e8e49fe469c646d28a6f751ac15e24b2",
+      "statement": "The stack uses six named Docker volumes (db_data, zm_config, zm_cache, known_faces, unknown_faces, mosquitto_data) declared in the base compose file with no bind mounts, surviving docker-compose down and remaining portable across hosts.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.override.yml",
+          "version": "repo-file-v1:sha256:7eecd1963b91cdb3d41ba9a43d6aea2203149b4a42492e2ec01b00456cdbc96b"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L26-L58",
+          "version": "repo-lines-v1:sha256:ef3963847898ba342749fef2cf3e1bd4097373cc91895fe211eced8d93482d0b:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxZjNjY2M0MmI5OGVlNWRlZDlhZTk2Mjg0NTljOTEyZDY5ZDg1YWMyMzgzOGM1NWM5NDYxMTNiNGUzNTcxZDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5MTBmYTlhMjFkNzNkYzkyYWE1MTFlZDRlOWZmMzZiOWRlNjIxNzMwOGNjOTI0ZjE3NjZlYjBhZGFlYTg4ZTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZkMjVkZjVlZDBjODgyZTRhN2YxZjBiMDYxYTNiYWVlNTE2YTAxNmI1MmQ0ZDU1YTAwMmUxYTRhNzBkMTVkNDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk0YWViNDAxODNkNGRhNTViOWY0MDhlYzQ1M2MzYzRmYjVjMDY4ZjMyNTU0ZmJjYTk3YzMyYmM4ZjUzMzYxOGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f484838df30741258bb80662418e93bb",
+      "statement": ".github/dependabot.yml schedules weekly docker ecosystem dependency updates for the root directory, covering the base-image pins in both Dockerfile (ubuntu:22.04) and Dockerfile.mosquitto (eclipse-mosquitto:latest).",
+      "evidence": [
+        {
+          "resource": "repo://.github/dependabot.yml#L6-L11",
+          "version": "repo-lines-v1:sha256:c0c9dd05fee3afed5d12b5fabc24968fd23bebc3266cf512d9a93345b8e93eb6:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTZlMGQxYWZkNmU5NjAzNmI3NzZhYjIwNjg0ZGEzNWYwNzVjNTBkNmYzYzBmZDU5OWRkYzgyMThlYmJkZmI1NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZWQxYjY5ZWI0MzY3ODg0ODViZWJkNjIxMGYyYTZlZTZiY2JhOTc4ZWVmYTExMGNkYmNhNmZmYTg2NmRlYWQwMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDExNjcwMjExNjIzYzg0YjRjYjYyOGEyZTE3ZTdkM2VlNjRmYzY2MjM5ZWY2YTYyY2U4NjFlNDE2YjA4NWE0MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.7.3",
-    "at": "2026-11-03T01:11:51.876Z"
+    "at": "2026-11-03T05:30:36.749Z"
   }
 }

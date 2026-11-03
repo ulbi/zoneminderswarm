@@ -3,10 +3,9 @@ type: operations-guide
 title: Deployment Guide
 description: Environment variables, .env file schema, docker-compose commands, and healthcheck behavior for production deployment of the containerized ZoneMinder stack.
 tags: [deployment, docker, environment-variables, healthcheck, operations]
-verified:
-  - by: openwiki/0.7.3
-    at: 2026-11-03T01:11:51.876Z
 sources:
+  - id: openwiki-source-79b37831c9c81206da1d88ec
+    resource: repo://.github/dependabot.yml
   - id: openwiki-source-7b43f8d2fe7b509c09f79842
     resource: repo://docker-compose.override.yml
   - id: openwiki-source-b79fbbd921df689b4bbdc82f
@@ -21,7 +20,10 @@ sources:
     resource: repo://entrypoint.sh
   - id: openwiki-source-23775c3de52f3ab95a13cb8b
     resource: repo://README.md
-generated: { by: "openwiki/0.7.3", at: "2026-11-03T01:11:51.876Z" }
+generated: { by: "openwiki/0.7.3", at: "2026-11-03T05:30:36.749Z" }
+verified:
+  - by: openwiki/0.7.3
+    at: 2026-11-03T05:30:36.749Z
 ---
 
 # Deployment Guide
@@ -49,9 +51,11 @@ The `docker-compose.override.yml` exposes the following host ports:
 | 7080 | 80 | zoneminder | HTTP | ZoneMinder web UI and REST API |
 | 7000 | 9000 | zoneminder | HTTP | ZoneMinder live stream / WebSocket port |
 | 1883 | 1883 | eclipse-mosquitto | MQTT | Standard MQTT listener for event clients |
-| 9001 | 9001 | eclipse-mosquitto | WebSocket | MQTT over WebSocket (if enabled in mosquitto.conf) |
+| 9001 | 9001 | eclipse-mosquitto | WebSocket | Published but **unused by default** — see note below |
 
 > **Note**: The base `docker-compose.yml` does not declare `ports`; they are added exclusively by the override file. This allows the same base compose file to be used in swarm mode (where ports are managed differently) while the override provides host-port bindings for standalone development or single-host production.
+>
+> **Port 9001 caveat**: The Mosquitto entrypoint generates a `mosquitto.conf` that only defines `listener 1883`; it never configures a WebSocket listener. Host port 9001 is published by the override file, but nothing inside the container listens on it unless a custom `mosquitto.conf` adds a WebSocket listener.
 
 ## Required Environment Variables (`.env` Schema)
 
@@ -63,7 +67,7 @@ Create a `.env` file in the project root (alongside `docker-compose.yml`) with t
 | `MYSQL_DATABASE` | Name of the ZoneMinder database to create. | `zm` |
 | `MYSQL_USER` | Database user for ZoneMinder to connect as. | `zmuser` |
 | `MYSQL_PASSWORD` | Password for `MYSQL_USER`. | `zmuser_pw` |
-| `TZ` | Timezone for all containers (PHP, system, database). Must be a valid IANA zone. | `Europe/Berlin` |
+| `TZ` | Timezone for the `db` and `zoneminder` containers (system tzdata and PHP `date.timezone`). Must be a valid IANA zone. Not passed to `eclipse-mosquitto`. | `Europe/Berlin` |
 | `MQTT_USER` | Username for MQTT authentication (used by `zmeventnotification`). | `mqtt_user` |
 | `MQTT_PASSWORD` | Password for MQTT authentication. | `mqtt_pass` |
 | `ZM_USER` | ZoneMinder web UI username (typically `admin`). Used by `zmeventnotification` to call the ZoneMinder API. | `admin` |
@@ -72,8 +76,15 @@ Create a `.env` file in the project root (alongside `docker-compose.yml`) with t
 ### Variable Propagation
 
 - `db` service receives: `MYSQL_ROOT_PASSWORD`, `MYSQL_DATABASE`, `MYSQL_USER`, `MYSQL_PASSWORD`, `TZ`
-- `zoneminder` service receives: all of the above plus `ZM_DB_HOST=db`, `ZM_SERVER_HOST=zoneminder`, `MQTT_HOST=eclipse-mosquitto`
-- `eclipse-mosquitto` service receives: `MQTT_USER`, `MQTT_PASSWORD`
+- `zoneminder` service receives: `MYSQL_ROOT_PASSWORD` under the same name, plus the DB credentials re-mapped to ZoneMinder's naming (`ZM_DB_NAME=${MYSQL_DATABASE}`, `ZM_DB_USER=${MYSQL_USER}`, `ZM_DB_PASS=${MYSQL_PASSWORD}`), and the runtime-fixed hostnames `ZM_DB_HOST=db`, `ZM_SERVER_HOST=zoneminder`, `MQTT_HOST=eclipse-mosquitto`, plus `TZ`, `ZM_USER`, `ZM_PASSWORD`, `MQTT_USER`, `MQTT_PASSWORD`
+- `eclipse-mosquitto` service receives: `MQTT_USER`, `MQTT_PASSWORD` only (no `TZ`)
+
+The runtime service hostnames `ZM_DB_HOST` and `MQTT_HOST` are hard-coded in `docker-compose.yml` to the Compose service names `db` and `eclipse-mosquitto`; they are not sourced from the `.env` file.
+
+## Secrets Hygiene and Dependency Updates
+
+- `.env` is listed in `.gitignore`, so credentials are never committed to the repository. Any deployment must be created locally on the host from the schema above.
+- Dependabot is configured **only** for the `docker` package ecosystem, scanning the repository root weekly. Other ecosystems in the image build (Python packages installed via `pip3`, Perl modules installed via CPAN, cloned GitHub repositories such as `mlapi` and `zmeventnotification`) are **not** covered by automated dependency updates and must be updated manually by rebuilding the images.
 
 The `zoneminder` entrypoint script (`entrypoint.sh`) consumes these variables to:
 1. Set system and PHP timezone
@@ -126,6 +137,8 @@ docker-compose logs -f zoneminder
 docker-compose build --no-cache zoneminder
 docker-compose up -d
 ```
+
+Because Dependabot only tracks the Docker ecosystem, refreshing the base OS, Python, and Perl dependencies inside the images requires exactly this rebuild path — patch-level dependency updates land via image rebuilds, not package manifests.
 
 ### Execute Commands in Running Container
 
@@ -201,22 +214,26 @@ On first startup (when `/etc/zm` is empty), the `zoneminder` entrypoint performs
 
 1. **Config seeding**: Copies `/org/etc/zm/*` → `/etc/zm/`
 2. **Timezone setup**: Writes `TZ` to `/etc/timezone`, updates all `php.ini` files
-3. **Database wait**: Blocks until `netcat -z db 3306` succeeds
-4. **Schema initialization**: If `zm` database has zero tables, runs:
+3. **Database wait**: Blocks until `netcat -z $ZM_DB_HOST 3306` succeeds (resolves to `db:3306` via the Compose network)
+4. **Schema initialization**: If the `ZM_DB_NAME` database has zero tables, runs as root:
    ```sql
-   CREATE DATABASE IF NOT EXISTS zm;
-   CREATE USER IF NOT EXISTS 'zmuser'@'%' IDENTIFIED BY '...';
-   GRANT ALL PRIVILEGES ON zm.* TO 'zmuser'@'%';
+   CREATE DATABASE IF NOT EXISTS <ZM_DB_NAME>;
+   CREATE USER IF NOT EXISTS '<ZM_DB_USER>'@'%' IDENTIFIED BY '<ZM_DB_PASS>';
+   GRANT ALL PRIVILEGES ON <ZM_DB_NAME>.* TO '<ZM_DB_USER>'@'%';
    FLUSH PRIVILEGES;
    ```
    Then imports `/usr/share/zoneminder/db/zm_create.sql`
-5. **Feature enable**: Sets `ZM_OPT_USE_EVENTNOTIFICATION = 1` in DB
+5. **Feature enable**: Sets `ZM_OPT_USE_EVENTNOTIFICATION = 1` in the `Config` table (executed on every startup, not just the first)
 6. **Config rewrite**: Updates `/etc/zm/zm.conf` with DB credentials from env
-7. **MQTT config**: Enables and configures `[mqtt]` section in `zmeventnotification.ini`
-8. **Secrets update**: Sets `ZM_USER`, `ZM_PASSWORD`, generates `MLAPI_SECRET_KEY` in `secrets.ini`
-9. **Service start**: Starts `apache2` and `zoneminder` system services
+7. **MQTT config**: Enables and configures `[mqtt]` section in `zmeventnotification.ini` (also disables MQTT TLS via the `[ssl]` section)
+8. **Secrets update**: Sets `ZM_USER`, `ZM_PASSWORD`, generates `MLAPI_SECRET_KEY` in `secrets.ini`; also rewrites the ZoneMinder portal URL to `http://zoneminder/`
+9. **Service start**: Starts `apache2` and `zoneminder` system services, then blocks on `tail -f /dev/null`
 
 Subsequent restarts skip the database initialization (tables already exist) but re-apply config rewrites in case environment variables changed.
+
+### `exec "$@"` Placement Caveat
+
+Steps 6–9 above sit **after** an `exec "$@"` statement in `entrypoint.sh`. The container is launched with no command argument (the Dockerfile has no `CMD`), so `exec "$@"` is a no-op in bash and the script continues to the config rewrites and service starts. However, if the container is ever started with a command (`docker-compose run` or an explicit `command:` override), `exec` replaces the shell process with that command and **none of the config rewrites, secrets generation, or service starts will execute**. When overriding the command for debugging, re-run the initialization steps manually or accept that ZoneMinder services will not be running.
 
 ## Production Checklist
 
@@ -228,9 +245,12 @@ Subsequent restarts skip the database initialization (tables already exist) but 
 - [ ] Monitor `docker-compose ps` health status; alert on `unhealthy` state
 - [ ] Schedule regular backups of `db_data` and `zm_config` volumes
 - [ ] Consider enabling MQTT TLS in `mosquitto.conf` for production (requires custom config mount)
+- [ ] Periodically rebuild images manually to pick up Python/Perl dependency updates not covered by Dependabot
 
 ## Related Pages
 
 - [System Overview](../architecture/system-overview.md) — High-level architecture and service interactions
+- [Container Design](../architecture/container-design.md) — Image structure and build stages
+- [Quickstart](../quickstart.md) — Getting the stack running quickly
 - [Entrypoint Flow](../operations/entrypoint-flow.md) — Detailed entrypoint script walkthrough
 - [Troubleshooting](../operations/troubleshooting.md) — Common deployment issues and resolutions

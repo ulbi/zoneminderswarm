@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:d8c551988589bbdd20d9461a9eddf0037b3daab4ad4db843cc74771f2ad7aa19",
+  "pageVersion": "sha256:f4687c061b61970bdff31a011a28988853d36ae4c79da00a009560fefc6a66bd",
   "claims": [
     {
       "id": "claim_884d0df45d6e4d18bc49ca4233ebed0a",
       "statement": "The zmeventnotification.ini MQTT section is enabled and configured at container startup via sed commands in entrypoint.sh when MQTT_HOST is defined.",
       "evidence": [
         {
-          "resource": "repo://entrypoint.sh#L101-L113",
-          "version": "repo-lines-v1:sha256:60b3c29351334e1afb71595f854b6fbca4bb2c13c4d83e824a14ea6d473cb9bb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0MGU4ZjdmNmQ5OGY3YzFmZDQwZmI2ZDM4M2M4ZTBkOWI5NDA0NTQ3MjgzMzZjNTIyOWQ2NGNhMjM5ZjJhYmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1ZmM5MGZmOGE0NDE0YzU0NDFkMGY2NzdjNWNiZmRhMzhiNDc0ZTUxYmZkNTU5YTU1NTlkZTBmODc3MDU1MjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImExODVjNjRkMmExNDFjYmZjMWRiZmY2NjIwNjdmNjg1ZjRmZWZjNDI5MzYzN2E1N2Q1OGRkMTBiMjM0MmIwYTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZhM2NmNTE5MjM1NGY3MTYxNWFjNTEwMzRiM2U5N2MyMGVkYTk5NjQzZmNhZjViYmU2ZDQxYWQ1OWJkMTIxNjcifQ"
+          "resource": "repo://entrypoint.sh#L94-L104",
+          "version": "repo-lines-v1:sha256:e31544fdff069f47ee22971bd1cd90dc00ba369ef782145a9fe91dc0f4ef9381:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3YjU4N2U2Mzc1NmVkN2IxZDQwNzQ4NjRjMGRhNzYzYWUzZTU3OGZlZTFjMGIxMWJlZGQwY2RlNTQzNjkyNTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjllOWE5NDI1NWJmYzdlNzhjZjM2YjU1ZDk2ZmQzMTA0YjIxOTgyM2E0ZWM1NTJjMjMyMDI1N2FlZDQ4YmZhZmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjliMjdkODgwMWUyMDc3YTlkMGIwOTU1YTZmNTkzYTNjMDE3ZDg5MTZjMGQ5ZWRmMjEzMWRjZjFlMDY3ZTE4NzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUzNTU4NTdjNWVkNDAxZTQ4ZGI1N2JhZjBiNzA4NzQxNjJjODllOGE4ZDdmMDJkMDczNTk3YWVhZjVmOGY3YjcifQ"
         }
       ]
     },
@@ -17,8 +17,8 @@
       "statement": "The entrypoint.sh uses sed range patterns to modify only the [mqtt] section, setting enable=yes, server, username, password, and retain=yes, while also disabling SSL in the [ssl] section.",
       "evidence": [
         {
-          "resource": "repo://entrypoint.sh#L101-L113",
-          "version": "repo-lines-v1:sha256:60b3c29351334e1afb71595f854b6fbca4bb2c13c4d83e824a14ea6d473cb9bb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0MGU4ZjdmNmQ5OGY3YzFmZDQwZmI2ZDM4M2M4ZTBkOWI5NDA0NTQ3MjgzMzZjNTIyOWQ2NGNhMjM5ZjJhYmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1ZmM5MGZmOGE0NDE0YzU0NDFkMGY2NzdjNWNiZmRhMzhiNDc0ZTUxYmZkNTU5YTU1NTlkZTBmODc3MDU1MjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImExODVjNjRkMmExNDFjYmZjMWRiZmY2NjIwNjdmNjg1ZjRmZWZjNDI5MzYzN2E1N2Q1OGRkMTBiMjM0MmIwYTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZhM2NmNTE5MjM1NGY3MTYxNWFjNTEwMzRiM2U5N2MyMGVkYTk5NjQzZmNhZjViYmU2ZDQxYWQ1OWJkMTIxNjcifQ"
+          "resource": "repo://entrypoint.sh#L97-L104",
+          "version": "repo-lines-v1:sha256:40301402b4ed4bbdc64bd3b6204358df3809606d61eac16e1f4c2e426dc2b3df:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzhhNDc5MmQyMzg2NGRiMDE3MTYwMmYwM2FjNDM2ZjczZWJhZDM0YTgxYmMwZDI3YjJhMzJhNmIyOGY5YjA3NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWU5YTk0MjU1YmZjN2U3OGNmMzZiNTVkOTZmZDMxMDRiMjE5ODIzYTRlYzU1MmMyMzIwMjU3YWVkNDhiZmFmYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDJlZjFkZmQ5OTFiZDNhMjc3NzlmOTYzYzMyZTEzNzFmMWZhZTQzYTVjMTc3N2I5Y2MzMWNiYTkyYTc2MmFjNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTM1NTg1N2M1ZWQ0MDFlNDhkYjU3YmFmMGI3MDg3NDE2MmM4OWU4YThkN2YwMmQwNzM1OTdhZWFmNWY4ZjdiNyJ9"
         }
       ]
     },
@@ -27,8 +27,8 @@
       "statement": "The secrets.ini file is rewritten at startup to replace the portal URL from https://portal/ to http://zoneminder/, inject ZM_USER and ZM_PASSWORD from environment variables, and generate a new MLAPI_SECRET_KEY on every container start.",
       "evidence": [
         {
-          "resource": "repo://entrypoint.sh#L115-L124",
-          "version": "repo-lines-v1:sha256:955a04450fd42151e62c0a0f2660542fd7670ef58e8d07ef8a71cb5220661ff5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjExMTZmYTg0YjAwOTIwZmM1Mjk4NWZmOWMzYTc5ZTExZGRhOTgyM2Y2YjgyODQwOTM5Zjk2YTU3ZThkN2RkNzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAyNWEyYTBhMTM4YjNiZDMwMTMwYzc5NTIyNDhlYzZkOTZkNTE2MWFkOGE2ZjQzODQwMjk5NGZkNjFjMDFkMjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkyN2QzYTdiNjg2ZGI2NDZjM2FmYzQ5NTQ0MGZmZThiMTFjZDdmODYwNGEwODI3Mzc1MjQ4ZDFlY2U1NjIwMmYifQ"
+          "resource": "repo://entrypoint.sh#L106-L115",
+          "version": "repo-lines-v1:sha256:db10250c452e0d5b3fecd105e29e21e12b653fcc11a0d9037e4d804dd404e9c3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAyOThjYTAwMzQ3NjRhNjY2MjQ4YTYzNzIxMmYwMWEzYTEwZTkxMGIzNTA3M2I5MzE1Y2EzZTAxZDRkNDgwNGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcxN2Q3MDlhNDU0NDFmNmM0YWFjNGMyZmY3OTJiMWEzNjgzNDYyMTlhOWRjMTI3MTgzNWJhZmJiM2RmY2FmODAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQxMjgyM2U2ZjE0MDY1NGI3MjZjNzJjYmQ5YzYwOGI1ODM3NWYxMjJiYTRmYmQzOTNmYjI5ZjRmNTZhY2E4ZDUifQ"
         }
       ]
     },
@@ -47,12 +47,12 @@
       "statement": "MQTT topics follow the pattern zoneminder/<event_id> with retained messages enabled, allowing late-joining subscribers to receive the latest event state.",
       "evidence": [
         {
-          "resource": "repo://docker-compose.yml#L25-L32",
-          "version": "repo-lines-v1:sha256:1206ec266e0bee7a2def8270afd5e1107f1e8196be6e8c331713c13bd883692b:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzY5ZGZkYjk4MWE2ZTlkY2QwZTk1ODBmMjk0NmFkZWNjNTc4N2JmZmVkYWI2NzBiMGY0N2EyOTY4ZjYxYTZlZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTllOTdjYzQ4N2ZlZTUyMTFjODZlNjEzOGQ3ZTRkZjMwNzJjNTA0MjEyZjZmOTQ3OWNhMWVhYWZiNWIzNzhiNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjZmNGI3N2NhYjIwZjdiY2U2NzZhZGNhMDhkYWFmN2JkNDM5OTNmZTA4ZjYxZGRiMmEwYjFiODNiNDNlZjFlZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmI4OTViNDBlYmE0YjUzMmU1ODNlYzQ0N2EyYjE0OGFhMjlmODZmZmU5ZjE2ZmU3ZWZmODgyNzY1MjcxZTMzNyJ9"
+          "resource": "repo://docker-compose.yml#L31-L36",
+          "version": "repo-lines-v1:sha256:4b70d08d2b777f6e059fe11313956a33bb3e2a8403283785626c149e443d1c20:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEzZjRkOTY2MWU5ZDJjM2UxYTI4OWU1ODMyMjk5YmVhMTRjZGI2NGJmODg2NjFkZjcxN2IxMmZhMDJkMDExZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTgyNzM3NjM1MzJlOWVmMzViMDAxYTRlNDZjNzA4NDQzMWYzZjg0Y2QyYTc3YzAyMjk3YWIwMjA2MTRmNzNkZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzdlMjUwMzNjZjhlNjhmNWFmZjM2OWM0MTU5MGVkM2M0MTZjMmEzNzQxOGY0NzA2OGNjYmQ4Yzc3YWE0OGFhOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWNiYWYwNDA1NDVkODE2OWI4ZmE1OGM4ZTE4YjMyMmEwYzVhOTE1ZDI3YThjMzBkZDFlOTY2NjFjMGRlNzNjMyJ9"
         },
         {
-          "resource": "repo://entrypoint.sh#L101-L113",
-          "version": "repo-lines-v1:sha256:60b3c29351334e1afb71595f854b6fbca4bb2c13c4d83e824a14ea6d473cb9bb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0MGU4ZjdmNmQ5OGY3YzFmZDQwZmI2ZDM4M2M4ZTBkOWI5NDA0NTQ3MjgzMzZjNTIyOWQ2NGNhMjM5ZjJhYmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1ZmM5MGZmOGE0NDE0YzU0NDFkMGY2NzdjNWNiZmRhMzhiNDc0ZTUxYmZkNTU5YTU1NTlkZTBmODc3MDU1MjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImExODVjNjRkMmExNDFjYmZjMWRiZmY2NjIwNjdmNjg1ZjRmZWZjNDI5MzYzN2E1N2Q1OGRkMTBiMjM0MmIwYTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZhM2NmNTE5MjM1NGY3MTYxNWFjNTEwMzRiM2U5N2MyMGVkYTk5NjQzZmNhZjViYmU2ZDQxYWQ1OWJkMTIxNjcifQ"
+          "resource": "repo://entrypoint.sh#L101-L103",
+          "version": "repo-lines-v1:sha256:cf33523c91f2b051cb2f8026c12ed79c496dd3c603bb2ebc06b2217d518a7bab:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjQwZThmN2Y2ZDk4ZjdjMWZkNDBmYjZkMzgzYzhlMGQ5Yjk0MDQ1NDcyODMzNmM1MjI5ZDY0Y2EyMzlmMmFiYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzVmYzkwZmY4YTQ0MTRjNTQ0MWQwZjY3N2M1Y2JmZGEzOGI0NzRlNTFiZmQ1NTlhNTU1OWRlMGY4NzcwNTUyNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTE4NWM2NGQyYTE0MWNiZmMxZGJmZjY2MjA2N2Y2ODVmNGZlZmM0MjkzNjM3YTU3ZDU4ZGQxMGIyMzQyYjBhMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzNmMTc0YTJhN2JiMTQ1NzI0Yzc2NDM2NDVlOTZmYmI4NzJiYTliNTFmMTEyNDdkZjBkMDBkOGE0MzI3ZTFiOCJ9"
         }
       ]
     },
@@ -71,18 +71,112 @@
       "statement": "The ZoneMinder container depends on the eclipse-mosquitto service for MQTT connectivity, using the MQTT_HOST environment variable (set to eclipse-mosquitto) to configure the zmeventnotification.ini server parameter.",
       "evidence": [
         {
-          "resource": "repo://docker-compose.yml#L13-L23",
-          "version": "repo-lines-v1:sha256:60760a0019682475b3dc2c38ab415b829cbf24f5d9eb1624645e03e1a34493a5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE5NzA2N2Q2OTYyMjFlMjk5M2NhMDliYzQ5M2IxNzcxYzY0ZjdlYzZlMzg2ZmVmMGJmYjZmN2Y2NjYzNjdmM2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliYjgzOTY0MjJhNTFmODk5YjQyNTdmOGZlYjMxNjJjZDJmMWYwZTU5YmI3OTA5ZTE4N2QzNTc4ZWU4NmVjMWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc4YWE3YWI1ZDJiMDc0ZDgwOWQxYTQwZDM1YzFlMTMzZWI3N2Q0N2U4ZmQ0ODYyZjYyMWQxMDA3YjAwODE2ZGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI5MzlkZmRhZWNkNjAwYWMwY2ExODhmZTJlYzhkZDI0MzFlNDM1NDhlMGE2ODg2OTUwMThlZDljZGEzYzlmNDkifQ"
+          "resource": "repo://docker-compose.yml#L24-L24",
+          "version": "repo-lines-v1:sha256:b0fda045e8852d81dd72a02b7e51819f3d431f3c9b053ab6ff8872a6259f3b47:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjBmZGEwNDVlODg1MmQ4MWRkNzJhMDJiN2U1MTgxOWYzZDQzMWYzYzliMDUzYWI2ZmY4ODcyYTYyNTlmM2I0NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjBmZGEwNDVlODg1MmQ4MWRkNzJhMDJiN2U1MTgxOWYzZDQzMWYzYzliMDUzYWI2ZmY4ODcyYTYyNTlmM2I0NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmNkYzNhNGZjMDJlZWUzYjY5ZDY5ZTQzNmRiYmM4NDFhZWYyMWExYmVlOWI1Mzc5ODY5Njk0NmRmMzMzMmI2YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzZlOGQ1YTg5OWRlMjNhMDEyZjhiZDhlZWI2MGM1NDA5M2E1ZmZkYjZhMDgxODExOWM0YWRhNTlmZDFjZTc2NSJ9"
         },
         {
-          "resource": "repo://entrypoint.sh#L101-L113",
-          "version": "repo-lines-v1:sha256:60b3c29351334e1afb71595f854b6fbca4bb2c13c4d83e824a14ea6d473cb9bb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0MGU4ZjdmNmQ5OGY3YzFmZDQwZmI2ZDM4M2M4ZTBkOWI5NDA0NTQ3MjgzMzZjNTIyOWQ2NGNhMjM5ZjJhYmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1ZmM5MGZmOGE0NDE0YzU0NDFkMGY2NzdjNWNiZmRhMzhiNDc0ZTUxYmZkNTU5YTU1NTlkZTBmODc3MDU1MjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImExODVjNjRkMmExNDFjYmZjMWRiZmY2NjIwNjdmNjg1ZjRmZWZjNDI5MzYzN2E1N2Q1OGRkMTBiMjM0MmIwYTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZhM2NmNTE5MjM1NGY3MTYxNWFjNTEwMzRiM2U5N2MyMGVkYTk5NjQzZmNhZjViYmU2ZDQxYWQ1OWJkMTIxNjcifQ"
+          "resource": "repo://entrypoint.sh#L96-L104",
+          "version": "repo-lines-v1:sha256:b407052581a8a0967a6a94cded86615777828314185a7032b15fc682eaf8a55e:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2ZhOTE3M2Q2NWJjYWY3Yjc4M2ZiYjQ0MTU0ODhjNThhZmY3YTAzYWI4ODY1NjU5MDc3YjRhYzUwMmMxY2E3MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWU5YTk0MjU1YmZjN2U3OGNmMzZiNTVkOTZmZDMxMDRiMjE5ODIzYTRlYzU1MmMyMzIwMjU3YWVkNDhiZmFmYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDdjYWE1ZjI0OTkxNGVkNTA3MTNiZjg3MjU4Y2UzNGUwZWRhNGExZDVkMjVhNjYwMzk4NTEzZGM0MTZjZjE2MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTM1NTg1N2M1ZWQ0MDFlNDhkYjU3YmFmMGI3MDg3NDE2MmM4OWU4YThkN2YwMmQwNzM1OTdhZWFmNWY4ZjdiNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1fba12cad40146a5a35c465d64504a22",
+      "statement": "The zmeventnotification server launch lines in entrypoint.sh are commented out; the entrypoint configures the event system and secrets but only starts Apache and the ZoneMinder service, so the notification daemon and mlapi do not run out of the box.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L116-L121",
+          "version": "repo-lines-v1:sha256:fb22b68db1d1a3acf00b113998f6a7116d759e0676444e3560b1c0b8a2312d61:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGNjMTExNDVhY2IyZjAwMTE5NjZkYTM3N2EwYTZmMWE4ZTU2NGNkM2RlMzQxNmUyMTk4MjlhMTZlYjc1OTM0MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTQwNmM1NzUxZDU0NjUxMGE1MjlmNDJlYTEyYWRjZDY0MzM1OWY2OGEwYzUwZTE0NDU2OWJkMzM5MmFjZWU5NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_584badb0ec6f4603a40541926199adb4",
+      "statement": "The generated mosquitto.conf defines only listener 1883, while docker-compose.override.yml publishes host port 9001; MQTT-over-WebSocket clients therefore cannot connect on 9001 as shipped.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.override.yml#L10-L15",
+          "version": "repo-lines-v1:sha256:fe6e5b5fbdf607ae5096d57f3c9cab2d32a017ae87e046e061dfa95eb6ba992b:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmVlNTYyYWNiYmQ0ZmY4NGFiNDk3MWM3YTFhZGY5OGFmNmFkN2RkYTIzMDAyOWQzZDYwNTgxOGNiMjFhNTMzYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYThjNWQ1YTM4YjJkMTM3MDdiMzdmZDI4YWI2MDE5M2RlNDIwMDVkMWZlYTg1MzI1ODY0NDVmNjE1MWM5YWEzMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTMwODljZTUzZWNhZDFmYmY5NDJhNTJmNDdiYTllYTI2ZDczYjM5MTZmZWY0MDhmNzIyMTRjZDkwM2JhMmJjZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://entrypoint_mosquitto.sh#L4-L13",
+          "version": "repo-lines-v1:sha256:afbeca0d21c9e62a66eddaeb90acd4a765feac8c27b48f12cb067bc771a172a6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJhMjFjNWIzYmZmMDI5OWMwMTYxNDcwNDY4ZjM1NWU1YjRhZmNmMTdhNWY1OTNhYjY4Mzk0ZWY3YWYzMTljZGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZmMjdkMzlhMzFkNjM4NmUyNmE5NGM0OGU4ZDQwNmUxYzdiZmRmOTU1ZGU2Nzg4MTg3ZWUyOWEyZDE1NDFhM2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVlMzdiNjg4MjNlODlmMDIyZDExMGM2YTVlYzNhM2NhMzQ4MTk5ZDhlMzgwNDlhNWU1MWU1MTQ4NjlhMjZlNjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7cdc2763334c433f922bfca9af8b9c05",
+      "statement": "No broker configuration is baked into the Mosquitto image: Dockerfile.mosquitto wraps eclipse-mosquitto:latest with entrypoint_mosquitto.sh as the entrypoint, which regenerates mosquitto.conf and the password file from environment variables on every container start before launching the broker in the foreground.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint_mosquitto.sh#L16-L18",
+          "version": "repo-lines-v1:sha256:bd54dcedd7092bf0844779f6b14afb8ead6f8c54f4f1e957abebfbe1f47d1282:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWNmZjc5ZmI5NTEyNjk3OWFlYmFkMmQyNWJiZWI0YzMxZWFmNjZhNDRjMTljNjA4ZTgyNzRiZGUxNTFhYTI5YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWY0ZmZjNjIyZjk1NDVjYmMyYThlNjE5MjdjZWE0ZTBhZjQwMTgyOGIxMjY5ZWM4OTYwN2I5Yjc1NjI1ODVhNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjRkNDg4N2NkYWI5MzFlMzI4YWUzYzgzNGEwNmRiN2E4MmY3YjFjZWQ5ZGY0N2RjYTYyNzg5NzQ4NDQ4NGE4NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://entrypoint_mosquitto.sh#L4-L13",
+          "version": "repo-lines-v1:sha256:afbeca0d21c9e62a66eddaeb90acd4a765feac8c27b48f12cb067bc771a172a6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJhMjFjNWIzYmZmMDI5OWMwMTYxNDcwNDY4ZjM1NWU1YjRhZmNmMTdhNWY1OTNhYjY4Mzk0ZWY3YWYzMTljZGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZmMjdkMzlhMzFkNjM4NmUyNmE5NGM0OGU4ZDQwNmUxYzdiZmRmOTU1ZGU2Nzg4MTg3ZWUyOWEyZDE1NDFhM2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVlMzdiNjg4MjNlODlmMDIyZDExMGM2YTVlYzNhM2NhMzQ4MTk5ZDhlMzgwNDlhNWU1MWU1MTQ4NjlhMjZlNjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c47666858ed64ff7bc0930977b932669",
+      "statement": "Mosquitto persistence is enabled with persistence_location /mosquitto/data/ backed by the mosquitto_data named volume, so retained messages and subscriptions survive broker restarts as well as subscriber reconnects.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L31-L36",
+          "version": "repo-lines-v1:sha256:4b70d08d2b777f6e059fe11313956a33bb3e2a8403283785626c149e443d1c20:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEzZjRkOTY2MWU5ZDJjM2UxYTI4OWU1ODMyMjk5YmVhMTRjZGI2NGJmODg2NjFkZjcxN2IxMmZhMDJkMDExZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTgyNzM3NjM1MzJlOWVmMzViMDAxYTRlNDZjNzA4NDQzMWYzZjg0Y2QyYTc3YzAyMjk3YWIwMjA2MTRmNzNkZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzdlMjUwMzNjZjhlNjhmNWFmZjM2OWM0MTU5MGVkM2M0MTZjMmEzNzQxOGY0NzA2OGNjYmQ4Yzc3YWE0OGFhOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWNiYWYwNDA1NDVkODE2OWI4ZmE1OGM4ZTE4YjMyMmEwYzVhOTE1ZDI3YThjMzBkZDFlOTY2NjFjMGRlNzNjMyJ9"
+        },
+        {
+          "resource": "repo://entrypoint_mosquitto.sh#L4-L13",
+          "version": "repo-lines-v1:sha256:afbeca0d21c9e62a66eddaeb90acd4a765feac8c27b48f12cb067bc771a172a6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJhMjFjNWIzYmZmMDI5OWMwMTYxNDcwNDY4ZjM1NWU1YjRhZmNmMTdhNWY1OTNhYjY4Mzk0ZWY3YWYzMTljZGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZmMjdkMzlhMzFkNjM4NmUyNmE5NGM0OGU4ZDQwNmUxYzdiZmRmOTU1ZGU2Nzg4MTg3ZWUyOWEyZDE1NDFhM2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVlMzdiNjg4MjNlODlmMDIyZDExMGM2YTVlYzNhM2NhMzQ4MTk5ZDhlMzgwNDlhNWU1MWU1MTQ4NjlhMjZlNjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c7e1527ae6b244fb9f194f304642a282",
+      "statement": "MQTT credentials are shared between the broker and the ZoneMinder container via the same MQTT_USER/MQTT_PASSWORD environment variables; the Mosquitto password file is rebuilt from them at broker start and they are written in cleartext into the volume-persisted zmeventnotification.ini, so both services must read the same .env values or authentication fails.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L37-L46",
+          "version": "repo-lines-v1:sha256:69f3f89870d11cf2aee3f8736ca27fb4176efe3e70491eef37804e2fb6ce97ee:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmMGQxYjgyNzY1MGQzMjkzMjQwZDAzOWY4MjhlYmQ1MjYyNWNiZDJiOTQ5ODkyZjQwN2UyZWIyMGI0YjgyNjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUzZDg5NDg2ZGY3M2M3NDY5YzM1OWFiMGNlNzBhOGMxZmUyMWYwZTQzZmJjODkwZTQwMzZjMDJkNWZlOGFlZjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMxNjA4MTM5YmU3MjYwZjRiZWQ5ZWYyYWQ2ZDRlMDNiZjkxNmRmYjAxY2VhMDdkOGY4NTExNzczN2Y3MmQ2ZTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcxNDJiMjc4ZjFkN2Q4YThjYTBhYWExN2EwMjIzNzk2NmZlMjI2YzIxOThiNTc1MTBkYzc5NzRjZGZjNzRkNzIifQ"
+        },
+        {
+          "resource": "repo://entrypoint.sh#L100-L103",
+          "version": "repo-lines-v1:sha256:008d73901a9a836fffe3847aa4094b463e1d31d5bd3047adbd00ec2ea094bd13:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjhmYjE4MWMxZDNmNGE4ZWEzMTgwYzE5OWQzNWYzZWYyYjA3NGY5MDk0YmQ0MzQzMTBjMDA2NmFhOGE5MDYyNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzVmYzkwZmY4YTQ0MTRjNTQ0MWQwZjY3N2M1Y2JmZGEzOGI0NzRlNTFiZmQ1NTlhNTU1OWRlMGY4NzcwNTUyNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDkyM2FlODE2NTg2MTQzYTJiYjE3N2I5YTc3NGMwOTAyN2YzMDJiYzc5M2RjZWY4MjIyMDE2Yjc4ZjZiYjgzYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzNmMTc0YTJhN2JiMTQ1NzI0Yzc2NDM2NDVlOTZmYmI4NzJiYTliNTFmMTEyNDdkZjBkMDBkOGE0MzI3ZTFiOCJ9"
+        },
+        {
+          "resource": "repo://entrypoint_mosquitto.sh#L16-L17",
+          "version": "repo-lines-v1:sha256:e605eda603ec928f88f1b5f3a96416d5abd4bbfbd8a8385800e205ad1ccea607:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWNmZjc5ZmI5NTEyNjk3OWFlYmFkMmQyNWJiZWI0YzMxZWFmNjZhNDRjMTljNjA4ZTgyNzRiZGUxNTFhYTI5YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzY4MmI0YTAxOWQzYjVjZjVkNmZkMzhmMDQ1ZTk3MDRjNjkwNmY1NDcyZjIyOGM5YWUwOWRiNzVjMDIwZWM2NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjRkNDg4N2NkYWI5MzFlMzI4YWUzYzgzNGEwNmRiN2E4MmY3YjFjZWQ5ZGY0N2RjYTYyNzg5NzQ4NDQ4NGE4NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWY0ZmZjNjIyZjk1NDVjYmMyYThlNjE5MjdjZWE0ZTBhZjQwMTgyOGIxMjY5ZWM4OTYwN2I5Yjc1NjI1ODVhNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c29dd0fb303a4d7ea1ad1dbc907a2dd8",
+      "statement": "The compose stack defines no depends_on for eclipse-mosquitto, so the ZoneMinder entrypoint does not wait for the broker; all services attach to the attachable zoneminder_network overlay and resolve hostnames via Docker's embedded DNS.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L30-L48",
+          "version": "repo-lines-v1:sha256:6598381480654b00bd8b1f54f197a056d3aa78e3bc0099b8691f99365e1aa89c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjExMmYyMzYxZjVmMGZlMzllMTZlZGIzMDA4MjkxMDM5ODQyZjJiNTkxNTJmNDJiNTA5MzRhMzE1NzAyYTJkMDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5MDU3OTQ2MTNkOTE3ODIzNzJiZWU0Y2UwY2NiOTc3NDMyMTk1ZjI2NGYxNTJiZTcxZGIyNWUwZjA0YTY0OGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyNzIyOWU4NWMxMGM5YTk0NDkwMTA1MDAwMDExYzMwOTI5YzI4NTFiM2ViZGVjYjI5MTc3MzE3YzMwNGVhYWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRhMWE5MjYwY2Y5ODYwNjdjYWFkYTMyMzM0OWM5YjRkNzY4MzQxMjM2NGIyNWQwNmRkZTE2NDlmNDRlOTFkM2QifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_227950571bb94fe1bdb63fc2c83c67a3",
+      "statement": "The event notification server (zmeventnotification.pl, installed to /opt/zmeventnotification by install.sh --install-es --install-hook --install-config) normally plays two distinct publish roles: the hook publishes enriched detection results per event, while the daemon publishes event state transitions and drives the WebSocket push server.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L118-L132",
+          "version": "repo-lines-v1:sha256:301d521c3b7030b19aca5e9d6bb04e01318085d2a40ccb88ce451990d8a3cd0f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhM2RkYmQ1NDJjODBiODcxZTgzZGU3MDJiMjZjMzIxYzVkZWNlNTY5NzEwOTVlODIyYzZlOTFhMjcwN2MwYjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgyOWM0OTcwMjI5YTFiNWVlMGNhNTZmOGFjZGQyNDY3NTYzYmQ2MzFlMGQwMTZmZWIwYjBhZWIxYTMzNDdlOTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYxNjg2NmI1NzAwNzQ2M2M5YmVhMzZiMDlkY2IxZmEyMGZjZjIzMmUxMjdiZDBlMmJmMWExZmQ3NTM3NTAxZjIifQ"
+        },
+        {
+          "resource": "repo://entrypoint.sh#L116-L121",
+          "version": "repo-lines-v1:sha256:fb22b68db1d1a3acf00b113998f6a7116d759e0676444e3560b1c0b8a2312d61:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGNjMTExNDVhY2IyZjAwMTE5NjZkYTM3N2EwYTZmMWE4ZTU2NGNkM2RlMzQxNmUyMTk4MjlhMTZlYjc1OTM0MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTQwNmM1NzUxZDU0NjUxMGE1MjlmNDJlYTEyYWRjZDY0MzM1OWY2OGEwYzUwZTE0NDU2OWJkMzM5MmFjZWU5NSJ9"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.7.3",
-    "at": "2026-11-03T01:11:51.876Z"
+    "at": "2026-11-03T05:30:36.749Z"
   }
 }
