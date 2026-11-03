@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:9acb4f9eedb4c7c79cb8fc97ddf42dd505ea275c08a0e64cd9686712299dbf65",
+  "claims": [
+    {
+      "id": "claim_37561137cb6d46ef8e5e3c6f24fc10f9",
+      "statement": "The ML pipeline integrates mlapi (Flask + OpenCV), zmeventnotification hook, and MQTT for object detection and face recognition triggered by ZoneMinder events.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L80-L101",
+          "version": "repo-lines-v1:sha256:257f6ae0217674fd44580bd3684153b095c468c264bdd224a83400a05d884c20:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEwZjAwZWJhNTAxNzE3ODc4OWRhMDY5YjJmYWNmMDEwMDZiMzdjODJmNTZlYzJjYjllZmEzOTZmNmE0ZmRjMmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFlY2U2ODc3MzNhY2NhOTQwN2EzN2NhMDg1MjE5YTdlYzM1NTlhODI0MzAyNDZkMTdlOTE0OTY0OTBlNmUwYmEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNlOTUzNzRkODQ5Y2UxNDMxOGFmZTE1MzYwYTIzMWE3MGM3MjFhMjYwOTFlMjRmZmY3NzdhZGYyN2ZiNmJiYTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA1MzEyZmYyNGJmN2NjMmQ5N2ZjMzk0MTA2M2RmMThkOTQ2MDc5NmJiZjg1OGI5NDQ5ZmQyNzU5YTk5MjlmMTIifQ"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L34-L35",
+          "version": "repo-lines-v1:sha256:53a802e3a6b5eda55a451448339a48eeb7dd33bc2a4ea5ddccdf3ccffeede48c:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTk2NDlmODc0MzEwYTE5MTU0Mzc5NGMxYzBjNTA2OTUwNDNkOWViMDE1YWU1MDk0NmYxMGNiMzAwNWU2MWU4MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjM1MGRjY2Q0ZDFmM2RlOGIwMWY2ZmYwNDNhNTQyYTBiNDYzMjQ2ODhmMzU0Zjk2MzAwZWVlNmEwM2UxZWNhZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTljNDM4NzcwN2MyYjJmMzg1Yjg5NTNhMTU3NjZhZGZkNTdiNWM1Njc4MGNmOTZhNmIyYjU2NmUzZTNlYzJmYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWMwZTkxMTQ5YTg0MTAyMGQ0YWVhM2MyNjQ2MjFiNDI1ODEyZDljNjU2YzY1ODNiMmI1M2NjNmQ0NTNmNjBjOCJ9"
+        },
+        {
+          "resource": "repo://entrypoint.sh#L94-L119",
+          "version": "repo-lines-v1:sha256:3887e3233ab942f1676b5b6fd88ac7ebc011f334d4f6b3125ead569700b527b1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3YjU4N2U2Mzc1NmVkN2IxZDQwNzQ4NjRjMGRhNzYzYWUzZTU3OGZlZTFjMGIxMWJlZGQwY2RlNTQzNjkyNTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM4ODdiZTNhMWQ5YzM1ZDM1MDcyMDY1NWQ5MDU0YzU1MGZkNTEzMGVkMThlZjFlYjBiZDRiMDI3ZDcyMWJhNDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjliMjdkODgwMWUyMDc3YTlkMGIwOTU1YTZmNTkzYTNjMDE3ZDg5MTZjMGQ5ZWRmMjEzMWRjZjFlMDY3ZTE4NzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEzZWQ1ZTkwYWI2NmJkYTg0NjgzOGY1MDBkYzgwYjcwYTM3MzlmYjljOTY1MWRmMjQ0Yzg1N2E5OTlhNDE3YmUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_486e645aa2b84100984975b6e1c92d76",
+      "statement": "The known_faces volume mounts at /var/lib/zmeventnotification/known_faces and stores reference face images organized by person subdirectories for face recognition.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L35-L37",
+          "version": "repo-lines-v1:sha256:cd843cee30836dacfd2f1d1245c4c77546930c3d1a453d0077c648a69b7d1702:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWEwOTJjZGMzODZmY2VmYjYwNTMwNGMxODYxMDc1NzU3NjEzNzlkODZhOWNlMjg4N2I2NDBiY2NkYWM4NTQwNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2YyOGY5NTQ3MzRlZWJhYzg5YTViZmZlODMzYTM0ZDhmZjdiODVhNzQ5MDk3ZjE4ZGVkMzg1ZDdiMGNlNWE5NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWZhNzU2ZDIxYzQ4NzM1ZmRjNTUyZTY5ZWUxMzIwZTkxNjk0NWE1ODMxYTVkNWJiMzNjMTlmN2QxZjU3M2JlOCJ9"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L34-L34",
+          "version": "repo-lines-v1:sha256:a9649f874310a191543794c1c0c50695043d9eb015ae50946f10cb3005e61e82:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTk2NDlmODc0MzEwYTE5MTU0Mzc5NGMxYzBjNTA2OTUwNDNkOWViMDE1YWU1MDk0NmYxMGNiMzAwNWU2MWU4MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTk2NDlmODc0MzEwYTE5MTU0Mzc5NGMxYzBjNTA2OTUwNDNkOWViMDE1YWU1MDk0NmYxMGNiMzAwNWU2MWU4MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTljNDM4NzcwN2MyYjJmMzg1Yjg5NTNhMTU3NjZhZGZkNTdiNWM1Njc4MGNmOTZhNmIyYjU2NmUzZTNlYzJmYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWMzZmY3M2M2NWQ4ODA2ODg2N2FmMmUyMzMxOWEyNzU3MjNhOTAxYWFlODcxZGQxMjBkNmIxNWQ2Mzg0MmJmMiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_df7aad18a25746d9959c1bc33dfb7181",
+      "statement": "The unknown_faces volume mounts at /var/lib/zmeventnotification/unknown_faces and stores cropped unrecognized face images for manual review and labeling.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L38-L39",
+          "version": "repo-lines-v1:sha256:51286c5cacf2c16b8a50f1ed4648dc88feba7aa6579d5c8b7da85001efe3bb8c:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWM0ZjFhYTE5Y2EzZDZlNmUxYzNjZjFhNmU2OWRhZDM3OGQzY2JmMTA0MDQzOTAwMGVkM2JjM2Q5MWUwZTFhNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2Y5M2QzYjg3ZDRjY2EwZGVhNmE4ZWIwOWIyMDA0ODk2ZDc5N2QzNDA0YzAxNTQ0NThkYjA3NzgwZTVmNDIzYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2Q4NDNjZWUzMDgzNmRhY2ZkMmYxZDEyNDVjNGM3NzU0NjkzMGMzZDFhNDUzZDAwNzdjNjQ4YTY5YjdkMTcwMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjM2MGE3YThmNzk2YzQzMTBkNmQ0NzM1NmFlZjgzOTg3MmQ0MGYyZjlmZWEzZDVhMTY3NjI2MDA2YWNhMDFmMCJ9"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L35-L35",
+          "version": "repo-lines-v1:sha256:f350dccd4d1f3de8b01f6ff043a542a0b46324688f354f96300eee6a03e1ecad:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjM1MGRjY2Q0ZDFmM2RlOGIwMWY2ZmYwNDNhNTQyYTBiNDYzMjQ2ODhmMzU0Zjk2MzAwZWVlNmEwM2UxZWNhZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjM1MGRjY2Q0ZDFmM2RlOGIwMWY2ZmYwNDNhNTQyYTBiNDYzMjQ2ODhmMzU0Zjk2MzAwZWVlNmEwM2UxZWNhZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmE4MjFlYTU3YzEwZThiOTBiYjk4ZWEzNzAxMzMxMTI1OTg0NmE1NWI0NDZkMWM2NjZhNDdjNGU3YjdmNzg1OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWMwZTkxMTQ5YTg0MTAyMGQ0YWVhM2MyNjQ2MjFiNDI1ODEyZDljNjU2YzY1ODNiMmI1M2NjNmQ0NTNmNjBjOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4154d6647e0148bf8db0d481f5715f15",
+      "statement": "MLAPI_SECRET_KEY is generated at container startup via openssl rand -base64 32 and written to /etc/zm/secrets.ini for mlapi authentication.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L107-L112",
+          "version": "repo-lines-v1:sha256:75a07ac8b20032f66c44ceb42d887907acc4e3291f5a5b1a1e63f6e3124f946b:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjFlMDAzZjM1NGNmNDk5NzFkYzRjMmU5NDg0NmZkMzU3NTFhMjY3OGEyNDkwOTE3YzdjOTkxYmU0ZjE2NGVkOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2Y5OGY1Mzk2NTllY2U5ZWJjZmExNWQxZjczODJiY2FjOWQxYjMzNWZjZTdiZGI2MGM1OWNhYzViMWRkZmMzNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzNmMTc0YTJhN2JiMTQ1NzI0Yzc2NDM2NDVlOTZmYmI4NzJiYTliNTFmMTEyNDdkZjBkMDBkOGE0MzI3ZTFiOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGNjMTExNDVhY2IyZjAwMTE5NjZkYTM3N2EwYTZmMWE4ZTU2NGNkM2RlMzQxNmUyMTk4MjlhMTZlYjc1OTM0MCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9fd401490d854bddb0081d4ac2b59a85",
+      "statement": "The zmeventnotification hook is installed via install.sh with --install-hook flag and invoked by ZoneMinder's zmtrigger.pl on each event.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L128-L131",
+          "version": "repo-lines-v1:sha256:e1fa8153fb07ce093ccd309c14fb8e8bed085cefbb2ac7d99e14bffb023cf6c5:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODEyMjU2MzkwOGQxZTlmZWQxM2Q3OGJhZjNlYjZjZWRiMjNjNGM3NzhiOGExMTI0ZDA2ZmRiM2E1ZTYxNTUyMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGU3N2MxZWMyOWMyZTc3MzYzZjQ1NmE0OTcxNGMyNDI1ZDczY2I5MjgwNTQwMDUwZjdkZTk0MTYxOWU4ZGQwZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTdjMDNjNTI0M2NhZjVlZmU3NWI2ZDU1ODY2MjE5MzZkMjQxNmRkNWY4Y2ExMWRmNTQ5MmVkOWEwMmMzYjdhMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmEzY2Y1MTkyMzU0ZjcxNjE1YWM1MTAzNGIzZTk3YzIwZWRhOTk2NDNmY2FmNWJiZTZkNDFhZDU5YmQxMjE2NyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_2e403dd3bcfb4f9282cefcbbc77ef788",
+      "statement": "mlapi is cloned from github.com/ZoneMinder/mlapi into /usr/src/app/mlapi and its get_models.sh downloads YOLO and face recognition model weights at build time.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L96-L101",
+          "version": "repo-lines-v1:sha256:87486c5d34a29effb429fcaf3ccabfa2727596ae198b9279cd645d5a2ee8ce6f:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGJmZWQwNzhkZGIyNDMwODAzMGNlNjUyMTY1MWJhNzI4NDdkYTY0NmU4MTY4ZTg4NjM3ZjU5MmFjMDYxOTQ0MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWVjZTY4NzczM2FjY2E5NDA3YTM3Y2EwODUyMTlhN2VjMzU1OWE4MjQzMDI0NmQxN2U5MTQ5NjQ5MGU2ZTBiYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjAxMjFjYjVmOTQxOTU2NmU0NTU2YzE0NDBiZDdlN2Y4Y2I1ZGYxMmRjNzZiZDQ5NzgwNTY3MzdiMTM4NWE1MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDUzMTJmZjI0YmY3Y2MyZDk3ZmMzOTQxMDYzZGYxOGQ5NDYwNzk2YmJmODU4Yjk0NDlmZDI3NTlhOTkyOWYxMiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_3fe5ff7c05a04cae85a92bbaab429c91",
+      "statement": "OpenCV 4.6.0 is built from source in a multi-stage Dockerfile with contrib modules (face module) and Python 3 bindings, then copied to the final image.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L1-L50",
+          "version": "repo-lines-v1:sha256:122d074065829460f03e84616c83e1c6fc8f16c10039bfb75546b2486be56efd:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFkNGNhZjdlM2QyMTNjMWE1NjIzODliZWMzNTA2MzNhOWNmOTljZjUyY2ZhMzVmNGVkZjYyNDhhNTk0MTYyNTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNkMzcwYjYwYzBmM2M0N2I5YWNjZWQyMDFjNTFmZjJjMzE3OGViNTA4MjBhN2E4YTA5YzBiNzdlMWRlMTM1ZmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFhN2JjMDgwZGY2OTkwZjZmNTQ5MzI3YjAyZmU0MTQ2MWM3MmZkZmYxNDY2NmVmYzlhNWY4OTU4NzkyNDdmNmEifQ"
+        },
+        {
+          "resource": "repo://Dockerfile#L75-L79",
+          "version": "repo-lines-v1:sha256:9b55a6e00c3b13b0f78d95ca1341f39b92db16811133f68f6183dab032614c7d:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTY0MGViZmIyOTc2OGE0ZGM2ZjYyOWEwOTFmMWFmOTM5OGVkZTVkMDUwMThhYjFmNzkwNjE5ODNmYWViYmIzNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODVhNTUwZmM0M2RkNWY3NWQwYTVmNzFmMWQwMTZkMmIyZTcwOTQ5MjY2YjhiM2M4NDkxYzMwZTU1MjMzMDUxMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTdjNjgwYjM3ZjFiZjVkZGY4MDFmZDI3YmUzYWJmM2FjN2I0NGJlODNkYmYxOWQxN2E0NGQ3Y2RkMTE5ZjU1MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzQ4MDIxMjk0ZTZiZWFhYWQ3ZWQ0MDFlYjIyMDAxZDRhZGMxZDg1NmU1ZjVlMTJmYzQ1YTQ0ZDFiNGUwMWFiOSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_369ccda05d0c4a58a36b41b4693f9c25",
+      "statement": "The event flow follows: ZoneMinder event → zmeventnotification hook → HTTP POST to mlapi /detect with MLAPI_SECRET_KEY → mlapi runs YOLO object detection and face recognition → results returned to hook → hook publishes to MQTT topic zoneminder/<EID>.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L128-L131",
+          "version": "repo-lines-v1:sha256:e1fa8153fb07ce093ccd309c14fb8e8bed085cefbb2ac7d99e14bffb023cf6c5:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODEyMjU2MzkwOGQxZTlmZWQxM2Q3OGJhZjNlYjZjZWRiMjNjNGM3NzhiOGExMTI0ZDA2ZmRiM2E1ZTYxNTUyMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGU3N2MxZWMyOWMyZTc3MzYzZjQ1NmE0OTcxNGMyNDI1ZDczY2I5MjgwNTQwMDUwZjdkZTk0MTYxOWU4ZGQwZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTdjMDNjNTI0M2NhZjVlZmU3NWI2ZDU1ODY2MjE5MzZkMjQxNmRkNWY4Y2ExMWRmNTQ5MmVkOWEwMmMzYjdhMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmEzY2Y1MTkyMzU0ZjcxNjE1YWM1MTAzNGIzZTk3YzIwZWRhOTk2NDNmY2FmNWJiZTZkNDFhZDU5YmQxMjE2NyJ9"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L34-L35",
+          "version": "repo-lines-v1:sha256:53a802e3a6b5eda55a451448339a48eeb7dd33bc2a4ea5ddccdf3ccffeede48c:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTk2NDlmODc0MzEwYTE5MTU0Mzc5NGMxYzBjNTA2OTUwNDNkOWViMDE1YWU1MDk0NmYxMGNiMzAwNWU2MWU4MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjM1MGRjY2Q0ZDFmM2RlOGIwMWY2ZmYwNDNhNTQyYTBiNDYzMjQ2ODhmMzU0Zjk2MzAwZWVlNmEwM2UxZWNhZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTljNDM4NzcwN2MyYjJmMzg1Yjg5NTNhMTU3NjZhZGZkNTdiNWM1Njc4MGNmOTZhNmIyYjU2NmUzZTNlYzJmYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWMwZTkxMTQ5YTg0MTAyMGQ0YWVhM2MyNjQ2MjFiNDI1ODEyZDljNjU2YzY1ODNiMmI1M2NjNmQ0NTNmNjBjOCJ9"
+        },
+        {
+          "resource": "repo://entrypoint.sh#L94-L119",
+          "version": "repo-lines-v1:sha256:3887e3233ab942f1676b5b6fd88ac7ebc011f334d4f6b3125ead569700b527b1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3YjU4N2U2Mzc1NmVkN2IxZDQwNzQ4NjRjMGRhNzYzYWUzZTU3OGZlZTFjMGIxMWJlZGQwY2RlNTQzNjkyNTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM4ODdiZTNhMWQ5YzM1ZDM1MDcyMDY1NWQ5MDU0YzU1MGZkNTEzMGVkMThlZjFlYjBiZDRiMDI3ZDcyMWJhNDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjliMjdkODgwMWUyMDc3YTlkMGIwOTU1YTZmNTkzYTNjMDE3ZDg5MTZjMGQ5ZWRmMjEzMWRjZjFlMDY3ZTE4NzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEzZWQ1ZTkwYWI2NmJkYTg0NjgzOGY1MDBkYzgwYjcwYTM3MzlmYjljOTY1MWRmMjQ0Yzg1N2E5OTlhNDE3YmUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.3",
+    "at": "2026-11-03T01:11:51.876Z"
+  }
+}

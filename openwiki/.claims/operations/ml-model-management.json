@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:8aa27052a16349474421bb953c341a427da6cc375811c4e319de8e8bddaa7c3b",
+  "claims": [
+    {
+      "id": "claim_c0229ccecabe45d8ae3ede050867198e",
+      "statement": "During the Docker build, the mlapi repository is cloned and its get_models.sh script runs to download YOLOv4-tiny object detection weights, OpenCV DNN face detector files, and the OpenFace nn4.small2.v1.t7 face embedding model into /usr/src/app/mlapi/.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L95-L105",
+          "version": "repo-lines-v1:sha256:fe5ff766745ce003b1e3acafeb1be9bb7490ca99488be1b61abaad3cd20dc40c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhYzU3NWExNjY3NWU2Nzc5ZjBjYTA0Mzg5MGFjODNkNzNmNjQwNmQ3NGYzYWUxMDUxNDRhYjc2NTI5MWUxZGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMzMGExOWQwNWZkODAzYTQ1MDQxZTc1YmM5MzkzODUwYmNlMDc1MzRlNjFkOTMxODVjNjkxZmFkOTQxODc2MGIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU0MDlkNGUwYmEyMTc0NzI5YjE4ZDNmYzU4NGY2NjM2ZWQyMTAxMWE2N2JjYWFkYzg2MGRlYTQ1YjYxMmE2MzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY1Y2NlMTlmZDdjNGRmNjEzNzBiNTA3N2UyNjg0MGY0OWFhN2E2Y2UyNDY2MGRjMjI5Mjc1NzI4MzFkYjkwY2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_401fb0df1a264ae7aa362337b70c33be",
+      "statement": "Model weights (YOLO, face detector, face embedding) are baked into the image layer at /usr/src/app/mlapi/ and are not stored in Docker volumes; updating them requires rebuilding the image.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L95-L105",
+          "version": "repo-lines-v1:sha256:fe5ff766745ce003b1e3acafeb1be9bb7490ca99488be1b61abaad3cd20dc40c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhYzU3NWExNjY3NWU2Nzc5ZjBjYTA0Mzg5MGFjODNkNzNmNjQwNmQ3NGYzYWUxMDUxNDRhYjc2NTI5MWUxZGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMzMGExOWQwNWZkODAzYTQ1MDQxZTc1YmM5MzkzODUwYmNlMDc1MzRlNjFkOTMxODVjNjkxZmFkOTQxODc2MGIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU0MDlkNGUwYmEyMTc0NzI5YjE4ZDNmYzU4NGY2NjM2ZWQyMTAxMWE2N2JjYWFkYzg2MGRlYTQ1YjYxMmE2MzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY1Y2NlMTlmZDdjNGRmNjEzNzBiNTA3N2UyNjg0MGY0OWFhN2E2Y2UyNDY2MGRjMjI5Mjc1NzI4MzFkYjkwY2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_042e809158814e82b054034ce340d0d1",
+      "statement": "Two Docker named volumes (known_faces, unknown_faces) are mounted at /var/lib/zmeventnotification/known_faces and /var/lib/zmeventnotification/unknown_faces respectively for persistent face recognition reference data.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L20-L21",
+          "version": "repo-lines-v1:sha256:6aead8778c3e47552df65f1d997b87acea3e566d84d37e01b64426beff3ca249:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODkxMjRiYTJhZWQ1MTlkY2IxMTFkMWI2NzIxNDljZWRmNmQzM2RkNjQwODExN2VkZDFlZWNlZTE1NjI0NTExMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzIzYWMwOGZhYmIwYWJlNDkwZTYzYzIxZTAyNWFhMzYzMmRlMzA1ZDk3YTQwYTQ0ZjE2ZDcxZWI0NGYzNTk5ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzc3NmI1ZjhhYTY5YWM3ZjcyMTY4ZGQzNDI1YjQ0MjM0NzQ1MzllNDc0YWYxZTljZjhlN2E4YTgwOTFmMWRiMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjZmNGI3N2NhYjIwZjdiY2U2NzZhZGNhMDhkYWFmN2JkNDM5OTNmZTA4ZjYxZGRiMmEwYjFiODNiNDNlZjFlZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b6a2e0f61d1b4712b8c6fcd1e87c5c13",
+      "statement": "OpenCV 4.6.0 is pinned in the opencv_builder stage (ENV OPENCV_VERSION=4.6.0) and compiled with contrib modules for the face module; upgrading OpenCV requires rebuilding the builder stage and the full image.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L18-L45",
+          "version": "repo-lines-v1:sha256:9c3937f3d0f86afdd3724bfe46099efd6bc90823a4bfefa82d390c5726569bf3:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg3NTdmNTRhYzVkYzM5MDM3ZTE5YWM3NDliZTgxNzY1MWM4YmQzYmY1NDYyNTg0MmE3MDQyZmJjOWQzYWZlOTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA3NjdkMTIwYjIzMTViZTI1YzhiNTU4NDEzOWFiNDEzMzFmMWIxMzI4ZjljMWM5MzFiOTA5MWUwNDkxYzA1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUwZGYxODJiOThhOTVmNTY2MzY5ZmU2NzBhZmJkMzk5NWNlMWU2YzZhNjk0ZjMzNWIwNjM4MDllMjRmMjk2MmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIzMmNkZDM3ZTg4YjNiODEwMmVlOTk3MmU0ZWYxNjJmZmY4NzMzYjFlYWEwMzI5MmZiZWE4ZTNlZThkMTMyOGEifQ"
+        },
+        {
+          "resource": "repo://Dockerfile#L3-L5",
+          "version": "repo-lines-v1:sha256:cc48f9ba3af852c475d505e6425810699ca74ae751e90009b715cbb3c26b5db7:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2E2ZTNmZDU3ZTczYTdhZDJjYTFjY2EwMDJjNWUyNDAwODY1ODY2YWIwMzQyZDExNWRkMTQ3MGFmZThlZDA0ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjIsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTc4OGQyYmM4MTJkYzNlYmQ1MDYzODYxZGNiM2EzOGJlNWM5NzdkYTcyYTYxZTBjNmJlODBlNzRiNjE5ZGEyYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTMxZmZmNGVmNGY4ZWU1Nzg2YmNmYzlhNGVjY2Y3NTJhYTAxZjdkOTkzNGExMjMzMWExZTI2ZmU2N2M5MmU3MSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.3",
+    "at": "2026-11-03T01:11:51.876Z"
+  }
+}

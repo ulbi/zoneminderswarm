@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:afaf11bcb2e75229d14aa155f7193fd6e65a4aa03974c37232fe46922334c218",
+  "claims": [
+    {
+      "id": "claim_51a7ea75ad224616ae0a959dcd3ea748",
+      "statement": "The entrypoint.sh script seeds /etc/zm from /org/etc/zm only when the zm_config volume is empty (first run), preserving user customizations on subsequent starts.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L7-L11",
+          "version": "repo-lines-v1:sha256:6acc61b23bde24775050cf34e56a63c72801ddbce775756bc700ca1e86c17062:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDc1ZDM2ZTVhZTQ2Mzc4OTliZmE1Njc1ZWI2Mjk0Y2VkMmZhODYyODlkZjdjZWFiODgyZDgxMzc4NTFlMjY0YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzFkMTc2NTMyZjQwZmU3NWJkMGMyZjVkZDY0MWI4MTRiYjAxNmZjZTFkN2QzMTg3Y2UzMTdkNTg0NmE1NDNhMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTgyZmQ5Yzg4OTNhNzdjMzdhZTdlYWY2OTIzOWZiZjAyYzBhODYzODAxYTUwM2Y2ZmVhZTUyZDMyM2ZkNWNmMCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f2fab933959e473eabc3cafdf13c98cd",
+      "statement": "The entrypoint.sh waits for MariaDB on port 3306 using netcat, then checks table count to decide whether to initialize the schema (CREATE DATABASE/USER/GRANT + zm_create.sql import).",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L35-L65",
+          "version": "repo-lines-v1:sha256:a8af8ed36fae80599aad7fd889b892dbc52dffb8a6d1c30adee64535c83b9a2e:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA5NTE0ZmU4NGFkY2Q1ODQxZjk5M2ExNmQwM2ZkMGUzOTcxYTU5YmYyODNlMGFlZTNiZTk2ZWM0NGFlYzhmMDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5MzM2OGI0N2ZhNWE3NmM3NzQ1NGEyZTBjNWY1MDNmYmRmMjg0ZjU4ZTJmZGE3YmQ0OThjYWY0NTE4YjJhM2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAxNWM2YzVkY2Y0YWQ4NjhiYzI4MTEzNjg3OWMzNjg3Y2M2ZTdjMjcxZDcxYmZjNDNjYzQxZDg4MmE0YmNiZGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2422a286eabd49f19112b42c1bb09ef0",
+      "statement": "The entrypoint.sh rewrites /etc/zm/zm.conf with runtime database credentials (ZM_DB_HOST, ZM_DB_USER, ZM_DB_PASS, ZM_DB_NAME) after DB initialization.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L72-L75",
+          "version": "repo-lines-v1:sha256:56e68d9d3dfefc32d3090b34c9169b05fb5bd167c61c8f789ba7dbef57fc7a5f:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDAyOTM0MjNiNzgwNTczZTZhMjRiMjI1MWIwNmMwZThkNWUyMmFlMjQyY2U0MDljOTFmY2JmMWE3NzQ0NjJhZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzkyODFhMzFiNTgwNTBmMGUzODY2ZDQzNmY4ZmE4OGZhMmUwYjU4MGY4MTc5MTk5NTk1ZmRkZTFmMGJkNTM3YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGU4YTUyZTliMjM2OGFlMTVlY2Q3MjQ3NGM2NzcwMTg1ZDQzZTMxMTA5OGUwZjA3OTlkZDA3ZDg3Njc5MjkxZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6cd359ed78074fc59e572e2449677e3b",
+      "statement": "The entrypoint.sh configures MQTT in zmeventnotification.ini only when MQTT_HOST is set and the ini file exists, setting server, username, password, retain, and disabling SSL.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L80-L94",
+          "version": "repo-lines-v1:sha256:6a6c4df007db9a4e7d528bd85dde17e43b8a7502c57b58085999ec5309e6222b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3YjU4N2U2Mzc1NmVkN2IxZDQwNzQ4NjRjMGRhNzYzYWUzZTU3OGZlZTFjMGIxMWJlZGQwY2RlNTQzNjkyNTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZhOGNiNjg3OGU3ODVkMzFiNGYwMmY3ZjA2NWE2MzNmZjk4OGNmYWVjZTdlZDI1YjA1NmY4MjY2NjNiMTZkNzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJhYmJlZWU3ZjE2ZWI2ODI2MTU3YzFkZjU1MTI0ZjIzODQyMGM0MTJhNzQxM2UwZjNlZTBmMDUzYzczODZhZTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bb49f73e47d94556b7f02f5cfe71961c",
+      "statement": "The entrypoint.sh regenerates MLAPI_SECRET_KEY on every container startup using openssl rand -base64 32 and writes it to secrets.ini, which the zmeventnotification hook reads for mlapi authentication.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L96-L105",
+          "version": "repo-lines-v1:sha256:1e32db58a3745137e85f92b5bbdef526c38dbf3329cd858a3bc567a74a2447c6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdmYTkxNzNkNjViY2FmN2I3ODNmYmI0NDE1NDg4YzU4YWZmN2EwM2FiODg2NTY1OTA3N2I0YWM1MDJjMWNhNzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkNzAzMWQyNjZkODI0ODViMjk0NTU0MzBjYzJmMGMzNTg5MDc2MmEyN2E5OTJhMjc0NzIwYzE3MzhjZjE3ZDkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ3Y2FhNWYyNDk5MTRlZDUwNzEzYmY4NzI1OGNlMzRlMGVkYTRhMWQ1ZDI1YTY2MDM5ODUxM2RjNDE2Y2YxNjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ2ZGUzYjYzYjgwMjM0ZWUwNDVmYzQ3ZGU5MDJkMzRjNGQyZmQzNmNmOTFkZTQzMjNlNzFiMTU5NDc4NWI2MTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_292988e8af564db3af39c310e0c629e7",
+      "statement": "The mlapi start command in entrypoint.sh is currently commented out (line 78), so mlapi does not run unless started via a process supervisor or sidecar container.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L78-L78",
+          "version": "repo-lines-v1:sha256:c54092a955bbd6d7bd24fc9d609352dd381a2a4a6f9c6d9897057c75c26281dc:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzU0MDkyYTk1NWJiZDZkN2JkMjRmYzlkNjA5MzUyZGQzODFhMmE0YTZmOWM2ZDk4OTcwNTdjNzVjMjYyODFkYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzU0MDkyYTk1NWJiZDZkN2JkMjRmYzlkNjA5MzUyZGQzODFhMmE0YTZmOWM2ZDk4OTcwNTdjNzVjMjYyODFkYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmU3NzE3ZTI1NDVjZTE1MTZmMjNkODIyNDIwNDY2MDFjY2UxMjkwOTBiMTdkM2RlOWI5OThlYjRkODNkMTMzNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmEzY2Y1MTkyMzU0ZjcxNjE1YWM1MTAzNGIzZTk3YzIwZWRhOTk2NDNmY2FmNWJiZTZkNDFhZDU5YmQxMjE2NyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_740c323635cd4a41a675ec8e28f5811b",
+      "statement": "The eclipse-mosquitto entrypoint (entrypoint_mosquitto.sh) generates mosquitto.conf with password_file authentication and creates the password file using mosquitto_passwd with MQTT_USER and MQTT_PASSWORD environment variables.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint_mosquitto.sh#L1-L18",
+          "version": "repo-lines-v1:sha256:82518687331cb8e3cae0a97afadc396a4eed6cbce4200d13f969b8e4bbae6f93:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlYTQwN2M3M2ZlOGE2YWYxYTg5MDM3ZjllNDdkN2ZlNzExMTE2MmUwZDFkYzQ2YTgzMzZjZWVkZjM2Mzk5ODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmNGZmYzYyMmY5NTQ1Y2JjMmE4ZTYxOTI3Y2VhNGUwYWY0MDE4MjhiMTI2OWVjODk2MDdiOWI3NTYyNTg1YTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_184800f20b994e1b8d0dffc95f700c02",
+      "statement": "Docker Compose defines five named volumes (db_data, zm_config, zm_cache, known_faces, unknown_faces, mosquitto_data) and a tmpfs mount at /dev/shm with 400MB size for ZoneMinder shared memory.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L25-L45",
+          "version": "repo-lines-v1:sha256:d8dbd63861b0218cad06cd168492152f3a453b347abba043fa49295bdc5c1ee4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2OWRmZGI5ODFhNmU5ZGNkMGU5NTgwZjI5NDZhZGVjYzU3ODdiZmZlZGFiNjcwYjBmNDdhMjk2OGY2MWE2ZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyNzQ2MzM0ZmRiZDY1MTMyMzlmMTMyNmRiOGI2MTI3NTdiNWIzMmMwODA4YjUwODFhOTkzN2Y2NTMzYjhkYjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY2ZjRiNzdjYWIyMGY3YmNlNjc2YWRjYTA4ZGFhZjdiZDQzOTkzZmUwOGY2MWRkYjJhMGIxYjgzYjQzZWYxZWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ3YjZlYjc4YjYzNjliNmE4MTFhNjdlOWJmMjVlNGMzNjMxNTY1MzI2M2M3YzdkYWE2MDU4ZDlhNjdiNWE4ODkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ecd803757897456a9177b657313d8297",
+      "statement": "The zoneminder service mounts zm_config at /etc/zm, zm_cache at /var/cache/zoneminder, known_faces at /var/lib/zmeventnotification/known_faces, and unknown_faces at /var/lib/zmeventnotification/unknown_faces.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L13-L22",
+          "version": "repo-lines-v1:sha256:195c93f5fa4ce569f4d811c1a23a39ed9f081829aaa93415abd9d6c2052b9a3c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE5NzA2N2Q2OTYyMjFlMjk5M2NhMDliYzQ5M2IxNzcxYzY0ZjdlYzZlMzg2ZmVmMGJmYjZmN2Y2NjYzNjdmM2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3ZmU0NzQyNjI0ZTQ0MDZhMjEzY2Y1YzMwNzJkYjFhNjEyZTQ1MTAzNGMwNjViOTE0ZGVkMzc0ZTViZDcwNzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc4YWE3YWI1ZDJiMDc0ZDgwOWQxYTQwZDM1YzFlMTMzZWI3N2Q0N2U4ZmQ0ODYyZjYyMWQxMDA3YjAwODE2ZGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZkMjVkZjVlZDBjODgyZTRhN2YxZjBiMDYxYTNiYWVlNTE2YTAxNmI1MmQ0ZDU1YTAwMmUxYTRhNzBkMTVkNDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_92f62ad940574c2b90657910b405a6c8",
+      "statement": "The Dockerfile builds OpenCV 4.6.0 from source in a builder stage and copies it to /usr/local in the final image, then clones mlapi from GitHub and installs Python dependencies.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L1-L50",
+          "version": "repo-lines-v1:sha256:122d074065829460f03e84616c83e1c6fc8f16c10039bfb75546b2486be56efd:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFkNGNhZjdlM2QyMTNjMWE1NjIzODliZWMzNTA2MzNhOWNmOTljZjUyY2ZhMzVmNGVkZjYyNDhhNTk0MTYyNTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNkMzcwYjYwYzBmM2M0N2I5YWNjZWQyMDFjNTFmZjJjMzE3OGViNTA4MjBhN2E4YTA5YzBiNzdlMWRlMTM1ZmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFhN2JjMDgwZGY2OTkwZjZmNTQ5MzI3YjAyZmU0MTQ2MWM3MmZkZmYxNDY2NmVmYzlhNWY4OTU4NzkyNDdmNmEifQ"
+        },
+        {
+          "resource": "repo://Dockerfile#L51-L100",
+          "version": "repo-lines-v1:sha256:46054ee8242b7830ff14a40dec2b0e2163b5ad88e57e8859c84974e0d8467eed:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEzMDI1ODYyOGUzMWVjMzU2YzU5YzFjMzhmYzBlY2RhNzJmZmFlODZmMWY4N2EwN2E2OTZmNWU4NDEzYmE1YTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxMmJjZDdmNmE5YTYwMjgxZDc3MmMzNTNlNzJjNDMzMTlkYTUzOGUxZDkwMzBmNWI0ZGYwNjkxODExNmIwZjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRiOWM4ZTQzOGY4OGU1YmYwYzk2OTIwM2M1OWY5YWYyYWUxNmQ1N2NiOWIyZjBlNTJhODMzNjhkNmU4Zjg0MjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk4NDNkNWY4NTlkZmNiZjEzMWQxNzA4NThkMDE0ZWYzYWI3ODc5MzgwNjRjZWI3ZThlZDY1ZDZhNmExNjAzMzIifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.3",
+    "at": "2026-11-03T01:11:51.876Z"
+  }
+}

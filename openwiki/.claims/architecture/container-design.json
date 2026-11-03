@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:cbcc5232361a46940a4856db16eb909f6a0a6389f6ee3ac4b594f4eff1eec7ac",
+  "claims": [
+    {
+      "id": "claim_b72dc348a2c24f219c7be379160f1914",
+      "statement": "The Dockerfile uses a two-stage build: an 'opencv_builder' stage (ubuntu:22.04) that compiles OpenCV 4.6.0 with contrib modules from source, and a final stage (ubuntu:22.04) that copies /usr/local from the builder and installs ZoneMinder, mlapi, and zmeventnotification.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L1-L55",
+          "version": "repo-lines-v1:sha256:20c0a4d336df8888f0346180b84f31fdd4aa482b23288b94484806c57b62b2df:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFkNGNhZjdlM2QyMTNjMWE1NjIzODliZWMzNTA2MzNhOWNmOTljZjUyY2ZhMzVmNGVkZjYyNDhhNTk0MTYyNTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzZGQxZTI1MWY5MmZmNTg1NTYyMTIwZmQ5YWFjMWM1NzQzNTU5ZjkyNzRkNDQxNmM0MjIzNzU2ODY5MGY5ODkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNjNDhmOWJhM2FmODUyYzQ3NWQ1MDVlNjQyNTgxMDY5OWNhNzRhZTc1MWU5MDAwOWI3MTVjYmIzYzI2YjVkYjcifQ"
+        },
+        {
+          "resource": "repo://Dockerfile#L57-L100",
+          "version": "repo-lines-v1:sha256:023b5e46160cda4a1113feffbb5a5ef7edb7d556041dfac63843ca660562f03c:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUzNWY3ZTEyMTE0M2MyYzg4YzkxZDg4MTU4MGI4ZDgzZDE5MjJjNjkxYzgwMGE4YmFjMTg0MTY2YTUzNzA0MDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxMmJjZDdmNmE5YTYwMjgxZDc3MmMzNTNlNzJjNDMzMTlkYTUzOGUxZDkwMzBmNWI0ZGYwNjkxODExNmIwZjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJiNjVhYzgxYWQ1YTRiZjFiYjIzZmJlNTNhZjQ0ZTc1YjUxZmQ0YTY0MzVlMWM4NWFkNTA5MWMwMTZlYjZmY2EiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk4NDNkNWY4NTlkZmNiZjEzMWQxNzA4NThkMDE0ZWYzYWI3ODc5MzgwNjRjZWI3ZThlZDY1ZDZhNmExNjAzMzIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f4598b63ce134f67b16c05f7ee96d429",
+      "statement": "The opencv_builder stage configures CMake with RELEASE build, Python 3 bindings enabled, CUDA disabled, TBB enabled, and installs to /usr/local.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L23-L52",
+          "version": "repo-lines-v1:sha256:4043198125b04aed043554f03322ba387cf436b5a8e30affb973d98bcdcd7dc0:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUxNDBhYTRjYzI2NDAyMjY5MmYwMmVkNTVkMmNhZjNjYmQ2ODcwYTMyMTY4ZjU3ZTBmN2Q1MDA0YTg0NGZkNjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkN2JhYmViNmExMjY3Nzg0NTUyOGNhYjE1NGY1MzRlMDIzOWE3YjM5N2VjNDBlYWI2M2Q4MGFjYmI0MTQ3ZDAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI5MGNlZTU2NmRhNDNkMmEwNjg1MzE1NDY3ZWU4MWE0NzhkY2IxOTM2NzkyODk0MTI0YjgyZjUwY2QxZGEwMzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZlYjI1OWI3NTYyODkyODhlZGU3NjJhNmRmZTc1M2U4YjViZWNjZjZhMGQyNzMwMmE5MDgyMTZmYjJhMzVlMDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7796819264154c34950fa81ece66d883",
+      "statement": "The final stage copies OpenCV from the builder via 'COPY --from=opencv_builder /usr/local /usr/local', avoiding build tools in the runtime image.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L75-L75",
+          "version": "repo-lines-v1:sha256:5640ebfb29768a4dc6f629a091f1af9398ede5d05018ab1f79061983faebbb34:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTY0MGViZmIyOTc2OGE0ZGM2ZjYyOWEwOTFmMWFmOTM5OGVkZTVkMDUwMThhYjFmNzkwNjE5ODNmYWViYmIzNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTY0MGViZmIyOTc2OGE0ZGM2ZjYyOWEwOTFmMWFmOTM5OGVkZTVkMDUwMThhYjFmNzkwNjE5ODNmYWViYmIzNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTdjNjgwYjM3ZjFiZjVkZGY4MDFmZDI3YmUzYWJmM2FjN2I0NGJlODNkYmYxOWQxN2E0NGQ3Y2RkMTE5ZjU1MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjM2ZGQxOGJlMmQ4NzRmZmMyNjhkMDYyY2I2OTRmOGU5N2FlYzBmMDQyNTgyZmFkMzc2NWU5MWRhYjBhNmY4ZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_cb97aab96dd1448f8c3c6ddeab6f7dcb",
+      "statement": "The mlapi (ZoneMinder ML API) is cloned from GitHub into /usr/src/app/mlapi, its Python requirements installed via pip, and model weights downloaded via get_models.sh.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L77-L90",
+          "version": "repo-lines-v1:sha256:6a4e86bf9d4eb1aec9f34d9108bbcf2d809016a1c002c689877c053d9149f319:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVlMzAwNDY1ZTE2MjM2ZTRiMzUxYzZhOGEwZjdkOGE2ZTI1MjdkOTMxZjA3YzA5NGZmMGU0ODYyMjI3OTk5NWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2YmFlOGY5MDM5ZThlMzkwNDc3ZjY3OGY4MTg5ODFhODI0MTljMTU5YTNhNWYwYzk1YjkxNmYzMGYxYWZjNTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMwNmI1MjEyMmRmY2E2M2JiZTg1MWYzN2FiZDkwNTliNzY5Y2JkYjYwNmUwMGU3MDZlNzA4YmNlOWU4ZTAxNWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRkMDM1ZTU4ZTFkMDg5MmRjM2NkNTlmMmY0ODk4ZTA2Zjk0ODNiNjk2OWM4ZjEzZDE2OTJkMWNmNzlhMTIzYjEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7091653bf1474118b476def356b2603a",
+      "statement": "ZoneMinder 1.36 is installed from the iconnor PPA; mysql-server is removed since an external MariaDB is used.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L93-L99",
+          "version": "repo-lines-v1:sha256:c0a4dc3daae22a45d63516213ceebb29f28bccbdb0320a94c6d29a0ce191ff6c:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2I3YWNjMjVjMzcwYjdiZjYyYTU0MTk0ZDY3ZGRjZDA1MDYwMzU0ZThlMTllMDQ0MjlhMmRmZDRiYzRmMjZkZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmMzNGUxMTA4YmM1MDU0YTY3MGJhMmFmODg2YjM3ZGE3N2E5NzBkNDQzNjQ5OTkzZjg5MmE1YTE3OWM2NGZjNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGE4OGRhOTVkYTFkYzhkODk0ODk2ZjlmNDhjOTkzZGMzZTAzYWZkNTVhNTAyMWUyMmViODI2MjMyMjJlZmJiZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c47c4d1f55be455796f7bd27fcbdfadd",
+      "statement": "zmeventnotification is installed by cloning from GitHub and running install.sh with flags for event server, hook, config, non-interactive mode, hook config upgrade, and no pysudo.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L102-L112",
+          "version": "repo-lines-v1:sha256:8d97bc0213bbe4faa5cd4ec7c2dec3dc5ddaac2d0473d02896497009eff460d3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg4MzM5ODc1NjhhM2RlNDQ0ODlhMWM2ODBhZGMzZDBkNWUxZTU5YzQxNWMxZmE5NjVmMWEyMGYwZGZkOTVkZjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhkYjM3NWUxMGIzOWQ3M2Q1YWY4OTVjZjhhNWRjMGZhZDFkOWJiOWFmNGIxY2JmZjk5YjEyYzBhYzg1ODMxZGMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9ecb631b54da47b1ae382a9dc7496e1e",
+      "statement": "The Dockerfile creates a config backup at /org/etc/zm by copying /etc/zm after ZoneMinder installation, used for first-run seeding.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L121-L123",
+          "version": "repo-lines-v1:sha256:a633ab6ccd3c327ccbcc1e2c72f72f264e20bf4e03691d22941be7cb6dc1fefb:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzI1MGY3NDg2OTEwZTk4NTEwNTNiNmQyYjNiYjQ5Y2IzMWM3NGJkMTYwNGViMzk3MDVkNzI5MDQxN2EzOTk1MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTQ4ZTEwYzRjYWRlYTY4YzE4MGYzYmJkNDA2YWM5MDE1YjY2NzU0MDBlMjMyYmJhYTQyMTQ0ZDU0MjRkMzM3NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTY2OTllMjA0ODA4NjFkNDZkNjdmNGU4MGQxN2U3M2RjNGI4NzVlNjk5OTI0MDE5ZmQ5MzY1OGM1YzA4MWJhNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjNjODU3NjczMDMxZTk4NDNjMTExNjQ3ZmU4YTQ2NTY4MmM0MTVhOTU4YTMzNzU1ZDRjMWNjYWIwMThiNjk4YSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9a2c5eccbfd54d0c9c78472c4417b1c9",
+      "statement": "The entrypoint.sh seeds /etc/zm from /org/etc/zm only if the config volume is empty, preserving user modifications on subsequent starts.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L1-L10",
+          "version": "repo-lines-v1:sha256:aade73cd8688b7e983d4d4905360280078ec1900e66b96cfeae7fe35db6cf3e8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI4NzVmOTI4NTQ2YWVlNzg1NWNiMWRiOWFmYzhhYjNmMWE4YTM0ZDQzZGU1YmJkNjJmNzA3NmQ3YmE5ZjM5MTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NjlkMjM3Y2Q0MjBiOWQzOGI5ODFhMGE0ZjY3NzAxOTBhNGE4M2RjYTFmZTU2YzRmNWJhMWUyY2JjMGVmNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ0ZmJkYTAyMmE3OTJlZGUyODllNjgwYzM5MDk1ZmRkYjcyMjBmYjdjZWY2OTAxODdhOGVjYjdhMmFkZDVhZGMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f746d7cd9cc740329b3f2c998247c5f8",
+      "statement": "The entrypoint waits for MariaDB (netcat on port 3306), initializes the ZoneMinder database schema (zm_create.sql) if empty, and enables ZM_OPT_USE_EVENTNOTIFICATION.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L33-L60",
+          "version": "repo-lines-v1:sha256:e00aad7c3dd76ee1e873e329deacdbcbfed63389950c4e875e02e07eac43c2e7:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc5YTdjOWQ4ZjM0YmMwODdmZGNjZGY2ZWExNjgxOGNiZDk3NzFiODdlM2M2NmE1NzE5ODkxMzcwYmM5MmYxNmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBhNDY4ODRlMjc3YjZiMTk1MzRjYWM1OTlkMmY3ZDI0YzMzMGE4ZmQ0M2EyYTYyM2YzM2RkYWVmZjExN2U1MTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFhYjQ4ZmJmNjU0ZTAyNzE0YTBhNTgzNjRmOTQzNDQxYTcyZWNkMzRmODQzMTU3ZmFmYzIyYmFmMWRmNTE1OWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZmNWI2M2QzNGZlOTY1MDNiYjM2MTc2NTgzODc5MjM1NTg2YzFhNWNhZmFmYjk1YjgwMWZhOGJmMDI0NmU0OGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_40096f14a1314b2cb6bdc4eca98b5001",
+      "statement": "The entrypoint rewrites zm.conf, zmeventnotification.ini, and secrets.ini with runtime environment variables (DB credentials, MQTT config, ZM user/pass, MLAPI_SECRET_KEY).",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L62-L110",
+          "version": "repo-lines-v1:sha256:95f6f270f6cedacbf3af3c9b2c3615d96fe8379a69af6b0c3ba064b165af5f69:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2MmFlM2VjM2MxOWZhOTYzOTAwOGNiMzZiNjlkNDgzMGZlY2E5YzJlOTFlYjlmMmQ5ZWJlZTI5M2FiMjI1YTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJjNzVhOTllMTY1N2U4MTA5MGI5ZGRiMWRmNTI2MWQyZTNlOTU5ZGQwYjFkN2YzMTM0YzFjMzRlODM1N2FjZjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUxMDJkZjdkN2Q1OTMzYThkNWFlOWQ4M2ZhMjE3MDFjNjY1M2Q1ZTlkOTAyZWU0Y2EyZWUzZjY2MWJiNzBmYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNiZjdhYjRjOGNjYzE1NjQwZjA0M2QxNzM4MWRlYWYzMDQ2NTFlZmMyOTFhNDgxOGZhMzFkODQyNjA0NjIzY2YifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a21cd301528946e6a1269af3e42e35aa",
+      "statement": "The entrypoint starts apache2 and zoneminder services, then runs 'tail -f /dev/null' to keep PID 1 alive.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L112-L117",
+          "version": "repo-lines-v1:sha256:98e6cef2e2efa94e73ec59fe6edc67f7ec86330de2df93835c4f35926f7c1789:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2Y5OGY1Mzk2NTllY2U5ZWJjZmExNWQxZjczODJiY2FjOWQxYjMzNWZjZTdiZGI2MGM1OWNhYzViMWRkZmMzNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmU4YmMzNDgzNWViY2E4ODM1MjhiYWM0NmNhNTI0MDJmZmQ2ODlhN2EzMzE4NWQwZTcyNWQyODdmYzlhYzM5MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjg0NDIxNDYwZGZmZDk2NzhkZmEyNmMxYjA4ODM4N2YxNGY2NjllNDA4NDdjNjYxOGU4MTFhMGM0ZjI3ZDc1OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmZmZmMwYjU2N2NjYjQzYThlMzEwNjE2YTU5ZGY2MGE3MDY3ZGY2MjUxMWYzMWJmN2Q0YTE0MDEyZTJmNmNhNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_47456f7104574367b61fa0d1d5714a19",
+      "statement": "The docker-compose.yml mounts a tmpfs at /dev/shm with size 400000000 bytes (~400 MB) for ZoneMinder shared memory buffers.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L30-L33",
+          "version": "repo-lines-v1:sha256:b80ce167cf05fc755c4d7cd18cf844a03c8cb3a544ea2993109c88baff1b5992:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTEyZjIzNjFmNWYwZmUzOWUxNmVkYjMwMDgyOTEwMzk4NDJmMmI1OTE1MmY0MmI1MDkzNGEzMTU3MDJhMmQwNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmMwOGE5ZDZiZDI0YWFjODJmYTg1YjhmNjlkYTlmNTg3OTYwMzkwNGViMTMyZTI0ZWYwOGUyY2U1ZGQ0OTA1YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTI3MjI5ZTg1YzEwYzlhOTQ0OTAxMDUwMDAwMTFjMzA5MjljMjg1MWIzZWJkZWNiMjkxNzczMTdjMzA0ZWFhZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzE2MDgxMzliZTcyNjBmNGJlZDllZjJhZDZkNGUwM2JmOTE2ZGZiMDFjZWEwN2Q4Zjg1MTE3NzM3ZjcyZDZlNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_aafa10798e9740daa63861ea5e1c90a9",
+      "statement": "The container exposes ports 80 (ZoneMinder web UI) and 9000 (API/WebSocket), with a healthcheck curling http://localhost/zm/ every 60 seconds.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L125-L129",
+          "version": "repo-lines-v1:sha256:ff828b10143a39f2766c350cbee46973978007551af34439e1b20ae9748a66a6:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmU4ODQyNjRmZWIxZjYyNTZiYmQ1ZjI4YTM3MTU4YWI3NTU1MWQ2N2IxY2E2NDg0NzA4NDQ5YjlkYzFiNjhlMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTE5NWI0OWU0MDk5Nzk0NjdkYTQwOWUyZmMxMzQ2YzRhZWVlMTI2MjJhNDNkNWU1NWNkOWJhOWY4MjA0MDZhYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjkxYWZmNmQxYjQyZDhmNDNlNGU5MzBjYzI3ZGU2NGU5ZmZiOTY5N2QxODVjNGZkYzBkNTlmNDNlZTc5ZWMzOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjM3ZjY5YWI2MzliZTVjYTRlZjgxZWI2ZDVmMjY0ZGVjYmVhNDE5ZmVkNjJmZGZhMTRkYmM3MDkyMTNhNTYzYiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.3",
+    "at": "2026-11-03T01:11:51.876Z"
+  }
+}

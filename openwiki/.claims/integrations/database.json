@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:9cea7f21d9a4a4ae1213b34168fcec6624b7c3ac615ef2c1df4594295660bf8f",
+  "claims": [
+    {
+      "id": "claim_074871abe64e42668b06e678a22cdc9b",
+      "statement": "The ZoneMinder container uses a root vs app user separation for MariaDB: root (MYSQL_ROOT_PASSWORD) performs one-time bootstrap (CREATE DATABASE, CREATE USER, GRANT), while the app user (ZM_DB_USER/ZM_DB_PASS) handles schema import and runtime operations.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L18-L28",
+          "version": "repo-lines-v1:sha256:3501fd64377de1ff25e74c6235ba74f196a6c2f8d72f2e2096c7d70b12896262:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyNzQ2MzM0ZmRiZDY1MTMyMzlmMTMyNmRiOGI2MTI3NTdiNWIzMmMwODA4YjUwODFhOTkzN2Y2NTMzYjhkYjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjczN2M0YjQ4NzVhMTI1MTMyZGZhZDlkMzQ5NzYxNmJmNmY3NWVlN2ViYzE2NGNkMzU5NGYyNTAxMzViZDQ0MDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiY2UzN2UzMWVlNTg5MjdkNjQ1MzFlNzI5NzYxYmM0NTI4MjcxMTM1MmM2MGI1ODBlNGNhNjBlYWYwNWU4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE5YmRiYjFlM2RhZGJlNDFhNDM5Y2Y4NTViMzZmOTUwNDk5MjI2YzM4YmNlZGNmYjM0YjE2ZDdjYjM0ZWIwZGYifQ"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L5-L14",
+          "version": "repo-lines-v1:sha256:e15d7d88d895c13caeab122b07604b33cd748f2f62c6868aa451375dc18df52d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1ZTEwOTM4M2Q3ZWZmODQ5ZWJkNTI1MzEzMzgyYWYxMDk2ZjMwYTAxYWU1NzAxODIyOWYyMTczY2Q4N2Q0YzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5MDU3OTQ2MTNkOTE3ODIzNzJiZWU0Y2UwY2NiOTc3NDMyMTk1ZjI2NGYxNTJiZTcxZGIyNWUwZjA0YTY0OGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxMmRjY2RkNGZlOTcxM2IxMGNhOTJiMjI4Y2ViMjczNmEzMmY0ODBjY2ExZDE0NmNhMWRmMDRmNzliZDVlYjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZiY2UzN2UzMWVlNTg5MjdkNjQ1MzFlNzI5NzYxYmM0NTI4MjcxMTM1MmM2MGI1ODBlNGNhNjBlYWYwNWU4NTUifQ"
+        },
+        {
+          "resource": "repo://entrypoint.sh#L57-L64",
+          "version": "repo-lines-v1:sha256:a35871e60d7e108e3afa9c74caca109b129486e963e207078484755adfae7998:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjM1ZGYzZjcyOWRmYTdlZWU2ZjkxNzY3ZDA0NWI5NmI2ZDNhYTNjMjgzYTE4NGNjMzg5ZGJhNDY5NmRlMTRlMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzc2OWQyMzdjZDQyMGI5ZDM4Yjk4MWEwYTRmNjc3MDE5MGE0YTgzZGNhMWZlNTZjNGY1YmExZTJjYmMwZWY3NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzFiYTgwMWQyMzRjNmU1ODRiY2ZhMzcyN2U0NTk0ZjliYmQ0MzUzODBlMzM4NDAyZGViMDFmMGEzMzhlNTdmOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjQxOGY3ZTcwOWQyNTU0YjE2MDAwOGViYWZmOGU4MThiOTRkZjRjODg2ZDJlOGQ2MWZlNTA3NTYwMjgzMjQ5MiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_69b82739cb924eb491c818a28dce8c46",
+      "statement": "On first run (zero tables in ZM_DB_NAME), entrypoint.sh bootstraps the database by connecting as root to create the database and app user, then imports /usr/share/zoneminder/db/zm_create.sql as the app user.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L48-L64",
+          "version": "repo-lines-v1:sha256:22f94ba57a68117c2014d7588b5ef74dba406863e45f393322349cce72ad484c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQxMTdmYTAwNmJhOTIwODUwMGIyOTMwY2U2OWNiZGU0MzZjNjQ3YWZhOTE3Y2I3Mzk2YTliYzkxMTFhNDZkZDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NjlkMjM3Y2Q0MjBiOWQzOGI5ODFhMGE0ZjY3NzAxOTBhNGE4M2RjYTFmZTU2YzRmNWJhMWUyY2JjMGVmNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU5MmQ2ODI3MWZkMWFhZDQ4OTg0Njk1NmZkYjMxZDExNjI1NTFjZjFiYTJjZGU4ZmFlM2M4MDRmM2UyNTgzNzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI0MThmN2U3MDlkMjU1NGIxNjAwMDhlYmFmZjhlODE4Yjk0ZGY0Yzg4NmQyZThkNjFmZTUwNzU2MDI4MzI0OTIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a0f85de905a7497ca222bd6f9a941e8b",
+      "statement": "The table-count check (SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = '$ZM_DB_NAME') determines whether to run bootstrap; if tables exist, bootstrap is skipped.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L48-L56",
+          "version": "repo-lines-v1:sha256:b0831202c7b19e229d33140d115056c0107ff000d2c3b82bd6ad9cfaf248c17d:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDExN2ZhMDA2YmE5MjA4NTAwYjI5MzBjZTY5Y2JkZTQzNmM2NDdhZmE5MTdjYjczOTZhOWJjOTExMWE0NmRkMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODk3ODI0NjNjYWZlODAyZDYzY2ZhMGFhZWU5OTJmODJiYTFhZjJhYjNlYjg0NzMyM2U4YTk5MmZmN2UwNjA4NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTkyZDY4MjcxZmQxYWFkNDg5ODQ2OTU2ZmRiMzFkMTE2MjU1MWNmMWJhMmNkZThmYWUzYzgwNGYzZTI1ODM3MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2YxYjM0OWU1MWEwYjI0OGMwNDk1YWU3ZWE1OTljOWY0OGVkMTA0NWU0ZDRjZjUwMDRjMjVkYjI1MDk4YmJmNCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f36ed25e961949df901f84911047aeaa",
+      "statement": "ZM_OPT_USE_EVENTNOTIFICATION is forced to '1' on every container start via UPDATE Config SET Value = '1' WHERE Name = 'ZM_OPT_USE_EVENTNOTIFICATION', enabling the event notification pipeline.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L66-L68",
+          "version": "repo-lines-v1:sha256:015c6c5dcf4ad868bc281136879c3687cc6e7c271d71bfc43cc41d882a4bcbdd:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWYwYjhmYjRlYzdjZjJkZDYwMzI4YjBhNjdjYjE1NjRlM2E3OGY0MzhkNzU0MDkxYzQ2OGFlNTJjMzBlYTZkOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTM1ZWE3YWViZmUwOTMyNWRjN2JhNjRmNzllMTdkNzMzZjczOTFiZmY5NDdiMzhlNWUyOGUwOGRkMmNjZDAzNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjZhNGRjYzg0ODk3MTE3YTc5NzBjNmI3YjJiN2FhY2NhMmY4ZjY1MGQ4NzcyMzhkOTVjOWVkOWNmZjU2ODM3YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzkyODFhMzFiNTgwNTBmMGUzODY2ZDQzNmY4ZmE4OGZhMmUwYjU4MGY4MTc5MTk5NTk1ZmRkZTFmMGJkNTM3YyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_797e1a01cd4e45e78d81e7375914c299",
+      "statement": "Runtime database configuration (/etc/zm/zm.conf) is rewritten at startup from environment variables (ZM_DB_HOST, ZM_DB_USER, ZM_DB_PASS, ZM_DB_NAME) using sed.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L70-L73",
+          "version": "repo-lines-v1:sha256:6f475177b55b3a0aade6c210ec47a6d9f90eeebe1b3c4fcb28e760588f60a444:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTc3ZGM3MWQzYjI2NmI1YjZlZDQxYzNmODgwNzJjZWZkYzdlZjJiN2NkZWFkM2UwYzU2ODc4NjM4N2Y2ZDI0NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWRjNTZkZTNiM2I0MGFkZGRiZGE5MWRkZDJiM2JhNDI5NTY5MGM0MWE1YWQzZGNjZGExYTBjMDZkNmUzZGFkMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDY5MDc4MjIyMjUxMDIzMzdiZTM4ODBhYmRiMGQzMzA2NTk3ZGNhMjExMTFmYzlkOTA4MDQ5ZDczZTgyMTAxZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_bcc3efa46e9a458a98f7e83dd8d81da8",
+      "statement": "docker-compose.yml wires the MariaDB service (named 'db') and ZoneMinder service with shared credentials: MYSQL_ROOT_PASSWORD, MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD are passed to both services, and ZM_DB_* variables in ZoneMinder reference the same values.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L4-L30",
+          "version": "repo-lines-v1:sha256:f973433f52378ad17f4678aed144560ba859061cf7cc8522642a0db6e229acf8:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZmMzRmNWY0ZTFmMGJlZTc5MzAwNzc0MDM3ZjUzZmZhZGUxZGQ4ZTg4YjUyYzAxMTlhMmUzN2E2N2ZiYWJlYmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjExMmYyMzYxZjVmMGZlMzllMTZlZGIzMDA4MjkxMDM5ODQyZjJiNTkxNTJmNDJiNTA5MzRhMzE1NzAyYTJkMDYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMxODRlNjU3YmM4NWM3YTNmMzI5YzZkNmI4ODlkYTNlOTE0ZDRhNTE0MDVjZmMwMTg1ZDg4YWM1YWM0Y2VmMDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk5YzQzODc3MDdjMmIyZjM4NWI4OTUzYTE1NzY2YWRmZDU3YjVjNTY3ODBjZjk2YTZiMmI1NjZlM2UzZWMyZmEifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.3",
+    "at": "2026-11-03T01:11:51.876Z"
+  }
+}

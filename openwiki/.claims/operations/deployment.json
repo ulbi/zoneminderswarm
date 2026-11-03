@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:fd42cebb5aadbe10d08aecced44b211d7e76b1fdc1da907a2e4d8aa9a27d9b59",
+  "claims": [
+    {
+      "id": "claim_41c8a814a1e445ce823bd0ccc53d6df4",
+      "statement": "The stack consists of three services: MariaDB (db), ZoneMinder (zoneminder), and Eclipse Mosquitto (eclipse-mosquitto), all connected via the zoneminder_network overlay network.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L1-L64",
+          "version": "repo-lines-v1:sha256:c784a3df210ae4d63125ab022d859ea2ae57bf05f3dc385b0c4d642cfb9acf33:eyJzZWxlY3RlZExpbmVDb3VudCI6NjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVjYTdlYTE2NWY2YjFjNGIzOTYzMDkwZTQ5N2ViYTdjOTQ0YmIzZWQ3MDE3ODE3Mjc3OWJiYjVlNDM3NzJkMjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1MDY4NGU2ZjRiODY1YWM2NThkZmRmMjQ3YWUxNDU0NGIwZmRjMDJlYjRlYWM1YWRjNzhmMGExNTMxZWFmNjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d4c7cd2cb6024dd385f7c391f1afaf4c",
+      "statement": "Host port mappings are defined in docker-compose.override.yml: 7080→80 and 7000→9000 for ZoneMinder; 1883→1883 and 9001→9001 for Mosquitto.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.override.yml#L1-L15",
+          "version": "repo-lines-v1:sha256:7eecd1963b91cdb3d41ba9a43d6aea2203149b4a42492e2ec01b00456cdbc96b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhNzNmY2NkYzk5ZWE4MzU5NjdjN2RlZTdlZmJlZDFmM2NhODcyNjBkOTI5MzE4NTBmZGQ2NmRhOGNiMTJmMWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE4YzVkNWEzOGIyZDEzNzA3YjM3ZmQyOGFiNjAxOTNkZTQyMDA1ZDFmZWE4NTMyNTg2NDQ1ZjYxNTFjOWFhMzMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_77891ad9264142f29872f831496f858c",
+      "statement": "The .env file requires nine variables: MYSQL_ROOT_PASSWORD, MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD, TZ, MQTT_USER, MQTT_PASSWORD, ZM_USER, ZM_PASSWORD.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L1-L75",
+          "version": "repo-lines-v1:sha256:292de126f48400a201139fd84d7fdc5c083e31275d55da7bc7ba0b55fe6ce941:eyJzZWxlY3RlZExpbmVDb3VudCI6NzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1YWY5YjAyY2FmNTBiMzgwNzkxNWFkY2I2ODhjMTU1NjgyNWZkMWRiNGJkZmQ4MTQ3N2E2N2NhMmIyOTI1MzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3OTE2ZmEzNDNjN2Q3MjQyMzJkZjkyM2YyMTY1NzRkOWE2OTg1MTA1ODJkNjFiZDc0ZTA5M2JjYjNmMTQ1NWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L1-L64",
+          "version": "repo-lines-v1:sha256:c784a3df210ae4d63125ab022d859ea2ae57bf05f3dc385b0c4d642cfb9acf33:eyJzZWxlY3RlZExpbmVDb3VudCI6NjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVjYTdlYTE2NWY2YjFjNGIzOTYzMDkwZTQ5N2ViYTdjOTQ0YmIzZWQ3MDE3ODE3Mjc3OWJiYjVlNDM3NzJkMjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1MDY4NGU2ZjRiODY1YWM2NThkZmRmMjQ3YWUxNDU0NGIwZmRjMDJlYjRlYWM1YWRjNzhmMGExNTMxZWFmNjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1b0889d2c01d4b0d95cb35ac7594ea37",
+      "statement": "The zoneminder service healthcheck runs every 60 seconds with a 10-second timeout and 3 retries, checking http://localhost/zm/ via curl.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L140-L142",
+          "version": "repo-lines-v1:sha256:77d9784d6fece97f01311cfb0324b0c539640df83e78a31e26755cc0c52b18fa:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDFjMzUwNjgwZjBjOGYyZTY3MGY1ZWZkZTgwYjEyMjk4Yjg1YTdhYjQ4ZmMzYjFkNjY1MjQ1NjQ1NzMwYzdjMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTFjOGI5MDVhMmE3NzFmMDhmMGI3YzdlMThhMzhkYjI0MmVmNDRjYTJhNmRkZDI3ZTE2NTIzMWM2ZTYwYTcwNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGU5ZmQxNGE3N2YwZjcyYmQzMDdkNDQ3NTFiYjYzZDIyOTQwMWZjNDI0YTBiYWU5MmUyMWExY2FiM2FhMWEwNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiY2I5ZGQzYzgzZjdkMDIzZTQ0NDg3MmMxZmZiYzUyNTMwOWM5YzBiZTY2OWFlNjljZTBjNTVlZjZmZjJmNjIwNCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_a1e28443c6df486aac5b9e722984d1bf",
+      "statement": "The entrypoint.sh script performs first-time initialization: seeds config from /org/etc/zm, sets timezone, waits for MariaDB, initializes database schema if empty, enables ZM_OPT_USE_EVENTNOTIFICATION, rewrites zm.conf and zmeventnotification.ini with env values, generates MLAPI_SECRET_KEY, and starts apache2 and zoneminder services.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L1-L128",
+          "version": "repo-lines-v1:sha256:1d7b8edb05c2415b368854131c37c9c4786b6bff5da57df1ab73613558d868ea:eyJzZWxlY3RlZExpbmVDb3VudCI6MTI4LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJiODc1ZjkyODU0NmFlZTc4NTVjYjFkYjlhZmM4YWIzZjFhOGEzNGQ0M2RlNWJiZDYyZjcwNzZkN2JhOWYzOTE3IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0YjY1ZjBkY2I0NzUxMDExMDg0N2I0N2E0ZTNlMzYyZGNmNTJhM2RiOGYxMDhhYTFhNjBjYjdkMDVjYTQ2ZmUyIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_99a529dba4fb4dddbe0cef73a06d9c15",
+      "statement": "Six named volumes persist data: db_data (MariaDB), zm_config (ZoneMinder config), zm_cache (ZoneMinder cache), known_faces, unknown_faces (face recognition), and mosquitto_data (MQTT persistence).",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L1-L64",
+          "version": "repo-lines-v1:sha256:c784a3df210ae4d63125ab022d859ea2ae57bf05f3dc385b0c4d642cfb9acf33:eyJzZWxlY3RlZExpbmVDb3VudCI6NjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVjYTdlYTE2NWY2YjFjNGIzOTYzMDkwZTQ5N2ViYTdjOTQ0YmIzZWQ3MDE3ODE3Mjc3OWJiYjVlNDM3NzJkMjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1MDY4NGU2ZjRiODY1YWM2NThkZmRmMjQ3YWUxNDU0NGIwZmRjMDJlYjRlYWM1YWRjNzhmMGExNTMxZWFmNjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f4ab3c7e789b4306936346d2e08a5955",
+      "statement": "The zoneminder container mounts a 400MB tmpfs at /dev/shm for shared memory used by ZoneMinder capture and analysis processes.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L1-L64",
+          "version": "repo-lines-v1:sha256:c784a3df210ae4d63125ab022d859ea2ae57bf05f3dc385b0c4d642cfb9acf33:eyJzZWxlY3RlZExpbmVDb3VudCI6NjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVjYTdlYTE2NWY2YjFjNGIzOTYzMDkwZTQ5N2ViYTdjOTQ0YmIzZWQ3MDE3ODE3Mjc3OWJiYjVlNDM3NzJkMjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1MDY4NGU2ZjRiODY1YWM2NThkZmRmMjQ3YWUxNDU0NGIwZmRjMDJlYjRlYWM1YWRjNzhmMGExNTMxZWFmNjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_af375bbb08734ceca9ffe21bbed054af",
+      "statement": "The eclipse-mosquitto service uses a custom entrypoint (entrypoint_mosquitto.sh) that generates a password file from MQTT_USER/MQTT_PASSWORD and starts mosquitto with listener 1883 and persistence enabled.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile.mosquitto#L1-L6",
+          "version": "repo-lines-v1:sha256:9fb771db0a1a9cd4e393a1bcb25e66046528b7476f64453dd7aac67765a16ef6:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWJiNmE2MmQ4NTAxYzZhYTcwNDNkY2ZiNDc3ZjZjMzQ4ODZkMzY0YzgwYzI1Y2FhZTEzOTQyMmU4M2EzNzQzOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWE2Y2JlNmI2NWI3OWExYzBlYjJlYjNmMjBlMjVjM2M1ZGY3N2FjNmFhMGJhOGZlNTI3ZDQxMTZkMzBkYzNlMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://entrypoint_mosquitto.sh#L1-L18",
+          "version": "repo-lines-v1:sha256:82518687331cb8e3cae0a97afadc396a4eed6cbce4200d13f969b8e4bbae6f93:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlYTQwN2M3M2ZlOGE2YWYxYTg5MDM3ZjllNDdkN2ZlNzExMTE2MmUwZDFkYzQ2YTgzMzZjZWVkZjM2Mzk5ODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmNGZmYzYyMmY5NTQ1Y2JjMmE4ZTYxOTI3Y2VhNGUwYWY0MDE4MjhiMTI2OWVjODk2MDdiOWI3NTYyNTg1YTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.3",
+    "at": "2026-11-03T01:11:51.876Z"
+  }
+}

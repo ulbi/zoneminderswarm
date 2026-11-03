@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:199184f885b838c465802023b7a2101b4fc2fa5e41d9478b33d1fdfc09f57f71",
+  "claims": [
+    {
+      "id": "claim_0d1761d1cfde408dbed7d871a5ec36f0",
+      "statement": "The entrypoint.sh script seeds /etc/zm from /org/etc/zm only when the runtime config volume is empty (first run), preserving user customizations on subsequent starts.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L7-L11",
+          "version": "repo-lines-v1:sha256:6acc61b23bde24775050cf34e56a63c72801ddbce775756bc700ca1e86c17062:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDc1ZDM2ZTVhZTQ2Mzc4OTliZmE1Njc1ZWI2Mjk0Y2VkMmZhODYyODlkZjdjZWFiODgyZDgxMzc4NTFlMjY0YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzFkMTc2NTMyZjQwZmU3NWJkMGMyZjVkZDY0MWI4MTRiYjAxNmZjZTFkN2QzMTg3Y2UzMTdkNTg0NmE1NDNhMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTgyZmQ5Yzg4OTNhNzdjMzdhZTdlYWY2OTIzOWZiZjAyYzBhODYzODAxYTUwM2Y2ZmVhZTUyZDMyM2ZkNWNmMCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_671a39d59fb3499b8b5384bd474333ea",
+      "statement": "Timezone configuration applies the TZ environment variable to system timezone (/etc/timezone, /etc/localtime) and all PHP php.ini files under /etc, uncommenting or adding date.timezone as needed.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L16-L42",
+          "version": "repo-lines-v1:sha256:fa65fc19cdffe4b0db4ad1674b3599262d0cd4d481d64a52d38512258b1bebf6:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3NWQzNmU1YWU0NjM3ODk5YmZhNTY3NWViNjI5NGNlZDJmYTg2Mjg5ZGY3Y2VhYjg4MmQ4MTM3ODUxZTI2NGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZGYyN2I5MmQyMzRiZDA2YWQ1NzEwYTdlNTA0Y2U3ZmUyZTcyMWI3MDUzYWNjZjM1ZWIxNDM5YzZjYThlMTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM5NmQxYmJjYmMyMDdmZjQ5MTNiNmIwYWJmMmRlNDQ0YjE1MmY4OTI0N2M1OGQ2Yzc3ZTVkNGNkMGFjMTAxNDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFkMjdkZDBmMTU2MWI4ZWZmNTI2NDY1OTUyM2Y3ZTZiNDU1MDM1OThmMGIyYjZlNTA2ZDBjMjg0ZWM2NjgzN2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_711fa7bd71314a8c8ea7238bae5b651e",
+      "statement": "The database wait loop uses netcat -z ${ZM_DB_HOST} 3306 in a 1-second sleep loop until MariaDB accepts TCP connections.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L47-L51",
+          "version": "repo-lines-v1:sha256:d45ee97b29be404e6c15a2c4fc52874213a1454a2eedf34df3998bd042f5ffc3:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2NjYWUzOGRlMGUwYzUwMjljYWQyNzkxNTYxMzNkNjFhNjNkODliNGUzOTMxZjc1YzA4ZDBiM2ZkNWMzMDgxZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmRkNmUwZWYzZTg3NzliOWNmMjQyNmRjMmMzYjNmZjdkZGViMWU5MWM3ZDY5ZTg4MDk4MDc0ZWZjZTllOGI3NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODNmZTg1NzMyZDNlNDRjNTNhOWNjODE0ZDMyZjg0NDhiZGRmNTUyZDVmYjAzYzcyMjdmYjg0Y2NkNGQ1ODZiZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTI4NzVlMzQ5OGQ1M2ZjY2Q1ZmFjMzg5YjM0ZDFlNmRiMjkxNmZkYjA0Njg5YzYyMmMxZWMzNjIzOWU4YmFkZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_22e8545dc3e545c3900b74b023512728",
+      "statement": "Database bootstrap checks table count via SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = '$ZM_DB_NAME'; if zero tables, it creates the database, user, grants via root, and imports /usr/share/zoneminder/db/zm_create.sql.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L53-L70",
+          "version": "repo-lines-v1:sha256:70d345cb6133e3cfc4ee08599782b188f533dfc6936fadf9a84bfec1be8e1b98:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI0MDNhMjFmMmI3ZGZlZTI1NjU2ZGEwYTYzYWY5MGE3YmQ3NmFjYjM0ZTJiNWRmYmE1MzlmOTQ0NjRmM2FkYTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU3N2RjNzFkM2IyNjZiNWI2ZWQ0MWMzZjg4MDcyY2VmZGM3ZWYyYjdjZGVhZDNlMGM1Njg3ODYzODdmNmQyNDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgwZTgyOTVlYTZlNzAxODVmNTQzNzQzMGM2ZDgzZTE4YzBiZTgzZjhjMDYxMDIzOGRmOThmN2Y1ZDIyZTY0N2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI1NDMxYzM4NmFiOGFiOWRhYzEwZDhlYzFmZDgxOTNmZmJmYjAxM2UwYWY1M2IyMjIxYzUwYmMxM2E3OGRlN2YifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e2ef6e2f8a5d4592b5efd8a86899481d",
+      "statement": "After DB bootstrap, the script unconditionally enables ZM_OPT_USE_EVENTNOTIFICATION=1 in the Config table.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L72-L75",
+          "version": "repo-lines-v1:sha256:56e68d9d3dfefc32d3090b34c9169b05fb5bd167c61c8f789ba7dbef57fc7a5f:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDAyOTM0MjNiNzgwNTczZTZhMjRiMjI1MWIwNmMwZThkNWUyMmFlMjQyY2U0MDljOTFmY2JmMWE3NzQ0NjJhZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzkyODFhMzFiNTgwNTBmMGUzODY2ZDQzNmY4ZmE4OGZhMmUwYjU4MGY4MTc5MTk5NTk1ZmRkZTFmMGJkNTM3YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGU4YTUyZTliMjM2OGFlMTVlY2Q3MjQ3NGM2NzcwMTg1ZDQzZTMxMTA5OGUwZjA3OTlkZDA3ZDg3Njc5MjkxZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_44dae851e0964d09ad43f9d4b0bb654c",
+      "statement": "The zm.conf file is rewritten at runtime with four sed replacements for ZM_DB_HOST, ZM_DB_USER, ZM_DB_PASS, and ZM_DB_NAME using environment variable values.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L77-L80",
+          "version": "repo-lines-v1:sha256:3f7cd052b368a1cfc21fad3a5525adbbdad52fcb3b98020fa99745c782d0ccd5:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTFlYzc4ODQ4MjkxZTVkZWU2N2EwOWNmNmM1M2U1ZGU1MTdiNDEyMWQyNDY0MDFhODIxNWFkNTU3MDNhYTcwYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDY5MDc4MjIyMjUxMDIzMzdiZTM4ODBhYmRiMGQzMzA2NTk3ZGNhMjExMTFmYzlkOTA4MDQ5ZDczZTgyMTAxZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDRmYmRhMDIyYTc5MmVkZTI4OWU2ODBjMzkwOTVmZGRiNzIyMGZiN2NlZjY5MDE4N2E4ZWNiN2EyYWRkNWFkYyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_8b36abf7b3b94e598c5521358c084a2d",
+      "statement": "When MQTT_HOST is set, the [mqtt] section of zmeventnotification.ini is enabled and configured with server, username, password, retain=yes, and SSL is disabled in the [ssl] section, using sed range addressing between section headers.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L91-L106",
+          "version": "repo-lines-v1:sha256:b2d9c0b796bd87216edfefc45421079b7d5b14d3183491ed7740307027cccc59:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI4YTAwYmJiMzVhYmYzODE5MjEwOWIyYjJiMDEyMDFhMWFmODYyM2ZhYzE5Njg0YmViZjZjM2JmMDA2ZTQ3NGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAyOThjYTAwMzQ3NjRhNjY2MjQ4YTYzNzIxMmYwMWEzYTEwZTkxMGIzNTA3M2I5MzE1Y2EzZTAxZDRkNDgwNGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ0ZmJkYTAyMmE3OTJlZGUyODllNjgwYzM5MDk1ZmRkYjcyMjBmYjdjZWY2OTAxODdhOGVjYjdhMmFkZDVhZGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMwYWRjYWNiY2YwZTY3ZDVlMzkwN2YxODkyMjY0OWI1MjE3MTFlY2VjMTE4NjEzMGIyOGM3ZDg4NTQ1NzRjMDMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8316bc6c46c74f599049c10a518f190e",
+      "statement": "The secrets.ini file is updated to replace the portal URL with http://zoneminder/, set ZM_USER and ZM_PASSWORD from env, and generate a 32-byte base64 MLAPI_SECRET_KEY via openssl rand.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L108-L117",
+          "version": "repo-lines-v1:sha256:5a182740a58c0ed0538eeea82c88cdfa60a80098e99266169b690f590c2c4bb0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmZTQ1YWI5ZDU4YmJiYTQ0NTEzZDI5NGU3YTY2ZjdiMmZmZDAzYWFlODJiMTQ0OWQ1ZTEzNzc2NGEzZDhkMTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZlOGJjMzQ4MzVlYmNhODgzNTI4YmFjNDZjYTUyNDAyZmZkNjg5YTdhMzMxODVkMGU3MjVkMjg3ZmM5YWMzOTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUzNTU4NTdjNWVkNDAxZTQ4ZGI1N2JhZjBiNzA4NzQxNjJjODllOGE4ZDdmMDJkMDczNTk3YWVhZjVmOGY3YjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZmZmZjMGI1NjdjY2I0M2E4ZTMxMDYxNmE1OWRmNjBhNzA2N2RmNjI1MTFmMzFiZjdkNGExNDAxMmUyZjZjYTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_76d8cb82613942ddaeefba7e349ee341",
+      "statement": "Services are started in sequence: apache2 then zoneminder, followed by tail -f /dev/null to keep PID 1 alive for the container.",
+      "evidence": [
+        {
+          "resource": "repo://entrypoint.sh#L121-L125",
+          "version": "repo-lines-v1:sha256:06bcdf25854417481c204a2b368e494914a7ce25aa347a81eb4b95682d136eed:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmZmZmMwYjU2N2NjYjQzYThlMzEwNjE2YTU5ZGY2MGE3MDY3ZGY2MjUxMWYzMWJmN2Q0YTE0MDEyZTJmNmNhNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2VmZTdjOTYxN2MzMjEzNjUyODZlYzUxMjdkN2YzODdkNmFiNjIzM2M0MzEwYjk5YjZiZTliZjY1ZTUyNGFhNSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.3",
+    "at": "2026-11-03T01:11:51.876Z"
+  }
+}
